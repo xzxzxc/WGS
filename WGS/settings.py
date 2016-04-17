@@ -13,7 +13,11 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 
+<<<<<<< HEAD
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+=======
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+>>>>>>> origin/Vlad
 
 
 # Quick-start development settings - unsuitable for production
@@ -56,7 +60,12 @@ ROOT_URLCONF = 'WGS.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
+<<<<<<< HEAD
         'DIRS': [],
+=======
+        'DIRS': [
+            os.path.join(BASE_DIR, 'templates')],
+>>>>>>> origin/Vlad
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -100,4 +109,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
+STATIC_ROOT = BASE_DIR + '/static/'
+
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (
+    BASE_DIR + '/templates/js',
+    BASE_DIR + '/templates/css',
+    BASE_DIR + '/templates/fonts',
+)
+
+DOMAIN_NAME = "http://127.0.0.1:8000/"

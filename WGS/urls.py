@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 """WGS URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -14,8 +15,30 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include(blog_urls))
 """
 from django.conf.urls import include, url
+=======
+from django.conf.urls import include, url, patterns
+>>>>>>> origin/Vlad
 from django.contrib import admin
+from django.conf import settings
+from django.conf.urls.static import static
+from polls import views
 
 urlpatterns = [
+<<<<<<< HEAD
     url(r'^admin/', include(admin.site.urls)),
 ]
+=======
+                  url(r'^$', views.home, name='home'),
+                  url(r'^about/$', views.about, name='about'),
+                  url(r'^services/$', views.services, name='services'),
+                  url(r'^contacts/$', views.contacts, name='contacts'),
+                  url(r'^admin/', include(admin.site.urls)),
+              ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+urlpatterns += patterns('', (
+    r'^about/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}), )
+urlpatterns += patterns('', (
+    r'^services/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}), )
+urlpatterns += patterns('', (
+    r'^contacts/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}), )
+>>>>>>> origin/Vlad
