@@ -1,3 +1,8 @@
 from django.contrib import admin
+from polls.models import VisitorMessage
 
-# Register your models here.
+
+class VisitorMessageAdmin(admin.ModelAdmin):
+    list_display = ('email', 'message', 'create')
+
+admin.site.register(VisitorMessage, VisitorMessageAdmin)
