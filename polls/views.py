@@ -1,6 +1,4 @@
 from django.shortcuts import render
-<<<<<<< HEAD
-=======
 from django.http import HttpResponse
 from WGS.settings import DOMAIN_NAME
 from polls.forms import VisitorMessageForm
@@ -28,6 +26,4 @@ def services(request):
 
 def contacts(request):
     return render(request, "contacts.html", {"DOMAIN_NAME": DOMAIN_NAME})
->>>>>>> origin/Vlad
 
-# Create your views here.

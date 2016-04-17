@@ -1,5 +1,3 @@
-__author__ = 'vlad'
-
 from django import forms
 
 
