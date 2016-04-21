@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
+{% load staticfiles %}
 <head>
 
     <meta charset="utf-8">
@@ -9,13 +9,13 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Services</title>
+    <title>Meetings</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="bootstrap.min.css" rel="stylesheet">
+    <link href="{%static 'bootstrap.min.css'%}" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="blog-post.css" rel="stylesheet">
+    <link href="{%static 'blog-post.css'%}" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -26,18 +26,16 @@
 
 </head>
 <body>
-        <!-- Navigation -->
-    {% include "menu.html"%}
-
-    <!-- Page Content -->
-    SOME TEXT
-
-    <!-- /.container -->
-
-    <!-- jQuery -->
-    <script src="jquery.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="bootstrap.min.js"></script>
+{% include "menu.html"%}
+<h1>Meetings:</h1>
+{% if latest_meeting_list %}
+    <ul>
+    {% for meeting in latest_meeting_list %}
+         <li>{{meeting.theme_text}}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No meetings are available.</p>
+{% endif %}
 </body>
 </html>
