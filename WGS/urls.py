@@ -10,6 +10,7 @@ urlpatterns = [
                   url(r'^services/$', views.services, name='services'),
                   url(r'^contacts/$', views.contacts, name='contacts'),
                   url(r'^admin/', include(admin.site.urls)),
+                  url(r'^meetings/', include('meetings.urls')),
               ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 urlpatterns += patterns('', (
