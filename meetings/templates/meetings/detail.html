@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 {% load staticfiles %}
 <head>
@@ -9,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Meetings</title>
+    <title>{{ meeting.topic_text }}</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="{%static 'bootstrap.min.css'%}" rel="stylesheet">
@@ -39,23 +40,11 @@
                 <!-- Blog Post -->
 
                 <!-- Title -->
-                <h1>Meetings</h1>
+                <h1>{{ meeting.topic_text }}</h1>
 
                 <!-- Post -->
 
-                <hr>
-{% if latest_meeting_list %}
-                <table cellspacing="2" cellpadding="2">
-    {% for meeting in latest_meeting_list %}
-         <tr><td width="500"><h3><font size="5"><a href="{% url 'meetings:detail' meeting.id %}">{{meeting.topic_text}}</a></font></h3></td><td><h3><font size="3">{{meeting.meeting_date}}</font></h3></td></h3></tr>
-    {% endfor %}
-                    </table>
-{% else %}
-    <p>No meetings are available.</p>
-{% endif %}
-
-                </div>
-            </div>
+                <h3>{{ meeting.detail_text }}</h3>
                 </div>
             </div>
     </div>

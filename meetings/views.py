@@ -17,4 +17,16 @@ class IndexView(generic.ListView):
         """
         return Meeting.objects.filter(
             pub_date__lte=timezone.now()
-        ).order_by('-pub_date')[:5]
+        ).order_by('-pub_date')[:10]
+
+
+class DetailView(generic.DetailView):
+    model = Meeting
+    template_name = 'meetings/detail.html'
+
+    def get_queryset(self):
+        """
+        Excludes any questions that aren't published yet.
+        """
+        return Meeting.objects.filter(pub_date__lte=timezone.now())
+
