@@ -12,12 +12,10 @@ class IndexView(generic.ListView):
 
     def get_queryset(self):
         """
-        Return the last five published questions (not including those set to be
+        Return the last ten published meetings (not including those set to be
         published in the future).
         """
-        return Meeting.objects.filter(
-            pub_date__lte=timezone.now()
-        ).order_by('-pub_date')[:10]
+        return Meeting.objects.filter(pub_date__lte=timezone.now()).order_by('-pub_date')[:10]
 
 
 class DetailView(generic.DetailView):
@@ -25,8 +23,5 @@ class DetailView(generic.DetailView):
     template_name = 'meetings/detail.html'
 
     def get_queryset(self):
-        """
-        Excludes any questions that aren't published yet.
-        """
-        return Meeting.objects.filter(pub_date__lte=timezone.now())
+        return Meeting.objects.all()
 

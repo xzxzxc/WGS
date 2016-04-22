@@ -5,10 +5,11 @@ from django.conf.urls.static import static
 from polls import views
 
 urlpatterns = [
-                  url(r'^$', views.home, name='home'),
-                  url(r'^about/$', views.about, name='about'),
-                  url(r'^services/$', views.services, name='services'),
-                  url(r'^contacts/$', views.contacts, name='contacts'),
-                  url(r'^admin/', include(admin.site.urls)),
-                  url(r'^meetings/', include('meetings.urls', namespace="meetings")),
+    url(r'^$', views.home, name='home'),
+    url(r'^about/$', views.about, name='about'),
+    url(r'^services/$', views.services, name='services'),
+    url(r'^contacts/$', views.contacts, name='contacts'),
+    url(r'^admin/', include(admin.site.urls)),
+    url(r'^meetings/', include('meetings.urls', namespace="meetings")),
+    url(r'^members/', include('members.urls', namespace="members")),
               ]

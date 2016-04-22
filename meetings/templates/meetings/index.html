@@ -44,15 +44,15 @@
                 <!-- Post -->
 
                 <hr>
-{% if latest_meeting_list %}
-                <table cellspacing="2" cellpadding="2">
-    {% for meeting in latest_meeting_list %}
-         <tr><td width="500"><h3><font size="5"><a href="{% url 'meetings:detail' meeting.id %}">{{meeting.topic_text}}</a></font></h3></td><td><h3><font size="3">{{meeting.meeting_date}}</font></h3></td></h3></tr>
-    {% endfor %}
-                    </table>
-{% else %}
-    <p>No meetings are available.</p>
-{% endif %}
+                {% if latest_meeting_list %}
+                                <table cellspacing="2" cellpadding="2">
+                    {% for meeting in latest_meeting_list %}
+                         <tr><td width="500"><h3><font size="5"><a href="{% url 'meetings:detail' meeting.id %}">{{meeting.topic_text}}</a></font></h3></td><td><h3><font size="3">{{meeting.meeting_date}}</font></h3></td></h3></tr>
+                    {% endfor %}
+                                    </table>
+                {% else %}
+                    <p>No meetings are available.</p>
+                {% endif %}
 
                 </div>
             </div>

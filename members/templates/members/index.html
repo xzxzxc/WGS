@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
+{% load staticfiles %}
 <head>
 
     <meta charset="utf-8">
@@ -9,8 +9,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Contacts</title>
-    {% load staticfiles %}
+    <title>Members</title>
+
     <!-- Bootstrap Core CSS -->
     <link href="{%static 'bootstrap.min.css'%}" rel="stylesheet">
 
@@ -26,17 +26,35 @@
 
 </head>
 <body>
-    <!-- Navigation -->
+<!-- Navigation -->
     {% include "menu.html"%}
-    <!-- Page Content -->
-    SOME TEXT
 
-    <!-- /.container -->
+<div class="container">
 
-    <!-- jQuery -->
-    <script src="jquery.js"></script>
+        <div class="row">
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="bootstrap.min.js"></script>
+            <!-- Blog Post Content Column -->
+            <div class="col-lg-8">
+
+                <!-- Blog Post -->
+
+                <!-- Title -->
+                <h1>Members</h1>
+
+                <!-- Post -->
+
+                <hr>
+                <table cellspacing="2" cellpadding="2">
+                    {% for member in latest_member_list %}
+                         <tr><td width="500"><h3><font size="5"><a href="{% url 'members:detail' member.id %}">{{member.name}}</a></font></h3></td><td><h3><font size="3">{{member}}</font></h3></td></h3></tr>
+                    {% endfor %}
+                </table>
+
+
+                </div>
+            </div>
+                </div>
+            </div>
+    </div>
 </body>
 </html>
