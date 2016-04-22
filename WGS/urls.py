@@ -10,12 +10,5 @@ urlpatterns = [
                   url(r'^services/$', views.services, name='services'),
                   url(r'^contacts/$', views.contacts, name='contacts'),
                   url(r'^admin/', include(admin.site.urls)),
-                  url(r'^meetings/', include('meetings.urls')),
-              ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-
-urlpatterns += patterns('', (
-    r'^about/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}), )
-urlpatterns += patterns('', (
-    r'^services/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}), )
-urlpatterns += patterns('', (
-    r'^contacts/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}), )
+                  url(r'^meetings/', include('meetings.urls', namespace="meetings")),
+              ]

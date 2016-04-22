@@ -11,11 +11,13 @@
 
     <title>Website title</title>
 
+    {% load staticfiles %}
+
     <!-- Bootstrap Core CSS -->
-    <link href="static/bootstrap.min.css" rel="stylesheet">
+    <link href="{%static 'bootstrap.min.css'%}" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="static/blog-post.css" rel="stylesheet">
+    <link href="{%static 'blog-post.css'%}" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -64,7 +66,7 @@
                 <hr>
 
                 <!-- Preview Image -->
-                <img class="img-responsive" src="/static/nature.jpg" width="140" height='200' alt="">
+                <img class="img-responsive" src="{%static 'nature.jpg'%}" width="140" height='200' alt="">
 
                 <hr>
 
@@ -229,10 +231,10 @@
     <!-- /.container -->
 
     <!-- jQuery -->
-    <script src="static/jquery.js"></script>
+    <script src="{%static 'jquery.js'%}"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="static/bootstrap.min.js"></script>
+    <script src="{%static 'bootstrap.min.js'%}></script>
 
 </body>
 

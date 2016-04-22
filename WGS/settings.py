@@ -87,7 +87,7 @@ DATABASES = {
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Kiev'
 
 USE_I18N = True
 
@@ -99,14 +99,18 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
-STATIC_ROOT = BASE_DIR + '/static/'
+#STATIC_ROOT = BASE_DIR + '/static/'
 
 STATIC_URL = '/static/'
 
+# STATICFILES_DIRS = (
+#     BASE_DIR + '/templates/js',
+#     BASE_DIR + '/templates/css',
+#     BASE_DIR + '/templates/fonts',
+# )
 STATICFILES_DIRS = (
-    BASE_DIR + '/templates/js',
-    BASE_DIR + '/templates/css',
-    BASE_DIR + '/templates/fonts',
+    os.path.join(BASE_DIR, "static"),
+    '/static/',
 )
 
 DOMAIN_NAME = "http://127.0.0.1:8000/"
