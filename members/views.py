@@ -1,18 +1,25 @@
 from django.shortcuts import render
 from django.views import generic
 from django.utils import timezone
-from .models import Member
+from .models import Student, Professor
 
 
-class IndexView(generic.ListView):
+class IndexView(generic.TemplateView):
     template_name = 'members/index.html'
-    context_object_name = 'latest_member_list'
 
-    def get_queryset(self):
-        # Return latest joined members
-        return Member.objects.filter(join_date__lte=timezone.now()).order_by('-join_date')[:10].reverse()
+    def get_context_data(self, **kwargs):
+        context = super(IndexView, self).get_context_data(**kwargs)
+        context['professors'] = Professor.objects.all()
+        context['students'] = Student.objects.filter(join_date__lte=timezone.now()).order_by('-join_date')[:10].reverse()
+        return context
 
 
-class DetailView(generic.DetailView):
-    model = Member
-    template_name = 'members/detail.html'
+class DetailProfessorView(generic.DetailView):
+    model = Professor
+    template_name = 'members/detail_prof.html'
+
+
+class DetailStudentView(generic.DetailView):
+    model = Student
+    template_name = 'members/detail_stud.html'
+

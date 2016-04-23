@@ -40,17 +40,13 @@
                 <!-- Blog Post -->
 
                 <!-- Title -->
-                <h1>{{ meeting.topic_text }}</h1>
+                <h1>{{ student.user.first_name }} {{ student.user.last_name }}</h1>
+                <img src="{{ student.photo.url }}">
 
                 <!-- Post -->
 
-                <p class="lead">{{ meeting.detail_text }}</p>
+                <p class="lead">Course {{ student.course }}</p>
 
-                <table cellspacing="2" cellpadding="2">
-                    {% for report in meeting.report_set.all %}
-                    <tr><td width="500"><h3><font size="5">{{report.name}}</font></h3></td><td><h3><font size="3">{{report.author}}</font></h3></td></h3></tr>
-                    {% endfor %}
-                </table>
 
 
                 </div>

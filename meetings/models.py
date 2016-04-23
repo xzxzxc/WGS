@@ -1,6 +1,8 @@
 from django.db import models
 from django.utils import timezone
 import datetime
+from django.contrib.auth.models import User
+from members.models import Professor, Student
 
 
 class Meeting(models.Model):
@@ -21,8 +23,8 @@ class Meeting(models.Model):
 
 
 class Report(models.Model):
-    meeting = models.ForeignKey(Meeting)
-    author = models.ForeignKey('members.Member')
+    meeting = models.OneToOneField(Meeting)
+    author = models.OneToOneField(User)
     name = models.CharField(max_length=50)
 
     def __unicode__(self):  # __unicode__ on Python 2

@@ -104,14 +104,12 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-# STATICFILES_DIRS = (
-#     BASE_DIR + '/templates/js',
-#     BASE_DIR + '/templates/css',
-#     BASE_DIR + '/templates/fonts',
-# )
+
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
     '/static/',
 )
 
 DOMAIN_NAME = "http://127.0.0.1:8000/"
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.dirname(BASE_DIR)+'/WGS/media/'
