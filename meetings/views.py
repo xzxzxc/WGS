@@ -24,4 +24,3 @@ class DetailView(generic.DetailView):
 
     def get_queryset(self):
         return Meeting.objects.all()
-

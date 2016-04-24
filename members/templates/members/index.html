@@ -46,15 +46,23 @@
                 <hr>
                 <table cellspacing="2" cellpadding="2">
                     {% for professor in professors %}
-                         <tr><td width="500"><h3><font size="5"><a href="{% url 'members:professor_detail' professor.id %}">
-                            {{professor}}
-                         </a></font></h3></td><td><h3><font size="3"><img src="{{ professor.photo_small.url }}"></font></h3></td></h3></tr>
+                         <tr>
+                             <td width="60"><img src="{{ professor.photo_small.url }}"></td>
+                             <td width="500"><h3><font size="5"><a href="{% url 'members:professor_detail' professor.id %}">
+                            {{ professor.name }}
+                         </a></font></h3></td>
+                         </tr>
                     {% endfor %}
                 </table>
                 <table cellspacing="2" cellpadding="2">
                     {% for student in students %}
-                         <tr><td width="500"><h3><font size="5"><a href="{% url 'members:student_detail' student.id %}">
-                             {{student}}</a></font></h3></td><td><h3><font size="3"><img src="{{student.photo_small.url}}"></font></h3></td></h3></tr>
+                         <tr>
+                             <td width="60"><img src="{{student.photo_small.url}}"></td>
+                             <td width="500"><h3><font size="5"><a href="{% url 'members:student_detail' student.id %}">
+                             {{ student.name }}
+                         </a></font></h3></td>
+
+                         </tr>
                     {% endfor %}
                 </table>
 

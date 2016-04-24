@@ -43,12 +43,19 @@
                 <h1>{{ meeting.topic_text }}</h1>
 
                 <!-- Post -->
-
-                <p class="lead">{{ meeting.detail_text }}</p>
+                {% for line in meeting.detail_text.splitlines %}
+                <p class="lead">{{ line }}</p>
+                {% endfor %}
 
                 <table cellspacing="2" cellpadding="2">
                     {% for report in meeting.report_set.all %}
-                    <tr><td width="500"><h3><font size="5">{{report.name}}</font></h3></td><td><h3><font size="3">{{report.author}}</font></h3></td></h3></tr>
+                    <tr><td width="300"><h3><font size="3">{{ report.name }}</font></h3></td>
+                        <td width="250"><h3><font size="4">{{ report.author.first_name }}  {{ report.author.last_name }}
+                        </font></h3></td></h3>
+                        {% if report.file.name %}
+                            <td><h3><a href="{{report.file.url}}">report file</a></h3></td>
+                        {% endif %}
+                    </tr>
                     {% endfor %}
                 </table>
 
