@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.utils.safestring import mark_safe
+
 
 
 class Meeting(models.Model):
@@ -15,7 +15,7 @@ class Meeting(models.Model):
 
 class Report(models.Model):
     meeting = models.ForeignKey(Meeting)
-    author = models.OneToOneField(User)
+    author = models.ForeignKey(User)
     name = models.CharField(max_length=50)
     file = models.FileField(upload_to='report_files', blank=True)
 

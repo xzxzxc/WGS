@@ -113,3 +113,6 @@ STATICFILES_DIRS = (
 DOMAIN_NAME = "http://127.0.0.1:8000/"
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.dirname(BASE_DIR)+'/WGS/media/'
+
+LOGIN_REDIRECT_URL = '/members/profile'
+LOGIN_URL = '/login/'

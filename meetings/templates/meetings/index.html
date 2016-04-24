@@ -49,7 +49,7 @@
                     {% for meeting in latest_meeting_list %}
                          <tr><td width="500"><h3><font size="5"><a href="{% url 'meetings:detail' meeting.id %}">
                              {{meeting.topic_text}}</a></font></h3></td>
-                             <td><h3><font size="3">{{meeting.meeting_date}}</font></h3></td></h3></tr>
+                             <td><h3><font size="3"><div class="date"><span class="glyphicon glyphicon-time"></span>{{meeting.meeting_date}}</div></font></h3></td></h3></tr>
                     {% endfor %}
                                     </table>
                 {% else %}

@@ -41,12 +41,10 @@
 
                 <!-- Title -->
                 <h1>{{ meeting.topic_text }}</h1>
-
+                <hr>
                 <!-- Post -->
-                {% for line in meeting.detail_text.splitlines %}
-                <p class="lead">{{ line }}</p>
-                {% endfor %}
-
+                <h3><p class="lead">{{ meeting.detail_text|linebreaks }}</p></h3>
+                <hr>
                 <table cellspacing="2" cellpadding="2">
                     {% for report in meeting.report_set.all %}
                     <tr><td width="300"><h3><font size="3">{{ report.name }}</font></h3></td>

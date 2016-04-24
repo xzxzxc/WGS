@@ -5,6 +5,7 @@ from PIL import Image as Img
 import StringIO
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.utils.translation import ugettext_lazy as _
+from django.core.urlresolvers import reverse
 
 
 class Professor(models.Model):
