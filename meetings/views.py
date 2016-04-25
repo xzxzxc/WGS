@@ -15,7 +15,7 @@ class IndexView(generic.ListView):
         Return the last ten published meetings (not including those set to be
         published in the future).
         """
-        return Meeting.objects.filter(pub_date__lte=timezone.now()).order_by('-pub_date')[:10]
+        return Meeting.objects.filter(pub_date__lte=timezone.now()).order_by('-meeting_date')[:10]
 
 
 class DetailView(generic.DetailView):

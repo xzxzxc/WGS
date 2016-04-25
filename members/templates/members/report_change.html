@@ -41,9 +41,9 @@
             <!-- Post -->
             {% if reports %}
             <h2>Create new report?</h2>
-            <form action="{% url 'members:send_report' %}" method="POST">{% csrf_token %}
+            <form enctype="multipart/form-data" action="{% url 'members:send_report' %}" method="POST">{% csrf_token %}
                 {% else %}
-                <form method="POST">{% csrf_token %}
+                <form enctype="multipart/form-data" method="POST">{% csrf_token %}
                 {% endif %}
                 {{ form.as_p }}
                 <button type="submit" class="save btn btn-default">Save</button>

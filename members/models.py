@@ -5,11 +5,12 @@ from PIL import Image as Img
 import StringIO
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.utils.translation import ugettext_lazy as _
+from django.db.models import Q
 from django.core.urlresolvers import reverse
 
 
 class Professor(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, limit_choices_to=Q(groups__name='Professors'))
     academic_title = models.CharField(max_length=15, default='none')
     position = models.CharField(max_length=50, default='none')
     join_date = models.DateField('date joined', auto_now=True)
@@ -41,10 +42,6 @@ class Professor(models.Model):
         super(Professor, self).save(*args, **kwargs)
 
     def clean(self):
-        if not self.user.groups.filter(name='Professors').exists():
-            raise ValidationError(_('User for this professor isn`t in Professors group.'))
-        if self.user.groups.filter(name='Students').exists():
-            raise ValidationError(_('User for this professor might be in Professors group, not in Students.'))
         if self.user.first_name == '':
             raise ValidationError(_('User for this professor might have first name'))
         if self.user.last_name == '':
@@ -52,7 +49,7 @@ class Professor(models.Model):
 
 
 class Student(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, limit_choices_to=Q(groups__name='Students'))
     course = models.IntegerField(default=3)
     position = models.CharField(max_length=50, default='none')
     join_date = models.DateField('date joined', auto_now=True)
@@ -84,10 +81,6 @@ class Student(models.Model):
         super(Student, self).save(*args, **kwargs)
 
     def clean(self):
-        if not self.user.groups.filter(name='Students').exists():
-            raise ValidationError(_('User for this student isn`t in Students group.'))
-        if self.user.groups.filter(name='Professors').exists():
-            raise ValidationError(_('User for this student might be in Students group, not in Professors.'))
         if self.user.first_name == '':
             raise ValidationError(_('User for this student might have first name'))
         if self.user.last_name == '':
