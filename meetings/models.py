@@ -6,7 +6,7 @@ import datetime
 class Meeting(models.Model):
     topic_text = models.CharField(max_length=50)
     detail_text = models.TextField()
-    meeting_date = models.DateField('time of meeting')
+    meeting_date = models.DateField('date of meeting')
     pub_date = models.DateField('date published', auto_now=True, editable=False)
 
     def __unicode__(self):  # __unicode__ on Python 2

@@ -14,4 +14,6 @@ urlpatterns = [
     url(r'^profile/change_meeting/$', views.MeetingChangeView.as_view(), name='meeting_change'),
     url(r'^profile/send_meeting/$', views.send_meeting, name='send_meeting'),
     url(r'^profile/edit_meeting/(?P<pk>[0-9]+)/$', views.edit_meeting, name='edit_meeting'),
+    url(r'^profile/delete_report/(?P<pk>[0-9]+)/$', views.delete_report, name='delete_report'),
+    url(r'^profile/delete_meeting/(?P<pk>[0-9]+)/$', views.delete_meeting, name='delete_meeting'),
 ]

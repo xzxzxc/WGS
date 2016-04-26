@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Student Profile</title>
+    <title>Meeting change</title>
 
     {% load staticfiles %}
      <!-- Bootstrap Core CSS -->
@@ -15,6 +15,7 @@
 
     <!-- Custom CSS -->
     <link href="{%static 'blog-post.css'%}" rel="stylesheet">
+
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -45,7 +46,7 @@
                 {% else %}
                 <form enctype="multipart/form-data" method="POST">{% csrf_token %}
                 {% endif %}
-                {{ form.as_p }}
+                    {{ form.as_p }}
                 <button type="submit" class="save btn btn-default">Save</button>
                 {#<a class="btn btn-default" href="{% url 'send_meeting' pk=meeting.pk %}">Save</a>#}
             </form>
@@ -56,10 +57,15 @@
             {% endif %}
             <table cellspacing="2" cellpadding="2">
                 {% for meeting in meetings %}
-                <tr><td width="50">
+                <tr>
+                    <td width="50">
+                    <a class="btn btn-default" href="{% url 'members:delete_meeting' pk=meeting.pk %}">
+                        <span class="glyphicon glyphicon-trash"></span></a>
+                    </td>
+                    <td width="50">
                     <a class="btn btn-default" href="{% url 'members:edit_meeting' pk=meeting.pk %}">
                         <span class="glyphicon glyphicon-pencil"></span></a>
-                </td>
+                    </td>
                     <td width="300"><h3><font size="5"><a href="{% url 'meetings:detail' meeting.id %}">
                              {{meeting.topic_text}}</a></font></h3></td>
                     <td><h3><font size="3"><div class="date"><span class="glyphicon glyphicon-time"></span>

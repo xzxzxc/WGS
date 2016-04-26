@@ -65,6 +65,8 @@ class MeetingChangeView(LoggedInMixinProfessor, generic.TemplateView):
         return context
 
 
+@login_required
+@user_passes_test(not_in_professor_group)
 def send_meeting(request):
     if request.method == "POST":
         form = MeetingChangeForm(request.POST)
@@ -76,6 +78,8 @@ def send_meeting(request):
     return render(request, 'members/meeting_change.html', {'form': form})
 
 
+@login_required
+@user_passes_test(not_in_professor_group)
 def edit_meeting(request, pk):
     meeting = get_object_or_404(Meeting, pk=pk)
     if request.method == "POST":
@@ -88,6 +92,13 @@ def edit_meeting(request, pk):
     return render(request, 'members/meeting_change.html', {'form': form})
 
 
+@login_required
+@user_passes_test(not_in_professor_group)
+def delete_meeting(request, pk):
+    get_object_or_404(Meeting, pk=pk).delete()
+    return HttpResponseRedirect(reverse('members:meeting_change'))
+
+
 class ReportChangeView(LoggedInMixinStudent, generic.TemplateView):
     template_name = 'members/report_change.html'
 
@@ -98,6 +109,7 @@ class ReportChangeView(LoggedInMixinStudent, generic.TemplateView):
         return context
 
 
+@login_required
 def send_report(request):
     if request.method == "POST":
         form = ReportChangeForm(request.POST, request.FILES)
@@ -115,6 +127,7 @@ def send_report(request):
     return render(request, 'members/report_change.html', {'form': form})
 
 
+@login_required
 def edit_report(request, pk):
     report = get_object_or_404(Report, pk=pk)
     if request.method == "POST":
@@ -131,6 +144,12 @@ def edit_report(request, pk):
     else:
         form = ReportChangeForm(instance=report)
     return render(request, 'members/report_change.html', {'form': form})
+
+
+@login_required
+def delete_report(request, pk):
+    get_object_or_404(Report, pk=pk).delete()
+    return HttpResponseRedirect(reverse('members:report_change'))
 
 
 @login_required
