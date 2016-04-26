@@ -1,16 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c29a59af-1421-4c50-985d-da1f6099c8ef" name="Default" comment="">
+    <list default="true" id="c29a59af-1421-4c50-985d-da1f6099c8ef" name="Default" comment="small changes in templates and forms, added login required to all views that need it">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WGS/urls.py" afterPath="$PROJECT_DIR$/WGS/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/meetings/models.py" afterPath="$PROJECT_DIR$/meetings/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/forms.py" afterPath="$PROJECT_DIR$/members/forms.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/templates/members/meeting_change.html" afterPath="$PROJECT_DIR$/members/templates/members/meeting_change.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/templates/members/report_change.html" afterPath="$PROJECT_DIR$/members/templates/members/report_change.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/urls.py" afterPath="$PROJECT_DIR$/members/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/views.py" afterPath="$PROJECT_DIR$/members/views.py" />
     </list>
     <ignored path="WGS.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -85,11 +78,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/WGS/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="22" column="97" selection-start-line="22" selection-start-column="97" selection-end-line="22" selection-end-column="97" />
+            <state relative-caret-position="315">
+              <caret line="21" column="82" selection-start-line="21" selection-start-column="82" selection-end-line="21" selection-end-column="82" />
               <folding>
                 <element signature="e#0#51#0" expanded="true" />
               </folding>
@@ -117,7 +110,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="forms.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="forms.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/members/forms.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="45">
@@ -208,9 +201,9 @@
         <option value="$PROJECT_DIR$/members/templates/members/report_change.html" />
         <option value="$PROJECT_DIR$/members/views.py" />
         <option value="$PROJECT_DIR$/meetings/models.py" />
-        <option value="$PROJECT_DIR$/WGS/urls.py" />
         <option value="$PROJECT_DIR$/members/templates/members/meeting_change.html" />
         <option value="$PROJECT_DIR$/members/forms.py" />
+        <option value="$PROJECT_DIR$/WGS/urls.py" />
       </list>
     </option>
   </component>
@@ -607,7 +600,14 @@
       <option name="project" value="LOCAL" />
       <updated>1461682492422</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="small changes in templates and forms, added login required to all views that need it">
+      <created>1461704137408</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1461704137408</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TodoView">
@@ -665,7 +665,8 @@
     <MESSAGE value="added working login and profile page for students, small changes in templates" />
     <MESSAGE value="security bugs fixed" />
     <MESSAGE value="added professors profile page, small changes in templates and views" />
-    <option name="LAST_COMMIT_MESSAGE" value="added professors profile page, small changes in templates and views" />
+    <MESSAGE value="small changes in templates and forms, added login required to all views that need it" />
+    <option name="LAST_COMMIT_MESSAGE" value="small changes in templates and forms, added login required to all views that need it" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -941,16 +942,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/WGS/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="97" selection-start-line="22" selection-start-column="97" selection-end-line="22" selection-end-column="97" />
-          <folding>
-            <element signature="e#0#51#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/members/templates/members/meeting_change.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="88">
@@ -965,6 +956,16 @@
           <caret line="3" column="55" selection-start-line="3" selection-start-column="55" selection-end-line="3" selection-end-column="55" />
           <folding>
             <element signature="e#0#44#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WGS/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="21" column="82" selection-start-line="21" selection-start-column="82" selection-end-line="21" selection-end-column="82" />
+          <folding>
+            <element signature="e#0#51#0" expanded="true" />
           </folding>
         </state>
       </provider>

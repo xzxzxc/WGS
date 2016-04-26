@@ -20,6 +20,5 @@ urlpatterns = [
     url(r'^meetings/', include('meetings.urls', namespace="meetings")),
     url(r'^members/', include('members.urls', namespace="members")),
     url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT, }),
-    url(r'^my_admin/jsi18n', 'django.views.i18n.javascript_catalog'), # for admin calendar widget
     ]
 
