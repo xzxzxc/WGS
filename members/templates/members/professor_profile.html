@@ -28,6 +28,28 @@
     <!-- Navigation -->
     {% include "menu.html"%}
 
+<div class="container">
+
+    <div class="row">
+
+        <!-- Blog Post Content Column -->
+        <div class="col-lg-8">
+            <!-- Title -->
+            <h1>Hello {{ user.first_name }}  {{ user.last_name }}!</h1>
+            <hr>
+
+            <!-- Post -->
+            <h2>You can:</h2>
+            <hr>
+            <h3><a href="{% url 'members:meeting_change' %}">Change or create meeting</a> </h3>
+
+            <h3><a href="{% url 'members:report_change' %}">Change or create report</a> </h3>
+
+
+        </div>
+    </div>
+</div>
+
 
 
 </body>

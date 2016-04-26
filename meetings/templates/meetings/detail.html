@@ -47,8 +47,8 @@
                 <hr>
                 <table cellspacing="2" cellpadding="2">
                     {% for report in meeting.report_set.all %}
-                    <tr><td width="300"><h3><font size="3">{{ report.name }}</font></h3></td>
-                        <td width="250"><h3><font size="4">{{ report.author.first_name }}  {{ report.author.last_name }}
+                    <tr><td width="425"><h3><font size="3">{{ report.name }}</font></h3></td>
+                        <td width="150"><h3><font size="4">{{ report.author.first_name }}  {{ report.author.last_name }}
                         </font></h3></td></h3>
                         {% if report.file.name %}
                             <td><h3><a href="{{report.file.url}}">report file</a></h3></td>
