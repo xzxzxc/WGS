@@ -2,37 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c29a59af-1421-4c50-985d-da1f6099c8ef" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/media/report_files/NuclPhys_ch_08_v0a.pdf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/media/students/student.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/media/students_small/student.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/meetings/migrations/0002_auto_20160505_0930.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/members/templates/members/student_change.html" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/media/report_files/TypicalTasks.doc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/media/students/icon_searchbox.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/media/students_small/icon_searchbox.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/meetings/migrations/0003_auto_20160421_1459.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/meetings/migrations/0004_auto_20160421_1502.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/members/migrations/0002_delete_member.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/members/migrations/0003_member.py" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/meetings/migrations/0002_auto_20160421_1441.py" afterPath="$PROJECT_DIR$/meetings/migrations/0003_auto_20160505_0931.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WGS/urls.py" afterPath="$PROJECT_DIR$/WGS/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/meetings/migrations/0001_initial.py" afterPath="$PROJECT_DIR$/meetings/migrations/0001_initial.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/meetings/models.py" afterPath="$PROJECT_DIR$/meetings/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/meetings/templates/meetings/detail.html" afterPath="$PROJECT_DIR$/meetings/templates/meetings/detail.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/meetings/templates/meetings/index.html" afterPath="$PROJECT_DIR$/meetings/templates/meetings/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/meetings/views.py" afterPath="$PROJECT_DIR$/meetings/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/forms.py" afterPath="$PROJECT_DIR$/members/forms.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/migrations/0001_initial.py" afterPath="$PROJECT_DIR$/members/migrations/0001_initial.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/models.py" afterPath="$PROJECT_DIR$/members/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/templates/members/index.html" afterPath="$PROJECT_DIR$/members/templates/members/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/templates/members/meeting_change.html" afterPath="$PROJECT_DIR$/members/templates/members/meeting_change.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/templates/members/professor_profile.html" afterPath="$PROJECT_DIR$/members/templates/members/professor_profile.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/templates/members/report_change.html" afterPath="$PROJECT_DIR$/members/templates/members/report_change.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/urls.py" afterPath="$PROJECT_DIR$/members/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/views.py" afterPath="$PROJECT_DIR$/members/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/bootstrap.min.css" afterPath="$PROJECT_DIR$/static/bootstrap.min.css" />
     </list>
     <ignored path="WGS.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -83,21 +53,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="student_change.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="student_change.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/members/templates/members/student_change.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
+            <state relative-caret-position="345">
               <caret line="53" column="28" selection-start-line="53" selection-start-column="28" selection-end-line="53" selection-end-column="28" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="detail.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="detail.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/meetings/templates/meetings/detail.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="270">
               <caret line="54" column="32" selection-start-line="54" selection-start-column="32" selection-end-line="54" selection-end-column="32" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="detail_stud.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/members/templates/members/detail_stud.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="427">
+              <caret line="47" column="56" selection-start-line="47" selection-start-column="56" selection-end-line="47" selection-end-column="56" />
               <folding />
             </state>
           </provider>
@@ -147,18 +127,6 @@
               <caret line="23" column="17" selection-start-line="23" selection-start-column="17" selection-end-line="23" selection-end-column="17" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="forms.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/members/forms.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="369">
-              <caret line="29" column="52" selection-start-line="29" selection-start-column="52" selection-end-line="29" selection-end-column="52" />
-              <folding>
-                <element signature="e#0#82#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -316,6 +284,34 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="WGS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WGS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WGS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="members" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WGS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WGS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="media" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -597,23 +593,23 @@
     <frame x="0" y="0" width="1366" height="768" extended-state="0" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24981412" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24981412" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295129" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32808024" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32872504" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32808024" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3042857" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3051576" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -691,13 +687,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/members/templates/members/detail_stud.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="705">
-          <caret line="47" column="56" selection-start-line="47" selection-start-column="56" selection-end-line="47" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/members/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -765,7 +754,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2355">
           <caret line="157" column="34" selection-start-line="157" selection-start-column="11" selection-end-line="157" selection-end-column="34" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -773,7 +761,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="645">
           <caret line="43" column="53" selection-start-line="43" selection-start-column="16" selection-end-line="43" selection-end-column="53" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -793,26 +780,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/meetings/migrations/0002_auto_20160421_1441.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/members/migrations/0004_auto_20160505_0911.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="339">
-          <caret line="41" column="10" selection-start-line="41" selection-start-column="10" selection-end-line="41" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/meetings/migrations/0002_auto_20160421_1441.py" />
+    <entry file="file://$PROJECT_DIR$/members/migrations/0004_auto_20160505_0911.py" />
     <entry file="file://$PROJECT_DIR$/db.sqlite3">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -821,35 +793,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/members/migrations/0002_delete_member.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/meetings/migrations/0005_auto_20160505_0914.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/members/migrations/0004_auto_20160505_0914.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="15" column="8" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/members/migrations/0002_delete_member.py" />
+    <entry file="file://$PROJECT_DIR$/meetings/migrations/0005_auto_20160505_0914.py" />
+    <entry file="file://$PROJECT_DIR$/members/migrations/0004_auto_20160505_0914.py" />
     <entry file="file://$PROJECT_DIR$/members/migrations/0001_initial.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -946,14 +896,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/members/templates/members/student_change.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="53" column="28" selection-start-line="53" selection-start-column="28" selection-end-line="53" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/meetings/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="345">
@@ -992,6 +934,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
           <caret line="54" column="32" selection-start-line="54" selection-start-column="32" selection-end-line="54" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/members/templates/members/detail_stud.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="427">
+          <caret line="47" column="56" selection-start-line="47" selection-start-column="56" selection-end-line="47" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/members/templates/members/student_change.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="53" column="28" selection-start-line="53" selection-start-column="28" selection-end-line="53" selection-end-column="28" />
           <folding />
         </state>
       </provider>
