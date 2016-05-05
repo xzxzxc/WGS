@@ -32,21 +32,26 @@
 
     <div class="row">
 
-        <!-- Blog Post Content Column -->
-        <div class="col-lg-8">
-            <!-- Title -->
-            <h1>Hello {{ user.first_name }}  {{ user.last_name }}!</h1>
-            <hr>
 
-            <!-- Post -->
-            <h2>You can:</h2>
+        <div class="col-lg-6">
+            <!-- Title -->
+            <h1>Hello {{ professor.name }}!</h1>
+            <hr>
+            <img src="{{ professor.photo.url }}">
+        </div>
+            <!-- Side Menu -->
+        <div class="col-md-4">
+            <h1>You can:</h1>
             <hr>
             <h3><a href="{% url 'members:meeting_change' %}">Change or create meeting</a> </h3>
 
             <h3><a href="{% url 'members:report_change' %}">Change or create report</a> </h3>
 
-
+            <h3><a href="{% url 'members:student_change' %}">Change or create student</a> </h3>
         </div>
+
+
+
     </div>
 </div>
 

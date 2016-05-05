@@ -34,32 +34,45 @@
 
         <div class="row">
 
-            <!-- Blog Post Content Column -->
-            <div class="col-lg-8">
-
-                <!-- Blog Post -->
-
+            <div class="col-lg-7">
                 <!-- Title -->
                 <h1>{{ meeting.topic_text }}</h1>
                 <hr>
-                <!-- Post -->
-                <h3><p class="lead">{{ meeting.detail_text|linebreaks }}</p></h3>
-                <hr>
-                <table cellspacing="2" cellpadding="2">
+
+                {% if meeting.report_set.all %}
+                <table class="table table-striped" cellspacing="2" cellpadding="2">
+                    <thead>
+                    <tr><h2>Reports</h2></tr>
+                    <tr>
+                        <td width="400"><h3>Name</h3></td>
+                        <td width="175"><h3>Author</h3></td>
+                        <td><h3>File</h3></td>
+                    </tr>
+                    </thead>
+                    <tbody>
                     {% for report in meeting.report_set.all %}
-                    <tr><td width="425"><h3><font size="3">{{ report.name }}</font></h3></td>
-                        <td width="150"><h3><font size="4">{{ report.author.first_name }}  {{ report.author.last_name }}
-                        </font></h3></td></h3>
+                    <tr><td><h4>{{ report.name }}</h4></td>
+                        <td><h4>{{ report.author.first_name }}  {{ report.author.last_name }}</h4></td></h3>
                         {% if report.file.name %}
-                            <td><h3><a href="{{report.file.url}}">report file</a></h3></td>
+                            <td>
+                                <a class="btn btn-default" href="{{report.file.url}}">
+                                <span class="glyphicon glyphicon-file"></span></a>
+                            </td>
                         {% endif %}
                     </tr>
                     {% endfor %}
+                    </tbody>
                 </table>
-
-
-                </div>
+                {% endif %}
             </div>
-    </div>
+
+
+            <div class="col-md-4">
+                <h1>Details:</h1>
+                <hr>
+                <h3><p class="lead">{{ meeting.detail_text|linebreaks }}</p></h3>
+            </div>
+        </div>
+</div>
 </body>
 </html>

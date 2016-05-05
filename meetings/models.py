@@ -1,13 +1,14 @@
 from django.db import models
 from django.contrib.auth.models import User
 import datetime
+from django.db.models.signals import post_delete
+from django.dispatch import receiver
 
 
 class Meeting(models.Model):
     topic_text = models.CharField(max_length=50)
-    detail_text = models.TextField()
+    detail_text = models.TextField(default='')
     meeting_date = models.DateField('date of meeting')
-    pub_date = models.DateField('date published', auto_now=True, editable=False)
 
     def __unicode__(self):  # __unicode__ on Python 2
         return self.topic_text
@@ -25,4 +26,12 @@ class Report(models.Model):
 
     def __unicode__(self):  # __unicode__ on Python 2
         return self.name
+
+
+@receiver(post_delete, sender=Report)
+def file_report_delete_handler(sender, instance, **kwargs):
+    # Pass false so ImageField doesn't save the model.
+    instance.file.delete(False)
+
+
 

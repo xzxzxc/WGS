@@ -6,7 +6,8 @@ import StringIO
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.utils.translation import ugettext_lazy as _
 from django.db.models import Q
-from django.core.urlresolvers import reverse
+from django.db.models.signals import post_delete
+from django.dispatch import receiver
 
 
 class Professor(models.Model):
@@ -50,7 +51,8 @@ class Professor(models.Model):
 
 class Student(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, limit_choices_to=Q(groups__name='Students'))
-    course = models.IntegerField(default=3)
+    course = models.IntegerField(default=3, choices=((1, 'first'), (2, 'second'), (3, 'third'), (4, 'fourth'),
+                                                     (5, 'fifth'), (6, 'sixth')))
     position = models.CharField(max_length=50, default='none')
     join_date = models.DateField('date joined', auto_now=True)
     photo = models.ImageField(upload_to='students', default='default.jpg')
@@ -81,7 +83,19 @@ class Student(models.Model):
         super(Student, self).save(*args, **kwargs)
 
     def clean(self):
-        if self.user.first_name == '':
-            raise ValidationError(_('User for this student might have first name'))
-        if self.user.last_name == '':
-            raise ValidationError(_('User for this student might have last name'))
+        if hasattr(self, 'user'):  # user not exist only if clean called from form that contains Student model -->>
+            # -->>(form.is_valid() in view)
+            if self.user.first_name == '':
+                raise ValidationError(_('User for this student might have first name'))
+            if self.user.last_name == '':
+                raise ValidationError(_('User for this student might have last name'))
+
+
+@receiver(post_delete)
+def photo_post_delete_handler(sender, instance, **kwargs):
+    list_of_models = ('Student', 'Professor')
+    if sender.__name__ in list_of_models:
+        if instance.photo.name != 'default.jpg':
+            instance.photo.delete(False)  # Pass false so ImageField doesn't save the model.
+            instance.photo_small.delete(False)
+

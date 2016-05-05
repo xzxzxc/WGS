@@ -45,21 +45,28 @@
 
                 <hr>
                 {% if latest_meeting_list %}
-                                <table cellspacing="2" cellpadding="2">
+                <table class="table table-striped" cellspacing="2" cellpadding="2">
+                    <thead>
+                    <tr>
+                        <td width="500"><h4>Name</h4></td>
+                        <td><h4>Date</h4></td>
+                    </tr>
+                    </thead>
+                    <tbody>
                     {% for meeting in latest_meeting_list %}
-                         <tr><td width="500"><h3><font size="5"><a href="{% url 'meetings:detail' meeting.id %}">
-                             {{meeting.topic_text}}</a></font></h3></td>
-                             <td><h3><font size="3"><div class="date"><span class="glyphicon glyphicon-time"></span>{{meeting.meeting_date}}</div></font></h3></td></h3></tr>
+                         <tr><td width="500"><h4><a href="{% url 'meetings:detail' meeting.id %}">
+                             {{meeting.topic_text}}</a></h4></td>
+                             <td><h5><div class="date"><span class="glyphicon glyphicon-time">
+                             </span>{{meeting.meeting_date|date}}</div></h5></td></h3></tr>
                     {% endfor %}
-                                    </table>
+                    </tbody>
+                </table>
                 {% else %}
                     <p>No meetings are available.</p>
                 {% endif %}
+            </div>
+        </div>
+</div>
 
-                </div>
-            </div>
-                </div>
-            </div>
-    </div>
 </body>
 </html>

@@ -34,18 +34,11 @@
         <div class="row">
 
             <!-- Blog Post Content Column -->
-            <div class="col-lg-8">
+            <div class="col-lg-4">
 
-                <!-- Blog Post -->
-
-                <!-- Title -->
-                <h1>Members</h1>
-
-                <!-- Post -->
-
-                <hr>
-                <h2>Professors</h2>
-                <table cellspacing="2" cellpadding="2">
+                <table class="table" cellspacing="2" cellpadding="2">
+                    <thead><h2>Professors</h2></thead>
+                    <tbody>
                     {% for professor in professors %}
                          <tr>
                              <td width="60"><img src="{{ professor.photo_small.url }}"></td>
@@ -54,10 +47,13 @@
                          </a></font></h3></td>
                          </tr>
                     {% endfor %}
+                    </tbody>
                 </table>
-                <hr>
-                <H2>Students</H2>
-                <table cellspacing="2" cellpadding="2">
+                </div>
+            <div class="col-lg-4">
+                <table class="table" cellspacing="2" cellpadding="2">
+                    <thead><h2>Students</h2></thead>
+                    <tbody>
                     {% for student in students %}
                          <tr>
                              <td width="60"><img src="{{student.photo_small.url}}"></td>
@@ -67,6 +63,7 @@
 
                          </tr>
                     {% endfor %}
+                    </tbody>
                 </table>
 
 

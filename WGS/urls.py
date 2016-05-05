@@ -10,8 +10,7 @@ from django.contrib.auth import views as auth_views
 urlpatterns = [
     url(r'^login/$', auth_views.login, {'template_name': 'login.html'}, name='login'),
     # url(r'^password_reset/$', auth_views.password_reset, name='password_reset'),
-    url(r'^logout/$', 'django.contrib.auth.views.logout',
-     {'next_page': '/'}),
+    url(r'^logout/$', 'django.contrib.auth.views.logout', {'next_page': '/'}),
     url(r'^$', views.home, name='home'),
     url(r'^about/$', views.about, name='about'),
     url(r'^services/$', views.services, name='services'),
