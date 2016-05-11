@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block title %}Dir {{dir.name}} change{% endblock %}
+
+{% load staticfiles %}
+
+{% block nav %}{% include "menu.html" with active='profile' %}{% endblock %}
+
+{% block content %}
+
+<div class="col-lg-6">
+    <h1>Hello {{ user.first_name }}  {{ user.last_name }}!</h1>
+    <hr>
+
+    {% if not form.instance.pk %}
+    <h2>Create new dir?</h2>
+    <form enctype="multipart/form-data" action="{% url 'members:send_dir' %}" method="POST">{% csrf_token %}
+        {% else %}
+        <form enctype="multipart/form-data" method="POST">{% csrf_token %}
+        {% endif %}
+        {{ form.as_p }}
+        <button type="submit" class="save btn btn-default">Save</button>
+    </form>
+</div>
+{% if files %}
+<div class="col-md-5">
+    <h1><br></h1>
+    <hr>
+    <h3>Delete files?</h3>
+    <table cellspacing="2" cellpadding="2">
+        {% for file in files %}
+        <tr>
+            <td width="30">
+            <a class="btn btn-default btn-xs" href="{% url 'members:delete_file' dir_pk=dir.pk file_pk=file.pk %}">
+                <span class="glyphicon glyphicon-trash"></span></a>
+            </td>
+            <td width="350"><h4><a href="{{ file.file.url }}">{{ file }}</a>
+            </h4></td>
+
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% elif dirs %}
+<div class="col-md-5">
+    <h1><br></h1>
+    <hr>
+    <h2>Or change existing?</h2>
+    <table cellspacing="2" cellpadding="2">
+        {% for dir in dirs %}
+        <tr>
+            <td width="30">
+            <a class="btn btn-default btn-xs" href="{% url 'members:delete_dir' pk=dir.pk %}">
+                <span class="glyphicon glyphicon-trash"></span></a>
+            </td>
+
+            <td width="30">
+            <a class="btn btn-default btn-xs" href="{% url 'members:edit_dir' pk=dir.pk %}">
+                <span class="glyphicon glyphicon-pencil"></span></a>
+            </td>
+            <td width="350"><h4><a href="{% url 'links:detail' dir.id %}">{{ dir.name }}</a>
+            </h4></td>
+
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endif %}
+
+{% endblock %}

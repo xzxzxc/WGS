@@ -1,76 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
+
+{% block title %}Members{% endblock %}
+
 {% load staticfiles %}
-<head>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+{% block nav %}{% include "menu.html" with active='members' %}{% endblock %}
 
-    <title>Members</title>
+{% block content %}
 
-    <!-- Bootstrap Core CSS -->
-    <link href="{%static 'bootstrap.min.css'%}" rel="stylesheet">
+<div class="col-lg-4">
 
-    <!-- Custom CSS -->
-    <link href="{%static 'blog-post.css'%}" rel="stylesheet">
+    <table class="table" cellspacing="2" cellpadding="2">
+        <thead><h2>Professors</h2></thead>
+        <tbody>
+        {% for professor in professors %}
+             <tr>
+                 <td width="60"><img src="{{ professor.photo_small.url }}"></td>
+                 <td width="500"><h3><font size="5"><a href="{% url 'members:professor_detail' professor.id %}">
+                {{ professor.name }}
+             </a></font></h3></td>
+             </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+<div class="col-lg-4">
+    <table class="table" cellspacing="2" cellpadding="2">
+        <thead><h2>Students</h2></thead>
+        <tbody>
+        {% for student in students %}
+             <tr>
+                 <td width="60"><img src="{{student.photo_small.url}}"></td>
+                 <td width="500"><h3><font size="5"><a href="{% url 'members:student_detail' student.id %}">
+                 {{ student.name }}
+             </a></font></h3></td>
 
-</head>
-<body>
-<!-- Navigation -->
-    {% include "menu.html"%}
+             </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
 
-<div class="container">
-
-        <div class="row">
-
-            <!-- Blog Post Content Column -->
-            <div class="col-lg-4">
-
-                <table class="table" cellspacing="2" cellpadding="2">
-                    <thead><h2>Professors</h2></thead>
-                    <tbody>
-                    {% for professor in professors %}
-                         <tr>
-                             <td width="60"><img src="{{ professor.photo_small.url }}"></td>
-                             <td width="500"><h3><font size="5"><a href="{% url 'members:professor_detail' professor.id %}">
-                            {{ professor.name }}
-                         </a></font></h3></td>
-                         </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-                </div>
-            <div class="col-lg-4">
-                <table class="table" cellspacing="2" cellpadding="2">
-                    <thead><h2>Students</h2></thead>
-                    <tbody>
-                    {% for student in students %}
-                         <tr>
-                             <td width="60"><img src="{{student.photo_small.url}}"></td>
-                             <td width="500"><h3><font size="5"><a href="{% url 'members:student_detail' student.id %}">
-                             {{ student.name }}
-                         </a></font></h3></td>
-
-                         </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-
-
-                </div>
-            </div>
-                </div>
-            </div>
-    </div>
-</body>
-</html>
+{% endblock %}

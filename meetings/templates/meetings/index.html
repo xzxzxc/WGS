@@ -1,72 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
+
+{% block title %}Meetings{% endblock %}
+
 {% load staticfiles %}
-<head>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+{% block nav %}{% include "menu.html" with active='meetings' %}{% endblock %}
 
-    <title>Meetings</title>
+{% block content %}
 
-    <!-- Bootstrap Core CSS -->
-    <link href="{%static 'bootstrap.min.css'%}" rel="stylesheet">
+<div class="col-lg-7">
 
-    <!-- Custom CSS -->
-    <link href="{%static 'blog-post.css'%}" rel="stylesheet">
+    <h1>Meetings</h1>
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
 
-</head>
-<body>
-<!-- Navigation -->
-    {% include "menu.html"%}
-
-<div class="container">
-
-        <div class="row">
-
-            <!-- Blog Post Content Column -->
-            <div class="col-lg-8">
-
-                <!-- Blog Post -->
-
-                <!-- Title -->
-                <h1>Meetings</h1>
-
-                <!-- Post -->
-
-                <hr>
-                {% if latest_meeting_list %}
-                <table class="table table-striped" cellspacing="2" cellpadding="2">
-                    <thead>
-                    <tr>
-                        <td width="500"><h4>Name</h4></td>
-                        <td><h4>Date</h4></td>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for meeting in latest_meeting_list %}
-                         <tr><td width="500"><h4><a href="{% url 'meetings:detail' meeting.id %}">
-                             {{meeting.topic_text}}</a></h4></td>
-                             <td><h5><div class="date"><span class="glyphicon glyphicon-time">
-                             </span>{{meeting.meeting_date|date}}</div></h5></td></h3></tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-                {% else %}
-                    <p>No meetings are available.</p>
-                {% endif %}
-            </div>
-        </div>
+    <hr>
+    {% if latest_meeting_list %}
+    <table class="table table-striped" cellspacing="2" cellpadding="2">
+        <thead>
+        <tr>
+            <td width="500"><h4>Name</h4></td>
+            <td><h4>Date</h4></td>
+        </tr>
+        </thead>
+        <tbody>
+        {% for meeting in latest_meeting_list %}
+             <tr><td width="500"><h4><a href="{% url 'meetings:detail' meeting.id %}">
+                 {{meeting.topic_text}}</a></h4></td>
+                 <td><h5><div class="date"><span class="glyphicon glyphicon-time">
+                 </span>{{meeting.meeting_date|date}}</div></h5></td></h3></tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <p>No meetings are available.</p>
+    {% endif %}
 </div>
 
-</body>
-</html>
+{% endblock %}
