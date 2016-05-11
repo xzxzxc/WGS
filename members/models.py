@@ -22,7 +22,7 @@ class Professor(models.Model):
         return self.user.username
 
     def name(self):
-        return self.user.first_name + '  ' + self.user.last_name
+        return '%s  %s' % (self.user.first_name, self.user.last_name)
 
     def save(self, *args, **kwargs):
         if self.photo and self.photo.name != 'default.jpg':
@@ -62,7 +62,7 @@ class Student(models.Model):
         return self.user.username
 
     def name(self):
-        return self.user.first_name + '  ' + self.user.last_name
+        return '%s  %s' % (self.user.first_name, self.user.last_name)
 
     def save(self, *args, **kwargs):
         if self.photo and self.photo.name != 'default.jpg':

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
+{% load staticfiles %}
 <head>
 
     <meta charset="utf-8">
@@ -9,8 +9,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Contacts</title>
-    {% load staticfiles %}
+    <title>{% block title %}WGS{% endblock %}</title>
+
     <!-- Bootstrap Core CSS -->
     <link href="{%static 'bootstrap.min.css'%}" rel="stylesheet">
 
@@ -26,17 +26,20 @@
 
 </head>
 <body>
-    <!-- Navigation -->
-    {% include "menu.html"%}
-    <!-- Page Content -->
-    SOME TEXT
 
-    <!-- /.container -->
+{% block nav %}{% include "menu.html" %}{% endblock %}
 
+<div class="container">
+
+        <div class="row">
+            {% block content %}{% endblock %}
+
+        </div>
+</div>
     <!-- jQuery -->
-    <script src="jquery.js"></script>
+    <script src="{%static 'jquery.js'%}"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="bootstrap.min.js"></script>
+    <script src="{%static 'bootstrap.min.js'%}"></script>
 </body>
 </html>

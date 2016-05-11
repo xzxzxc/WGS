@@ -1,89 +1,53 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+{% extends "base.html" %}
 
-    <title>Meeting change</title>
+{% block title %}Meeting change{% endblock %}
 
-    {% load staticfiles %}
-     <!-- Bootstrap Core CSS -->
-    <link href="{%static 'bootstrap.min.css'%}" rel="stylesheet">
+{% load staticfiles %}
 
-    <!-- Custom CSS -->
-    <link href="{%static 'blog-post.css'%}" rel="stylesheet">
+{% block nav %}{% include "menu.html" with active='profile' %}{% endblock %}
 
+{% block content %}
+<div class="col-lg-6">
+    <h1>Hello {{ user.first_name }}  {{ user.last_name }}!</h1>
+    <hr>
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-</head>
-<body>
+    {% if not form.instance.pk %}
+    <h2>Create new Meeting?</h2>
 
-    <!-- Navigation -->
-    {% include "menu.html"%}
-
-<div class="container">
-
-    <div class="row">
-
-        <!-- Blog Post Content Column -->
-        <div class="col-lg-6">
-            <!-- Title -->
-            <h1>Hello {{ user.first_name }}  {{ user.last_name }}!</h1>
-            <hr>
-
-            <!-- Post -->
-            {% if not form.instance.pk %}
-            <h2>Create new Meeting?</h2>
-
-            <form enctype="multipart/form-data" action="{% url 'members:send_meeting' %}" method="POST">{% csrf_token %}
-                {% else %}
-                <form enctype="multipart/form-data" method="POST">{% csrf_token %}
-                {% endif %}
-                    {{ form.as_p }}
-                <button type="submit" class="save btn btn-default">Save</button>
-            </form>
-        </div>
-            <!-- Side Menu -->
-        <div class="col-md-6">
-            <h1><br></h1>
-
-            {% if meetings %}
-            <hr>
-            <h2>Or change existing?</h2>
-            {% endif %}
-            <table cellspacing="2" cellpadding="2">
-                {% for meeting in meetings %}
-                <tr>
-                    <td width="30">
-                    <a class="btn btn-default btn-xs" href="{% url 'members:delete_meeting' pk=meeting.pk %}">
-                        <span class="glyphicon glyphicon-trash" ></span></a>
-                    </td>
-                    <td width="30">
-                    <a class="btn btn-default btn-xs" href="{% url 'members:edit_meeting' pk=meeting.pk %}">
-                        <span class="glyphicon glyphicon-pencil"></span></a>
-                    </td>
-                    <td width="350"><h4><a href="{% url 'meetings:detail' meeting.id %}">
-                             {{meeting.topic_text}}</a></h4></td>
-                    <td><h5><div class="date"><span class="glyphicon glyphicon-time"></span>
-                        {{meeting.meeting_date}}</div></h5>
-                    </td>
-                </tr>
-                {% endfor %}
-            </table>
-                <br><br><br>
-
-
-        </div>
-    </div>
+    <form enctype="multipart/form-data" action="{% url 'members:send_meeting' %}" method="POST">{% csrf_token %}
+        {% else %}
+        <form enctype="multipart/form-data" method="POST">{% csrf_token %}
+        {% endif %}
+            {{ form.as_p }}
+        <button type="submit" class="save btn btn-default">Save</button>
+    </form>
 </div>
 
-</body>
-</html>
+<div class="col-md-6">
+    <h1><br></h1>
+    {% if meetings %}
+    <hr>
+    <h2>Or change existing?</h2>
+    {% endif %}
+    <table cellspacing="2" cellpadding="2">
+        {% for meeting in meetings %}
+        <tr>
+            <td width="30">
+            <a class="btn btn-default btn-xs" href="{% url 'members:delete_meeting' pk=meeting.pk %}">
+                <span class="glyphicon glyphicon-trash" ></span></a>
+            </td>
+            <td width="30">
+            <a class="btn btn-default btn-xs" href="{% url 'members:edit_meeting' pk=meeting.pk %}">
+                <span class="glyphicon glyphicon-pencil"></span></a>
+            </td>
+            <td width="350"><h4><a href="{% url 'meetings:detail' meeting.id %}">
+                     {{meeting.topic_text}}</a></h4></td>
+            <td><h5><div class="date"><span class="glyphicon glyphicon-time"></span>
+                {{meeting.meeting_date}}</div></h5>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+ </div>
+
+{% endblock %}

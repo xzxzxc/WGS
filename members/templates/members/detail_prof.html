@@ -1,56 +1,23 @@
-<!DOCTYPE html>
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
+
+{% block title %}Detail {{ professor.name }}{% endblock %}
+
 {% load staticfiles %}
-<head>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+{% block nav %}{% include "menu.html" with active='members' %}{% endblock %}
 
-    <title>{{ meeting.topic_text }}</title>
+{% block content %}
 
-    <!-- Bootstrap Core CSS -->
-    <link href="{%static 'bootstrap.min.css'%}" rel="stylesheet">
+<div class="col-lg-8">
 
-    <!-- Custom CSS -->
-    <link href="{%static 'blog-post.css'%}" rel="stylesheet">
+    <h1>{{ professor.name }}</h1>
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-</head>
-<body>
-<!-- Navigation -->
-    {% include "menu.html"%}
-
-<div class="container">
-
-        <div class="row">
-
-            <!-- Blog Post Content Column -->
-            <div class="col-lg-8">
-
-                <!-- Blog Post -->
-
-                <!-- Title -->
-                <h1>{{ professor.user.first_name }} {{ professor.user.last_name }}</h1>
-                <img src="{{ professor.photo.url }}">
-
-                <!-- Post -->
-
-                <p class="lead">{{ professor.academic_title }}</p>
-                <p class="lead">{{ professor.position }}</p>
+    <img src="{{ professor.photo.url }}">
+    <p class="lead">Contacts: {{ professor.user.email }}</p>
+    <p class="lead">{{ professor.academic_title }}</p>
+    <p class="lead">{{ professor.position }}</p>
 
 
-                </div>
-            </div>
-    </div>
-</body>
-</html>
+</div>
+
+{% endblock %}

@@ -1,91 +1,59 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+{% extends "base.html" %}
 
-    <title>Report change</title>
+{% block title %}Report change{% endblock %}
 
-    {% load staticfiles %}
-     <!-- Bootstrap Core CSS -->
-    <link href="{%static 'bootstrap.min.css'%}" rel="stylesheet">
+{% load staticfiles %}
 
-    <!-- Custom CSS -->
-    <link href="{%static 'blog-post.css'%}" rel="stylesheet">
+{% block nav %}{% include "menu.html" with active='profile' %}{% endblock %}
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-</head>
-<body>
+{% block content %}
 
-    <!-- Navigation -->
-    {% include "menu.html"%}
+<div class="col-lg-6">
 
-<div class="container">
+    <h1>Hello {{ user.first_name }}  {{ user.last_name }}!</h1>
+    <hr>
 
-    <div class="row">
-
-        <!-- Blog Post Content Column -->
-        <div class="col-lg-6">
-            <!-- Title -->
-            <h1>Hello {{ user.first_name }}  {{ user.last_name }}!</h1>
-            <hr>
-
-            <!-- Post -->
-            {% if not form.instance.pk %}
-            <h2>Create new report?</h2>
-            <form enctype="multipart/form-data" action="{% url 'members:send_report' %}" method="POST">{% csrf_token %}
-                {% else %}
-                <form enctype="multipart/form-data" method="POST">{% csrf_token %}
-                {% endif %}
-                {{ form.as_p }}
-                <button type="submit" class="save btn btn-default">Save</button>
-                {#<a class="btn btn-default" href="{% url 'send_post' pk=report.pk %}">Save</a>#}
-            </form>
-        </div>
-            <!-- Side Menu -->
-        <div class="col-md-5">
-            <h1><br></h1>
-            {% if reports %}
-            <hr>
-            <h2>Or change existing?</h2>
-            {% endif %}
-            <table cellspacing="2" cellpadding="2">
-                {% for report in reports %}
-                <tr>
-                    <td width="30">
-                    <a class="btn btn-default btn-xs" href="{% url 'members:delete_report' pk=report.pk %}">
-                        <span class="glyphicon glyphicon-trash"></span></a>
-                    </td>
-
-                    <td width="30">
-                    <a class="btn btn-default btn-xs" href="{% url 'members:edit_report' pk=report.pk %}">
-                        <span class="glyphicon glyphicon-pencil"></span></a>
-                    </td>
-                    <td width="350"><h4><a href="{% url 'meetings:detail' report.meeting.id %}">{{ report.name }}</a>
-                    </h4></td>
-
-                    {% if report.file.name %}
-                    <td>
-                        <a class="btn btn-default btn-xs" href="{{report.file.url}}">
-                        <span class="glyphicon glyphicon-file"></span></a>
-                    </td>
-                    {% endif %}
-                </tr>
-                {% endfor %}
-            </table>
-            <br><br><br>
-
-
-    </div>
+    {% if not form.instance.pk %}
+    <h2>Create new report?</h2>
+    <form enctype="multipart/form-data" action="{% url 'members:send_report' %}" method="POST">{% csrf_token %}
+        {% else %}
+        <form enctype="multipart/form-data" method="POST">{% csrf_token %}
+        {% endif %}
+        {{ form.as_p }}
+        <button type="submit" class="save btn btn-default">Save</button>
+    </form>
 </div>
 
-</body>
-</html>
+<div class="col-md-5">
+    <h1><br></h1>
+    {% if reports %}
+    <hr>
+    <h2>Or change existing?</h2>
+    {% endif %}
+    <table cellspacing="2" cellpadding="2">
+        {% for report in reports %}
+        <tr>
+            <td width="30">
+            <a class="btn btn-default btn-xs" href="{% url 'members:delete_report' pk=report.pk %}">
+                <span class="glyphicon glyphicon-trash"></span></a>
+            </td>
+
+            <td width="30">
+            <a class="btn btn-default btn-xs" href="{% url 'members:edit_report' pk=report.pk %}">
+                <span class="glyphicon glyphicon-pencil"></span></a>
+            </td>
+            <td width="350"><h4><a href="{% url 'meetings:detail' report.meeting.id %}">{{ report.name }}</a>
+            </h4></td>
+
+            {% if report.file.name %}
+            <td>
+                <a class="btn btn-default btn-xs" href="{{report.file.url}}">
+                <span class="glyphicon glyphicon-file"></span></a>
+            </td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+{% endblock %}

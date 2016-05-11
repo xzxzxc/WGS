@@ -20,7 +20,7 @@ def limit_meeting_date_choices():
 
 class Report(models.Model):
     meeting = models.ForeignKey(Meeting, limit_choices_to=limit_meeting_date_choices)
-    author = models.ForeignKey(User)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=50)
     file = models.FileField(upload_to='report_files', blank=True)
 

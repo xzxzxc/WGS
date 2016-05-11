@@ -9,7 +9,9 @@ from django.shortcuts import redirect, get_object_or_404, render
 from django.utils.decorators import method_decorator
 from django.utils.datastructures import MultiValueDictKeyError
 from meetings.models import Report, Meeting
-from .forms import ReportChangeForm, MeetingChangeForm, StudentEditForm, StudentCreateForm
+from links.models import Dir, File
+from .forms import ReportChangeForm, MeetingChangeForm, StudentEditForm, StudentCreateForm, ProfessorEditForm,\
+    DirChangeForm
 from django.contrib.auth.models import User, Group
 
 
@@ -45,6 +47,19 @@ def in_professor_group(user):
     return False
 
 
+def in_professor_group_or_super(user):
+    if user:
+        if user.groups.filter(name='Professors').exists() or user.is_superuser:
+            return True
+    return False
+
+
+def in_student_group(user):
+    if user:
+        return user.groups.filter(name='Students').exists()
+    return False
+
+
 class LoggedInMixinProfessor(object):
     @method_decorator(login_required)
     @method_decorator(user_passes_test(in_professor_group))
@@ -52,16 +67,32 @@ class LoggedInMixinProfessor(object):
         return super(LoggedInMixinProfessor, self).dispatch(*args, **kwargs)
 
 
+class LoggedInMixinProfessorOrSuper(object):
+    @method_decorator(login_required)
+    @method_decorator(user_passes_test(in_professor_group_or_super))
+    def dispatch(self, *args, **kwargs):
+        return super(LoggedInMixinProfessorOrSuper, self).dispatch(*args, **kwargs)
+
+
 class ProfileProfessorView(LoggedInMixinProfessor, generic.TemplateView):
     template_name = 'members/professor_profile.html'
 
     def get_context_data(self, **kwargs):
         context = super(ProfileProfessorView, self).get_context_data(**kwargs)
-        context['professor'] = Professor.objects.filter(user=self.request.user)[0]
+        context['professor'] = Professor.objects.get(user=self.request.user)
         return context
 
 
-class MeetingChangeView(LoggedInMixinProfessor, generic.TemplateView):
+class ProfileStudentView(LoggedInMixinStudent, generic.TemplateView):
+    template_name = 'members/student_profile.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(ProfileStudentView, self).get_context_data(**kwargs)
+        context['student'] = Student.objects.get(user=self.request.user)
+        return context
+
+
+class MeetingChangeView(LoggedInMixinProfessorOrSuper, generic.TemplateView):
     template_name = 'members/meeting_change.html'
 
     def get_context_data(self, **kwargs):
@@ -72,34 +103,34 @@ class MeetingChangeView(LoggedInMixinProfessor, generic.TemplateView):
 
 
 @login_required
-@user_passes_test(in_professor_group)
+@user_passes_test(in_professor_group_or_super)
 def send_meeting(request):
     if request.method == "POST":
         form = MeetingChangeForm(request.POST)
         if form.is_valid():
-            meeting = form.save()
-            return redirect('meetings:detail', pk=meeting.pk)
+            form.save()
+            return HttpResponseRedirect(reverse('members:meeting_change'))
     else:
         form = MeetingChangeForm()
     return render(request, 'members/meeting_change.html', {'form': form})
 
 
 @login_required
-@user_passes_test(in_professor_group)
+@user_passes_test(in_professor_group_or_super)
 def edit_meeting(request, pk):
     meeting = get_object_or_404(Meeting, pk=pk)
     if request.method == "POST":
         form = MeetingChangeForm(request.POST, instance=meeting)
         if form.is_valid():
             meeting.save()
-            return redirect('meetings:detail', pk=meeting.pk)
+            return HttpResponseRedirect(reverse('members:meeting_change'))
     else:
         form = MeetingChangeForm(instance=meeting)
     return render(request, 'members/meeting_change.html', {'form': form})
 
 
 @login_required
-@user_passes_test(in_professor_group)
+@user_passes_test(in_professor_group_or_super)
 def delete_meeting(request, pk):
     get_object_or_404(Meeting, pk=pk).delete()
     return HttpResponseRedirect(reverse('members:meeting_change'))
@@ -127,7 +158,7 @@ def send_report(request):
                 pass
             report.author = request.user
             report.save()
-            return redirect('meetings:detail', pk=report.meeting.pk)
+            return HttpResponseRedirect(reverse('members:report_change'))
     else:
         form = ReportChangeForm()
     return render(request, 'members/report_change.html', {'form': form})
@@ -145,7 +176,7 @@ def edit_report(request, pk):
             except MultiValueDictKeyError:
                 pass
             report.save()
-            return redirect('meetings:detail', pk=report.meeting.pk)
+            return HttpResponseRedirect(reverse('members:report_change'))
     else:
         form = ReportChangeForm(instance=report)
     return render(request, 'members/report_change.html', {'form': form})
@@ -189,7 +220,7 @@ def send_student(request):
             except MultiValueDictKeyError:
                 pass
             student.save()
-            return redirect('members:student_detail', pk=student.pk)
+            return HttpResponseRedirect(reverse('members:student_change'))
     else:
         form = StudentCreateForm()
     return render(request, 'members/student_change.html', {'form': form})
@@ -217,7 +248,7 @@ def edit_student(request, pk):
             except MultiValueDictKeyError:
                 pass
             student.save()
-            return redirect('members:student_detail', pk=student.pk)
+            return HttpResponseRedirect(reverse('members:student_change'))
     else:
         data = {
             'user_name': user.username,
@@ -239,11 +270,144 @@ def delete_student(request, pk):
     return HttpResponseRedirect(reverse('members:student_change'))
 
 
+class DirChangeView(LoggedInMixinProfessor, generic.TemplateView):
+    template_name = 'members/dir_change.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(DirChangeView, self).get_context_data(**kwargs)
+        context['form'] = DirChangeForm
+        context['dirs'] = Dir.objects.all()
+        return context
+
+
+@login_required
+@user_passes_test(in_professor_group)
+def send_dir(request):
+    if request.method == "POST":
+        form = DirChangeForm(request.POST, request.FILES)
+        if form.is_valid():
+            dir = form.save(commit=False)
+            dir.author = Professor.objects.get(user=request.user)
+            dir.save()
+            for each in form.cleaned_data['files']:
+                File.objects.create(file=each, dir=dir)
+            return HttpResponseRedirect(reverse('members:dir_change'))
+    else:
+        form = DirChangeForm()
+    return render(request, 'members/dir_change.html', {'form': form})
+
+
+@login_required
+@user_passes_test(in_professor_group)
+def edit_dir(request, pk):
+    dir = get_object_or_404(Dir, pk=pk)
+    if request.method == "POST":
+        form = DirChangeForm(request.POST, request.FILES, instance=dir)
+        if form.is_valid():
+            dir = form.save(commit=False)
+            for each in form.cleaned_data['files']:
+                File.objects.create(file=each, dir=dir)
+            dir.save()
+            return HttpResponseRedirect(reverse('members:dir_change'))
+    else:
+        form = DirChangeForm(instance=dir)
+        files = File.objects.filter(dir=dir)
+    return render(request, 'members/dir_change.html', {'form': form, 'files': files, 'dir': dir})
+
+
+@login_required
+@user_passes_test(in_professor_group)
+def delete_dir(request, pk):
+    get_object_or_404(Dir, pk=pk).delete()
+    return HttpResponseRedirect(reverse('members:dir_change'))
+
+
+@login_required
+@user_passes_test(in_professor_group)
+def delete_file(request, dir_pk, file_pk):
+    get_object_or_404(File, pk=file_pk).delete()
+    return HttpResponseRedirect(reverse('members:edit_dir', kwargs={'pk': dir_pk}))
+
+
+@login_required
+@user_passes_test(in_professor_group)
+def edit_professor_profile(request):
+    user = get_object_or_404(User, pk=request.user.pk)
+    professor = Professor.objects.get(user=user)
+    if request.method == "POST":
+        form = ProfessorEditForm(request.POST, request.FILES, instance=professor)
+        if form.is_valid():
+            professor = form.save(commit=False)
+            user.username = form.cleaned_data['user_name']
+            user.email = form.cleaned_data['email']
+            new_password = form.cleaned_data['password']
+            if new_password != r'':
+                user.set_password(new_password)
+            user.first_name = form.cleaned_data['first_name']
+            user.last_name = form.cleaned_data['last_name']
+            user.save()
+            try:
+                professor.photo = request.FILES['photo']
+            except MultiValueDictKeyError:
+                pass
+            professor.save()
+            return redirect('members:professor_profile')
+    else:
+        data = {
+            'user_name': user.username,
+            'password': r'',
+            'email': user.email,
+            'first_name': user.first_name,
+            'last_name': user.last_name,
+            'academic_title': professor.academic_title,
+            'position': professor.position,
+        }
+        form = ProfessorEditForm(data, instance=professor)
+    return render(request, 'members/professor_profile.html', {'form': form, 'professor': professor})
+
+
+@login_required
+@user_passes_test(in_student_group)
+def edit_student_profile(request):
+    user = get_object_or_404(User, pk=request.user.pk)
+    student = Student.objects.get(user=user)
+    if request.method == "POST":
+        form = StudentEditForm(request.POST, request.FILES, instance=student)
+        if form.is_valid():
+            student = form.save(commit=False)
+            user.username = form.cleaned_data['user_name']
+            user.email = form.cleaned_data['email']
+            new_password = form.cleaned_data['password']
+            if new_password != r'':
+                user.set_password(new_password)
+            user.first_name = form.cleaned_data['first_name']
+            user.last_name = form.cleaned_data['last_name']
+            user.save()
+            try:
+                student.photo = request.FILES['photo']
+            except MultiValueDictKeyError:
+                pass
+            student.save()
+            return redirect('members:student_profile')
+    else:
+        data = {
+            'user_name': user.username,
+            'password': r'',
+            'email': user.email,
+            'first_name': user.first_name,
+            'last_name': user.last_name,
+            'course': student.course,
+            'position': student.position,
+        }
+        form = StudentEditForm(data, instance=student)
+    return render(request, 'members/student_profile.html', {'form': form, 'student': student})
+
+
 @login_required
 def profile_view(request):
     if request.user.groups.filter(name='Professors').exists():
-        return HttpResponseRedirect(reverse('members:profile_professor_view'))
+        return HttpResponseRedirect(reverse('members:professor_profile'))
     elif request.user.groups.filter(name='Students').exists():
-        return HttpResponseRedirect(reverse('members:report_change'))
+        return HttpResponseRedirect(reverse('members:student_profile'))
     else:
         return redirect('%s?next=%s' % (settings.LOGIN_URL, request.path))

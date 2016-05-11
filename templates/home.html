@@ -1,49 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
 
-<head>
+{% block title %}Home{% endblock %}
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+{% load staticfiles %}
 
-    <title>Website title</title>
+{% block nav %}{% include "menu.html" %}{% endblock %}
 
-    {% load staticfiles %}
-
-    <!-- Bootstrap Core CSS -->
-    <link href="{%static 'bootstrap.min.css'%}" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="{%static 'blog-post.css'%}" rel="stylesheet">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-</head>
-
-<body>
-
-
-<!--!!!!!!!!!!!!!!!!!!!!!-->
-<!--{{DOMAIN_NAME}}-->
-<!--!!!!!!!!!!!!!!!!!-->
-<!--!!!!!!!!!!!!!!!!!!!!!-->
-<!--{{first_message.email}}-->
-<!--!!!!!!!!!!!!!!!!!-->
-    <!-- Navigation -->
-    {% include "menu.html"%}
-
-    <!-- Page Content -->
-    <div class="container">
-
-        <div class="row">
+{% block content %}
 
             <!-- Blog Post Content Column -->
             <div class="col-lg-8">
@@ -51,7 +14,7 @@
                 <!-- Blog Post -->
 
                 <!-- Title -->
-                <h1>Here is the title of the home-page</h1>
+                <h1>HEP analysis group</h1>
 
                 <!-- Author -->
                 <!--<p class="lead">-->
@@ -212,7 +175,6 @@
 
             </div>
 
-        </div>
         <!-- /.row -->
 
         <hr>
@@ -227,15 +189,8 @@
             <!-- /.row -->
         </footer>
 
-    </div>
+
     <!-- /.container -->
 
-    <!-- jQuery -->
-    <script src="{%static 'jquery.js'%}"></script>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="{%static 'bootstrap.min.js'%}></script>
-
-</body>
-
-</html>
+{% endblock %}

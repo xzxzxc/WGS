@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Profile {{ professor.name }}{% endblock %}
+{% block title %}Profile {{ student.name }}{% endblock %}
 
 {% load staticfiles %}
 
@@ -9,7 +9,7 @@
 {% block content %}
 
 <div class="col-lg-6">
-    <h1>Hello {{ professor.name }}!</h1>
+    <h1>Hello {{ student.name }}!</h1>
     <hr>
 
     {% if form %}
@@ -18,12 +18,12 @@
         <button type="submit" class="save btn btn-default">Save</button>
     </form>
     {% else %}
-    <img src="{{ professor.photo.url }}">
-    <a class="btn btn-default" style="position:absolute;top:100px;" href="{% url 'members:edit_professor_profile' %}">
+    <img src="{{ student.photo.url }}">
+    <a class="btn btn-default" style="position:absolute;top:100px;" href="{% url 'members:edit_student_profile' %}">
                 <span class="glyphicon glyphicon-pencil"></span></a>
     <br>
-    <p class="lead">{{ professor.academic_title }}</p>
-    <p class="lead">{{ professor.position }}</p>
+    <p class="lead">{{ student.course }}</p>
+    <p class="lead">{{ student.position }}</p>
     {% endif %}
 
 </div>
@@ -31,10 +31,11 @@
 <div class="col-md-4">
     <h1>You can:</h1>
     <hr>
-    <h3><a href="{% url 'members:meeting_change' %}">Change or create meeting</a> </h3>
     <h3><a href="{% url 'members:report_change' %}">Change or create report</a> </h3>
-    <h3><a href="{% url 'members:student_change' %}">Change or create student</a> </h3>
-    <h3><a href="{% url 'members:dir_change' %}">Change or create dir in links</a> </h3>
+    {% if student.user.is_superuser %}
+    <h3><a href="{% url 'members:meeting_change' %}">Change or create meeting</a> </h3>
+    {% endif %}
+
 </div>
 
 {% endblock %}

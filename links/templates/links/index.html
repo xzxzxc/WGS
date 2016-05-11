@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %}Links {{dir}}{% endblock %}
+
+{% load staticfiles %}
+
+{% block nav %}{% include "menu.html" with active='links' %}{% endblock %}
+
+{% block content %}
+
+<div class="col-lg-7">
+    <h1>Links</h1>
+    <hr>
+    <table class="table table-striped" cellspacing="2" cellpadding="2">
+        <thead>
+        <tr>
+            <td width="500"><h4>Name</h4></td>
+            <td><h4>Author</h4></td>
+        </tr>
+        </thead>
+        <tbody>
+        {% for link in dirs %}
+            <tr {% if link == dir %}style="background-color:grey"{% endif %}>
+            <td>
+                <h4><a href="{% url 'links:detail' link.pk %}">{{ link }}</a></h4>
+                {% if link.description %}
+                    <p><h6>{{ link.description }}</h6></p>
+             {% endif %}
+            </td>
+            <td><h4><a href="{% url 'members:professor_detail' link.author.id %}">{{ link.author.name }}</a></h4></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% if files %}
+<div class="col-md-5">
+    <h1>Files</h1>
+    <hr>
+    <table class="table table-striped" cellspacing="2" cellpadding="2">
+        <thead>
+        <tr>
+            <td width="400"><h4>Name</h4></td>
+            <td><h4>Link</h4></td>
+        </tr>
+        </thead>
+        <tbody>
+        {% for file in files %}
+            <tr>
+                <td><h6>{{ file }}</h6></td>
+             <td>
+                    <a class="btn btn-default btn-xs" href="{{ file.file.url }}">
+                    <span class="glyphicon glyphicon-file"></span></a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endif %}
+{% endblock %}
+
