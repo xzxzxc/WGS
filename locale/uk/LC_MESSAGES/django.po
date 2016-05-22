@@ -1,0 +1,245 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-05-22 15:29+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#: WGS/settings.py:57
+msgid "Ukrainian"
+msgstr "Українська"
+
+#: WGS/settings.py:58
+msgid "English"
+msgstr "Англійська"
+
+#: links/templates/links/index.html:5 links/templates/links/index.html.py:14
+#: members/templates/members/detail_prof.html:30 templates/menu.html:23
+msgid "Links"
+msgstr "Посилання"
+
+#: links/templates/links/index.html:39
+msgid "Files"
+msgstr "Файли"
+
+#: meetings/templates/meetings/detail.html:7
+msgid "Meeting"
+msgstr "Зібрання"
+
+#: meetings/templates/meetings/detail.html:26
+#: members/templates/members/detail_stud.html:30
+msgid "Reports"
+msgstr "Звіти"
+
+#: meetings/templates/meetings/detail.html:28
+msgid "Name"
+msgstr "Ім'я"
+
+#: meetings/templates/meetings/detail.html:29
+msgid "Author"
+msgstr "Автор"
+
+#: meetings/templates/meetings/detail.html:30
+msgid "File"
+msgstr "Файл"
+
+#: meetings/templates/meetings/detail.html:59
+msgid "Details"
+msgstr "Деталі"
+
+#: meetings/templates/meetings/index.html:5
+#: meetings/templates/meetings/index.html:14 templates/menu.html:26
+msgid "Meetings"
+msgstr "Зібрання"
+
+#: members/forms.py:35
+msgid "Topic of meeting"
+msgstr ""
+
+#: members/forms.py:36
+msgid "Description of meeting"
+msgstr ""
+
+#: members/forms.py:37
+msgid "Date of meeting"
+msgstr ""
+
+#: members/forms.py:64
+msgid "This user name is already in use."
+msgstr ""
+
+#: members/forms.py:70 members/forms.py:91 members/forms.py:118
+msgid "Password too short"
+msgstr ""
+
+#: members/forms.py:97 members/forms.py:124
+msgid "Gif files don`t allowed"
+msgstr ""
+
+#: members/models.py:20
+msgid "Doktor of Physics and Mathematics"
+msgstr "Доктор фіз.-мат. наук"
+
+#: members/models.py:21
+msgid "Kandidat of Physics and Mathematics"
+msgstr "Кандидат фіз.мат. наук"
+
+#: members/models.py:22 members/models.py:87
+msgid "Taras Shevchenko National University of Kyiv"
+msgstr "Національного університету імені Тараса Шевченка"
+
+#: members/models.py:23
+msgid "Teaching assistant"
+msgstr "Асистент"
+
+#: members/models.py:24
+msgid "Academic"
+msgstr "Викладач"
+
+#: members/models.py:24
+msgid "Docent"
+msgstr "Доцент"
+
+#: members/models.py:25
+msgid "Professor"
+msgstr "Професор"
+
+#: members/models.py:84
+msgid "first"
+msgstr "першого"
+
+#: members/models.py:84
+msgid "second"
+msgstr "другого"
+
+#: members/models.py:84
+msgid "third"
+msgstr "третього"
+
+#: members/models.py:84
+msgid "fourth"
+msgstr "четвертого"
+
+#: members/models.py:85
+msgid "fifth"
+msgstr "п'ятого"
+
+#: members/models.py:85
+msgid "sixth"
+msgstr "шостого"
+
+#: members/models.py:88
+msgid "National University of Kyiv-Mohyla Academy"
+msgstr "Національного університету «Києво-Могилянська академія»"
+
+#: members/models.py:89
+msgid "HEP"
+msgstr "ФВЕ"
+
+#: members/models.py:89
+msgid "Nuclear physics"
+msgstr "Ядерна енергетика"
+
+#: members/templates/members/detail_prof.html:6
+#: members/templates/members/detail_stud.html:6
+msgid "Detail"
+msgstr "Деталі"
+
+#: members/templates/members/detail_prof.html:24
+#, python-format
+msgid "%(title)s, %(pos)s %(ins)s"
+msgstr "%(title)s, %(pos)s %(ins)s"
+
+#: members/templates/members/detail_prof.html:26
+#: members/templates/members/detail_stud.html:26
+msgid "Contacts"
+msgstr "Контакти"
+
+#: members/templates/members/detail_prof.html:44
+#: members/templates/members/detail_stud.html:47
+msgid "Scientific interests"
+msgstr "Наукові інтереси"
+
+#: members/templates/members/detail_stud.html:24
+#, python-format
+msgid "Student %(pos)s, %(course)s course, %(gr)s group"
+msgstr "Студент %(course)s курсу, групи %(gr)s, %(pos)s"
+
+#: members/templates/members/index.html:6 templates/menu.html:29
+msgid "Members"
+msgstr "Члени"
+
+#: members/templates/members/index.html:15
+msgid "Professors"
+msgstr "Викладачі"
+
+#: members/templates/members/index.html:33
+msgid "Students"
+msgstr "Студенти"
+
+#: templates/home.html:6 templates/home.html.py:15
+msgid "HEP analysis group"
+msgstr "Група аналізу даних ФВЕ"
+
+#: templates/login.html:5 templates/login.html.py:43 templates/menu.html:40
+msgid "Login"
+msgstr "Увійти"
+
+#: templates/login.html:15
+msgid "Please, enter username and password"
+msgstr "Будь ласка, введіть логін та пароль"
+
+#: templates/login.html:18
+msgid "Your username and password didn't match. Please try again"
+msgstr "Акаунту з таким логіном та паролем не знайдено. Будь ласка, спробуйте ще раз"
+
+#: templates/login.html:26
+msgid "Please login to see this page"
+msgstr "Будь ласка, ввійдіть щоб побачити цю сторінку"
+
+#: templates/login.html:34
+msgid "Username"
+msgstr "Логін"
+
+#: templates/login.html:38
+msgid "Password"
+msgstr "Пароль"
+
+#: templates/menu.html:14
+msgid "Home"
+msgstr "Головна"
+
+#: templates/menu.html:20
+msgid "About"
+msgstr "Про нас"
+
+#: templates/menu.html:33
+msgid "Profile"
+msgstr "Профіль"
+
+#: templates/menu.html:36
+msgid "Logout"
+msgstr "Вийти"
+
+#~ msgid "Doktor nauk"
+#~ msgstr "Доктор наук"
+
+#~ msgid "Student"
+#~ msgstr "Студент"
+
+#~ msgid "course"
+#~ msgstr "курс"

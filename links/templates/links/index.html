@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 
-{% block title %}Links {{dir}}{% endblock %}
+{% load i18n %}
+
+{% block title %}{% trans 'Links' %} {{dir}}{% endblock %}
 
 {% load staticfiles %}
 
@@ -9,53 +11,41 @@
 {% block content %}
 
 <div class="col-lg-7">
-    <h1>Links</h1>
+    <h1>{% trans 'Links' %}</h1>
     <hr>
-    <table class="table table-striped" cellspacing="2" cellpadding="2">
-        <thead>
-        <tr>
-            <td width="500"><h4>Name</h4></td>
-            <td><h4>Author</h4></td>
-        </tr>
-        </thead>
-        <tbody>
+    <div class="list-group">
         {% for link in dirs %}
-            <tr {% if link == dir %}style="background-color:grey"{% endif %}>
-            <td>
-                <h4><a href="{% url 'links:detail' link.pk %}">{{ link }}</a></h4>
-                {% if link.description %}
-                    <p><h6>{{ link.description }}</h6></p>
-             {% endif %}
-            </td>
-            <td><h4><a href="{% url 'members:professor_detail' link.author.id %}">{{ link.author.name }}</a></h4></td>
-            </tr>
+        <div class="list-group-item list-group-item-linkable {% if link == dir %}active{% endif %} clearfix"
+        data-link="{% url 'links:detail' link.pk %}">
+            <h4>{{link}}
+                <a href="{% url 'members:professor_detail' link.author.id %}">
+                <button type="button" class="btn btn-default pull-right">{% if LANGUAGE_CODE == 'uk' %}
+                    {{ link.author.name_ua }}
+                    {% else %}
+                    {{ link.author.name_en }}
+                    {% endif %}</button>
+                </a>
+            </h4>
+            {% if link.description %}
+                    <h6>{{ link.description }}</h6>
+            {% endif %}
+
+        </div>
         {% endfor %}
-        </tbody>
-    </table>
+    </div>
 </div>
 {% if files %}
 <div class="col-md-5">
-    <h1>Files</h1>
+    <h1>{% trans 'Files' %}</h1>
     <hr>
-    <table class="table table-striped" cellspacing="2" cellpadding="2">
-        <thead>
-        <tr>
-            <td width="400"><h4>Name</h4></td>
-            <td><h4>Link</h4></td>
-        </tr>
-        </thead>
-        <tbody>
+    <div class="list-group">
         {% for file in files %}
-            <tr>
-                <td><h6>{{ file }}</h6></td>
-             <td>
-                    <a class="btn btn-default btn-xs" href="{{ file.file.url }}">
-                    <span class="glyphicon glyphicon-file"></span></a>
-                </td>
-            </tr>
+            <a href="{{ file.file.url }}" class="list-group-item clearfix">
+                <span class="glyphicon glyphicon-file pull-left"></span>
+                <h5 style="padding-left:20px">{{ file }}</h5>
+            </a>
         {% endfor %}
-        </tbody>
-    </table>
+    </div>
 </div>
 {% endif %}
 {% endblock %}

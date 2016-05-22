@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 {% load staticfiles %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
 <head>
 
     <meta charset="utf-8">
@@ -17,13 +19,14 @@
     <!-- Custom CSS -->
     <link href="{%static 'blog-post.css'%}" rel="stylesheet">
 
+    <!-- Current language: {{ LANGUAGE_CODE }} -->
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
 </head>
 <body>
 
@@ -36,10 +39,22 @@
 
         </div>
 </div>
-    <!-- jQuery -->
-    <script src="{%static 'jquery.js'%}"></script>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="{%static 'bootstrap.min.js'%}"></script>
+<!-- Footer -->
+<br>
+<footer class="footer navbar-fixed-bottom" style="background-color:#303030">
+    <div class="container">
+        <div class="col-lg-5">
+            <h7 style="color:#ffffff">Copyright &copy; WGS 2016</h7>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="{%static 'jquery.js'%}"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="{%static 'bootstrap.min.js'%}"></script>
+
 </body>
 </html>

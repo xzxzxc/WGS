@@ -10,6 +10,7 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+from django.utils.translation import ugettext_lazy as _
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
@@ -37,7 +38,6 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'polls',
     'meetings',
     'members',
     'links',
@@ -50,7 +50,13 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
 )
+
+LANGUAGES = [
+  ('uk', _('Ukrainian')),
+  ('en', _('English')),
+]
 
 ROOT_URLCONF = 'WGS.urls'
 
@@ -109,6 +115,11 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
     '/static/',
+)
+
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, "locale"),
+    '/locale/',
 )
 
 DOMAIN_NAME = "http://127.0.0.1:8000/"

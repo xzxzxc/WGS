@@ -29,10 +29,20 @@ class DetailProfessorView(generic.DetailView):
     model = Professor
     template_name = 'members/detail_prof.html'
 
+    def get_context_data(self, **kwargs):
+        context = super(DetailProfessorView, self).get_context_data(**kwargs)
+        context['dirs'] = Dir.objects.filter(author=context['professor'])
+        return context
+
 
 class DetailStudentView(generic.DetailView):
     model = Student
     template_name = 'members/detail_stud.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(DetailStudentView, self).get_context_data(**kwargs)
+        context['reports'] = Report.objects.filter(author=context['student'])
+        return context
 
 
 class LoggedInMixinStudent(object):
@@ -126,7 +136,8 @@ def edit_meeting(request, pk):
             return HttpResponseRedirect(reverse('members:meeting_change'))
     else:
         form = MeetingChangeForm(instance=meeting)
-    return render(request, 'members/meeting_change.html', {'form': form})
+        reports = Report.objects.filter(meeting=meeting)
+    return render(request, 'members/meeting_change.html', {'form': form, 'reports': reports, 'pk': pk})
 
 
 @login_required
@@ -142,7 +153,7 @@ class ReportChangeView(LoggedInMixinStudent, generic.TemplateView):
     def get_context_data(self, **kwargs):
         context = super(ReportChangeView, self).get_context_data(**kwargs)
         context['form'] = ReportChangeForm()
-        context['reports'] = Report.objects.filter(author=self.request.user).order_by('-meeting')
+        context['reports'] = Report.objects.filter(author=self.request.user.student).order_by('-meeting')
         return context
 
 
@@ -156,7 +167,7 @@ def send_report(request):
                 report.file = request.FILES['file']
             except MultiValueDictKeyError:
                 pass
-            report.author = request.user
+            report.author = request.user.student
             report.save()
             return HttpResponseRedirect(reverse('members:report_change'))
     else:
@@ -176,7 +187,11 @@ def edit_report(request, pk):
             except MultiValueDictKeyError:
                 pass
             report.save()
-            return HttpResponseRedirect(reverse('members:report_change'))
+            next = request.GET.get('next', None)
+            if next:
+                return redirect(next)
+            else:
+                return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
     else:
         form = ReportChangeForm(instance=report)
     return render(request, 'members/report_change.html', {'form': form})
@@ -188,7 +203,7 @@ def delete_report(request, pk):
     return HttpResponseRedirect(reverse('members:report_change'))
 
 
-class StudentChangeView(LoggedInMixinProfessor, generic.TemplateView):
+class StudentChangeView(LoggedInMixinProfessorOrSuper, generic.TemplateView):
     template_name = 'members/student_change.html'
 
     def get_context_data(self, **kwargs):
@@ -199,7 +214,7 @@ class StudentChangeView(LoggedInMixinProfessor, generic.TemplateView):
 
 
 @login_required
-@user_passes_test(in_professor_group)
+@user_passes_test(in_professor_group_or_super)
 def send_student(request):
     if request.method == "POST":
         form = StudentCreateForm(request.POST, request.FILES)
@@ -208,8 +223,6 @@ def send_student(request):
             # create and add new user to student
             new_user = User.objects.create_user(form.cleaned_data['user_name'], form.cleaned_data['email'],
                                                 form.cleaned_data['password'])
-            new_user.first_name = form.cleaned_data['first_name']
-            new_user.last_name = form.cleaned_data['last_name']
             new_user.save()
             students_group = Group.objects.get(name='Students')
             students_group.user_set.add(new_user)
@@ -227,7 +240,7 @@ def send_student(request):
 
 
 @login_required
-@user_passes_test(in_professor_group)
+@user_passes_test(in_professor_group_or_super)
 def edit_student(request, pk):
     student = get_object_or_404(Student, pk=pk)
     user = student.user
@@ -240,8 +253,6 @@ def edit_student(request, pk):
             new_password = form.cleaned_data['password']
             if new_password != r'':
                 user.set_password(new_password)
-            user.first_name = form.cleaned_data['first_name']
-            user.last_name = form.cleaned_data['last_name']
             user.save()
             try:
                 student.photo = request.FILES['photo']
@@ -254,17 +265,22 @@ def edit_student(request, pk):
             'user_name': user.username,
             'password': r'',
             'email': user.email,
-            'first_name': user.first_name,
-            'last_name': user.last_name,
+            'first_name_en': student.first_name_en,
+            'last_name_en': student.last_name_en,
+            'first_name_ua': student.first_name_ua,
+            'last_name_ua': student.last_name_ua,
             'course': student.course,
-            'position': student.position,
+            'group': student.group,
+            'institution': student.institution,
+            'interests_en': student.interests_en,
+            'interests_ua': student.interests_ua,
         }
         form = StudentEditForm(data, instance=student)
     return render(request, 'members/student_change.html', {'form': form})
 
 
 @login_required
-@user_passes_test(in_professor_group)
+@user_passes_test(in_professor_group_or_super)
 def delete_student(request, pk):
     get_object_or_404(Student, pk=pk).user.delete()
     return HttpResponseRedirect(reverse('members:student_change'))
@@ -309,10 +325,13 @@ def edit_dir(request, pk):
                 File.objects.create(file=each, dir=dir)
             dir.save()
             return HttpResponseRedirect(reverse('members:dir_change'))
+
+        else:
+            print form.errors
     else:
         form = DirChangeForm(instance=dir)
         files = File.objects.filter(dir=dir)
-    return render(request, 'members/dir_change.html', {'form': form, 'files': files, 'dir': dir})
+    return render(request, 'members/dir_change.html', {'form': form, 'dir': dir, 'files': files})
 
 
 @login_required
@@ -324,9 +343,9 @@ def delete_dir(request, pk):
 
 @login_required
 @user_passes_test(in_professor_group)
-def delete_file(request, dir_pk, file_pk):
-    get_object_or_404(File, pk=file_pk).delete()
-    return HttpResponseRedirect(reverse('members:edit_dir', kwargs={'pk': dir_pk}))
+def delete_file(request, pk):
+    get_object_or_404(File, pk=pk).delete()
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
 @login_required
@@ -343,8 +362,6 @@ def edit_professor_profile(request):
             new_password = form.cleaned_data['password']
             if new_password != r'':
                 user.set_password(new_password)
-            user.first_name = form.cleaned_data['first_name']
-            user.last_name = form.cleaned_data['last_name']
             user.save()
             try:
                 professor.photo = request.FILES['photo']
@@ -357,10 +374,14 @@ def edit_professor_profile(request):
             'user_name': user.username,
             'password': r'',
             'email': user.email,
-            'first_name': user.first_name,
-            'last_name': user.last_name,
+            'first_name_en': professor.first_name_en,
+            'last_name_en': professor.last_name_en,
+            'first_name_ua': professor.first_name_ua,
+            'last_name_ua': professor.last_name_ua,
             'academic_title': professor.academic_title,
-            'position': professor.position,
+            'institution': professor.institution,
+            'interests_en': professor.interests_en,
+            'interests_ua': professor.interests_ua,
         }
         form = ProfessorEditForm(data, instance=professor)
     return render(request, 'members/professor_profile.html', {'form': form, 'professor': professor})
@@ -380,8 +401,6 @@ def edit_student_profile(request):
             new_password = form.cleaned_data['password']
             if new_password != r'':
                 user.set_password(new_password)
-            user.first_name = form.cleaned_data['first_name']
-            user.last_name = form.cleaned_data['last_name']
             user.save()
             try:
                 student.photo = request.FILES['photo']
@@ -394,10 +413,15 @@ def edit_student_profile(request):
             'user_name': user.username,
             'password': r'',
             'email': user.email,
-            'first_name': user.first_name,
-            'last_name': user.last_name,
+            'first_name_en': student.first_name_en,
+            'last_name_en': student.last_name_en,
+            'first_name_ua': student.first_name_ua,
+            'last_name_ua': student.last_name_ua,
             'course': student.course,
-            'position': student.position,
+            'group': student.group,
+            'institution': student.institution,
+            'interests_en': student.interests_en,
+            'interests_ua': student.interests_ua,
         }
         form = StudentEditForm(data, instance=student)
     return render(request, 'members/student_profile.html', {'form': form, 'student': student})

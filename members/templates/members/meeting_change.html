@@ -8,7 +8,7 @@
 
 {% block content %}
 <div class="col-lg-6">
-    <h1>Hello {{ user.first_name }}  {{ user.last_name }}!</h1>
+    <h1>Hello {{ request.user.professor.name_en }}!</h1>
     <hr>
 
     {% if not form.instance.pk %}
@@ -23,31 +23,59 @@
     </form>
 </div>
 
+{% if meetings %}
 <div class="col-md-6">
-    <h1><br></h1>
-    {% if meetings %}
-    <hr>
-    <h2>Or change existing?</h2>
-    {% endif %}
+<h1><br></h1>
+<hr>
+<h2>Or change existing?</h2>
+<table cellspacing="2" cellpadding="2">
+    {% for meeting in meetings %}
+    <tr>
+        <td width="30">
+        <a class="btn btn-default btn-xs" href="{% url 'members:delete_meeting' pk=meeting.pk %}">
+            <span class="glyphicon glyphicon-trash" ></span></a>
+        </td>
+        <td width="30">
+        <a class="btn btn-default btn-xs" href="{% url 'members:edit_meeting' pk=meeting.pk %}">
+            <span class="glyphicon glyphicon-pencil"></span></a>
+        </td>
+        <td width="350"><h4><a href="{% url 'meetings:detail' meeting.id %}">
+                 {{meeting.topic_text}}</a></h4></td>
+        <td><h5><div class="date"><span class="glyphicon glyphicon-time"></span>
+            {{meeting.meeting_date}}</div></h5>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+</div>
+{% elif reports %}
+<div class="col-md-6">
+<h1><br></h1>
+<hr>
+<h2>Reports:</h2>
     <table cellspacing="2" cellpadding="2">
-        {% for meeting in meetings %}
+        {% for report in reports %}
         <tr>
             <td width="30">
-            <a class="btn btn-default btn-xs" href="{% url 'members:delete_meeting' pk=meeting.pk %}">
-                <span class="glyphicon glyphicon-trash" ></span></a>
+            <a class="btn btn-default btn-xs" href="{% url 'members:delete_report' pk=report.pk %}?next={% url 'members:edit_meeting' pk=pk %}">
+                <span class="glyphicon glyphicon-trash"></span></a>
             </td>
+
             <td width="30">
-            <a class="btn btn-default btn-xs" href="{% url 'members:edit_meeting' pk=meeting.pk %}">
+            <a class="btn btn-default btn-xs" href="{% url 'members:edit_report' pk=report.pk %}?next={% url 'members:edit_meeting' pk=pk %}">
                 <span class="glyphicon glyphicon-pencil"></span></a>
             </td>
-            <td width="350"><h4><a href="{% url 'meetings:detail' meeting.id %}">
-                     {{meeting.topic_text}}</a></h4></td>
-            <td><h5><div class="date"><span class="glyphicon glyphicon-time"></span>
-                {{meeting.meeting_date}}</div></h5>
+            <td width="350"><h4><a href="{% url 'meetings:detail' report.meeting.id %}">{{ report.name }}</a>
+            </h4></td>
+
+            {% if report.file.name %}
+            <td>
+                <a class="btn btn-default btn-xs" href="{{report.file.url}}">
+                <span class="glyphicon glyphicon-file"></span></a>
             </td>
+            {% endif %}
         </tr>
         {% endfor %}
     </table>
- </div>
-
+{% endif %}
 {% endblock %}

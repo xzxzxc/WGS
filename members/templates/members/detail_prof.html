@@ -1,23 +1,57 @@
 {% extends "base.html" %}
 
-{% block title %}Detail {{ professor.name }}{% endblock %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+
+{% block title %}{% trans 'Detail' %} {% if LANGUAGE_CODE == 'uk' %}
+{{ professor.name_ua }}{% else %}{{ professor.name_en }}{% endif %}{% endblock %}
 
 {% load staticfiles %}
 
 {% block nav %}{% include "menu.html" with active='members' %}{% endblock %}
 
 {% block content %}
-
-<div class="col-lg-8">
-
-    <h1>{{ professor.name }}</h1>
-
-    <img src="{{ professor.photo.url }}">
-    <p class="lead">Contacts: {{ professor.user.email }}</p>
-    <p class="lead">{{ professor.academic_title }}</p>
-    <p class="lead">{{ professor.position }}</p>
-
-
+<div class="page-header">
+    <h1>{% if LANGUAGE_CODE == 'uk' %}
+        {{ professor.name_ua }}
+        {% else %}
+        {{ professor.name_en }}
+        {% endif %}</h1>
 </div>
+<div class="col-sm-2">
+    <img class="img-thumbnail" src="{{ professor.photo.url }}">
+</div>
+<div class="col-lg-5 well">
+    <p class="lead">{% blocktrans trimmed with title=professor.get_academic_title_display ins=professor.get_institution_display pos=professor.get_position_display|lower %}
+        {{ title }}, {{ pos }} {{ ins }}{% endblocktrans %}</p>
+    <p class="lead">{% trans 'Contacts' %}: <a href="mailto:{{professor.user.email}}">{{ professor.user.email }}</a></p>
+</div>
+{% if dirs %}
+<div class="col-md-5">
+    <h3>{% trans 'Links' %}:</h3>
+    <div class="list-group">
+        {% for link in dirs %}
+        <a href="{% url 'links:detail' link.pk %}" class="list-group-item clearfix">
+            <h5>{{link}}</h5>
+            {% if link.description %}
+            <p>{{ link.description|linebreaks }}</p>
+            {% endif %}
+        </a>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+<div class="col-lg-7 well">
+    <p class="lead">{% trans 'Scientific interests' %}:<br>
+        {% if LANGUAGE_CODE == 'uk' %}
+        {{ professor.interests_ua|linebreaks }}
+        {% else %}
+        {{ professor.interests_en|linebreaks }}
+        {% endif %}
+    </p>
+</div>
+
+
+
 
 {% endblock %}

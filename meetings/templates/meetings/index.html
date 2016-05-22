@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 
-{% block title %}Meetings{% endblock %}
+{% load i18n %}
+
+{% block title %}{% trans 'Meetings' %}{% endblock %}
 
 {% load staticfiles %}
 
@@ -8,32 +10,20 @@
 
 {% block content %}
 
+<div class="page-header">
+    <h1>{% trans 'Meetings' %}</h1>
+</div>
+
 <div class="col-lg-7">
-
-    <h1>Meetings</h1>
-
-
-    <hr>
-    {% if latest_meeting_list %}
-    <table class="table table-striped" cellspacing="2" cellpadding="2">
-        <thead>
-        <tr>
-            <td width="500"><h4>Name</h4></td>
-            <td><h4>Date</h4></td>
-        </tr>
-        </thead>
-        <tbody>
+    <div class="list-group">
         {% for meeting in latest_meeting_list %}
-             <tr><td width="500"><h4><a href="{% url 'meetings:detail' meeting.id %}">
-                 {{meeting.topic_text}}</a></h4></td>
-                 <td><h5><div class="date"><span class="glyphicon glyphicon-time">
-                 </span>{{meeting.meeting_date|date}}</div></h5></td></h3></tr>
+        <a href="{% url 'meetings:detail' meeting.id %}" class="list-group-item clearfix">
+            <font size="5">{{meeting.topic_text}}</font>
+            <div class="date pull-right"><h5><span class="glyphicon glyphicon-time"></span>{{meeting.meeting_date}}</h5>
+            </div>
+        </a>
         {% endfor %}
-        </tbody>
-    </table>
-    {% else %}
-        <p>No meetings are available.</p>
-    {% endif %}
+    </div>
 </div>
 
 {% endblock %}

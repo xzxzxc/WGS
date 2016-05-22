@@ -29,7 +29,7 @@ urlpatterns = [
     url(r'^profile/send_dir/$', views.send_dir, name='send_dir'),
     url(r'^profile/edit_dir/(?P<pk>[0-9]+)/$', views.edit_dir, name='edit_dir'),
     url(r'^profile/delete_dir/(?P<pk>[0-9]+)/$', views.delete_dir, name='delete_dir'),
-    url(r'^profile/delete_file/(?P<dir_pk>[0-9]+)/(?P<file_pk>[0-9]+)/$', views.delete_file, name='delete_file'),
+    url(r'^profile/delete_file/(?P<pk>[0-9]+)/$', views.delete_file, name='delete_file'),
     # Professor profile change
     url(r'^profile/professor/edit/$', views.edit_professor_profile, name='edit_professor_profile'),
     # Student profile change
