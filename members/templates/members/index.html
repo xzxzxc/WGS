@@ -1,6 +1,9 @@
 {% extends "base.html" %}
 
-{% block title %}Members{% endblock %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+
+{% block title %}{% trans 'Members' %}{% endblock %}
 
 {% load staticfiles %}
 
@@ -9,37 +12,40 @@
 {% block content %}
 
 <div class="col-lg-4">
-
-    <table class="table" cellspacing="2" cellpadding="2">
-        <thead><h2>Professors</h2></thead>
-        <tbody>
-        {% for professor in professors %}
-             <tr>
-                 <td width="60"><img src="{{ professor.photo_small.url }}"></td>
-                 <td width="500"><h3><font size="5"><a href="{% url 'members:professor_detail' professor.id %}">
-                {{ professor.name }}
-             </a></font></h3></td>
-             </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <h2>{% trans 'Professors' %}</h2>
+    <div class="col-sm-15">
+          <div class="list-group">
+              {% for professor in professors %}
+            <a style="padding:5px" href="{% url 'members:professor_detail' professor.id %}" class="list-group-item clearfix">
+                <img class="thumbnail pull-left" src="{{ professor.photo_small.url }}">
+                <font style="padding-left:10px" size="5">{% if LANGUAGE_CODE == 'uk' %}
+                    {{ professor.name_ua }}
+                    {% else %}
+                    {{ professor.name_en }}
+                    {% endif %}</font>
+            </a>
+              {% endfor %}
+          </div>
+    </div>
 </div>
 
 <div class="col-lg-4">
-    <table class="table" cellspacing="2" cellpadding="2">
-        <thead><h2>Students</h2></thead>
-        <tbody>
-        {% for student in students %}
-             <tr>
-                 <td width="60"><img src="{{student.photo_small.url}}"></td>
-                 <td width="500"><h3><font size="5"><a href="{% url 'members:student_detail' student.id %}">
-                 {{ student.name }}
-             </a></font></h3></td>
-
-             </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <h2>{% trans 'Students' %}</h2>
+    <div class="col-sm-15">
+          <div class="list-group">
+              {% for student in students %}
+              <a style="padding:5px" href="{% url 'members:student_detail' student.id %}"
+                 class="list-group-item clearfix">
+                <img class="thumbnail pull-left" src="{{student.photo_small.url}}">
+                <font style="padding-left:10px" size="5">{% if LANGUAGE_CODE == 'uk' %}
+                    {{ student.name_ua }}
+                    {% else %}
+                    {{ student.name_en }}
+                    {% endif %}</font>
+              </a>
+              {% endfor %}
+          </div>
+    </div>
 </div>
 
 {% endblock %}

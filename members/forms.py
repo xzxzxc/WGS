@@ -7,7 +7,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
 from django.forms import ValidationError
 from django.core.validators import RegexValidator
-from links.models import Dir, File
+from links.models import Dir
 from multiupload.fields import MultiFileField
 
 
@@ -19,7 +19,7 @@ class ReportChangeForm(ModelForm):
 
 
 class DirChangeForm(ModelForm):
-    files = MultiFileField(min_num=1, max_num=15, max_file_size=1024 * 1024 * 50)
+    files = MultiFileField(min_num=1, max_num=15, max_file_size=1024 * 1024 * 50, required=False)
 
     class Meta:
         model = Dir
@@ -47,19 +47,13 @@ alphabetic = RegexValidator(r'^[a-zA-Z]*$', 'Only alphabetic characters are allo
 
 class StudentCreateForm(ModelForm):
     user_name = CharField(max_length=30, validators=[alphanumeric])
-    first_name = CharField(max_length=50, validators=[alphabetic])
-    last_name = CharField(max_length=50, validators=[alphabetic])
     email = EmailField(required=False)
     password = CharField(max_length=12, widget=PasswordInput, validators=[alphanumeric])
 
     class Meta:
         model = Student
-        fields = ('user_name', 'password', 'email', 'first_name', 'last_name', 'course', 'position', 'photo', )
-        # labels = {
-        #     'topic_text': _('Topic of meeting'),
-        #     'detail_text': _('Description of meeting'),
-        #     'meeting_date': _('Date of meeting')
-        # }
+        fields = ('user_name', 'password', 'email', 'first_name_en', 'last_name_en', 'first_name_ua', 'last_name_ua',
+                  'course', 'group', 'institution', 'interests_en', 'interests_ua', 'photo', )
         widgets = {
             'password': PasswordInput(),
         }
@@ -79,19 +73,13 @@ class StudentCreateForm(ModelForm):
 
 class StudentEditForm(ModelForm):
     user_name = CharField(max_length=30, validators=[alphanumeric])
-    first_name = CharField(max_length=50, validators=[alphabetic])
-    last_name = CharField(max_length=50, validators=[alphabetic])
     email = EmailField(required=False)
     password = CharField(max_length=12, widget=PasswordInput, validators=[alphanumeric], required=False)
 
     class Meta:
         model = Student
-        fields = ('user_name', 'password', 'email', 'first_name', 'last_name', 'course', 'position', 'photo', )
-        # labels = {
-        #     'topic_text': _('Topic of meeting'),
-        #     'detail_text': _('Description of meeting'),
-        #     'meeting_date': _('Date of meeting')
-        # }
+        fields = ('user_name', 'password', 'email', 'first_name_en', 'last_name_en', 'first_name_ua', 'last_name_ua',
+                  'course', 'group', 'institution', 'interests_en', 'interests_ua', 'photo', )
         widgets = {
             'password': PasswordInput,
             'photo': ClearableFileInput,
@@ -112,19 +100,13 @@ class StudentEditForm(ModelForm):
 
 class ProfessorEditForm(ModelForm):
     user_name = CharField(max_length=30, validators=[alphanumeric])
-    first_name = CharField(max_length=50, validators=[alphabetic])
-    last_name = CharField(max_length=50, validators=[alphabetic])
     email = EmailField(required=False)
     password = CharField(max_length=12, widget=PasswordInput, validators=[alphanumeric], required=False)
 
     class Meta:
         model = Professor
-        fields = ('user_name', 'password', 'email', 'first_name', 'last_name', 'academic_title', 'position', 'photo',)
-        # labels = {
-        #     'topic_text': _('Topic of meeting'),
-        #     'detail_text': _('Description of meeting'),
-        #     'meeting_date': _('Date of meeting')
-        # }
+        fields = ('user_name', 'password', 'email', 'first_name_en', 'last_name_en', 'first_name_ua', 'last_name_ua',
+                  'academic_title', 'institution', 'interests_en', 'interests_ua', 'photo',)
         widgets = {
             'password': PasswordInput,
             'photo': ClearableFileInput,

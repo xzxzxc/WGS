@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 
-{% block title %}Meeting {{ meeting.topic_text }}{% endblock %}
+{% load i18n %}
+
+{% get_current_language as LANGUAGE_CODE %}
+
+{% block title %}{% trans 'Meeting' %} {{ meeting.topic_text }}{% endblock %}
 
 {% load staticfiles %}
 
@@ -10,29 +14,39 @@
 
 <div class="col-lg-7">
     <!-- Title -->
-    <h1>{{ meeting.topic_text }}</h1>
+    <h1>{{ meeting.topic_text }}
+    <font size="3"><br><div class="date pull-right"><span class="glyphicon glyphicon-time"></span>
+        {{meeting.meeting_date|date}}</div></font>
+    </h1>
     <hr>
 
     {% if meeting.report_set.all %}
     <table class="table table-striped" cellspacing="2" cellpadding="2">
         <thead>
-        <tr><h2>Reports</h2></tr>
+        <tr><h3>{% trans 'Reports' %}</h3></tr>
         <tr>
-            <td width="400"><h3>Name</h3></td>
-            <td width="175"><h3>Author</h3></td>
-            <td><h3>File</h3></td>
+            <td width="400"><h4>{% trans 'Name' %}</h4></td>
+            <td width="175"><h4>{% trans 'Author' %}</h4></td>
+            <td><h4>{% trans 'File' %}</h4></td>
         </tr>
         </thead>
         <tbody>
         {% for report in meeting.report_set.all %}
         <tr><td><h4>{{ report.name }}</h4></td>
-            <td><h4>{{ report.author.first_name }}  {{ report.author.last_name }}</h4></td></h3>
-            {% if report.file.name %}
-                <td>
-                    <a class="btn btn-default" href="{{report.file.url}}">
-                    <span class="glyphicon glyphicon-file"></span></a>
-                </td>
-            {% endif %}
+            <td><a href="{% url 'members:student_detail' pk=report.author.pk %}">
+                <button type="button" class="btn btn-default">
+                    {% if LANGUAGE_CODE == 'uk' %}
+                    {{ report.author.name_ua }}
+                    {% else %}
+                    {{ report.author.name_en }}
+                    {% endif %}
+                </button></a>
+            </td>
+            <td>
+                {% if report.file.name %}
+                <a class="btn btn-default" href="{{report.file.url}}"><span class="glyphicon glyphicon-file"></span></a>
+                {% endif %}
+            </td>
         </tr>
         {% endfor %}
         </tbody>
@@ -40,11 +54,12 @@
     {% endif %}
 </div>
 
-
+{% if meeting.detail_text %}
 <div class="col-md-4">
-    <h1>Details:</h1>
+    <h1>{% trans 'Details' %}:</h1>
     <hr>
     <h3><p class="lead">{{ meeting.detail_text|linebreaks }}</p></h3>
 </div>
+{% endif %}
 
 {% endblock %}

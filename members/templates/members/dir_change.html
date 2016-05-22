@@ -9,7 +9,7 @@
 {% block content %}
 
 <div class="col-lg-6">
-    <h1>Hello {{ user.first_name }}  {{ user.last_name }}!</h1>
+    <h1>Hello {{ request.user.professor.name_en }}!</h1>
     <hr>
 
     {% if not form.instance.pk %}
@@ -31,7 +31,7 @@
         {% for file in files %}
         <tr>
             <td width="30">
-            <a class="btn btn-default btn-xs" href="{% url 'members:delete_file' dir_pk=dir.pk file_pk=file.pk %}">
+            <a class="btn btn-default btn-xs" href="{% url 'members:delete_file' pk=file.pk %}">
                 <span class="glyphicon glyphicon-trash"></span></a>
             </td>
             <td width="350"><h4><a href="{{ file.file.url }}">{{ file }}</a>

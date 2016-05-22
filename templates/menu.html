@@ -1,3 +1,5 @@
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -9,35 +11,41 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand"  href="/">Home</a>
+            <a class="navbar-brand"  href="/">{% trans 'Home' %}</a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li class="{% if active == 'about' %}active{% endif %}" >
-                    <a href="/about/">About</a>
+                    <a href="/about/">{% trans 'About' %}</a>
                 </li>
                 <li class="{% if active == 'links' %}active{% endif %}">
-                    <a href="/links/">Links</a>
+                    <a href="/links/">{% trans 'Links' %}</a>
                 </li>
                 <li class="{% if active == 'meetings' %}active{% endif %}">
-                    <a href="/meetings/">Meetings</a>
+                    <a href="/meetings/">{% trans 'Meetings' %}</a>
                 </li>
                 <li class="{% if active == 'members' %}active{% endif %}">
-                    <a href="/members/">Members</a>
+                    <a href="/members/">{% trans 'Members' %}</a>
                 </li>
                 {% if user.is_authenticated %}
                 <li class="{% if active == 'profile' %}active{% endif %}">
-                    <a href="{% url 'members:profile_view' %}">Profile</a>
+                    <a href="{% url 'members:profile_view' %}">{% trans 'Profile' %}</a>
                 </li>
                 <li class="{% if active == 'logout' %}active{% endif %}">
-                    <a href="{% url 'django.contrib.auth.views.logout' %}">Logout</a>
+                    <a href="{% url 'django.contrib.auth.views.logout' %}">{% trans 'Logout' %}</a>
                 </li>
                 {% else %}
                 <li class="{% if active == 'login' %}active{% endif %}">
-                    <a href="{% url 'django.contrib.auth.views.login' %}">Login</a>
+                    <a href="{% url 'django.contrib.auth.views.login' %}">{% trans 'Login' %}</a>
                 </li>
                 {% endif %}
+                <li class="{% if LANGUAGE_CODE == 'uk' %}active{% endif %}">
+                    <a href="/ua/">Ua</a>
+                </li>
+                <li class="{% if LANGUAGE_CODE == 'en' %}active{% endif %}">
+                    <a href="/en/">En</a>
+                </li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->
