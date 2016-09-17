@@ -19,8 +19,46 @@
         <form enctype="multipart/form-data" method="POST">{% csrf_token %}
         {% endif %}
             {{ form.as_p }}
+            {% if not form.instance.pk %}
+            <h3>Reports:</h3>
+            {{ formset.management_form }}
+            {% for form in formset %}
+            <div class="formset">
+                {{ form.non_field_errors }}
+                {{ form.name.errors }}
+                {{ form.name.label_tag }}
+                {{ form.name }}
+                {{ form.author.errors }}
+                {{ form.author.label_tag }}
+                {{ form.author }}
+                <h5>If author is unregistered:</h5>
+                {{ form.author_first_name_en.errors }}
+                {{ form.author_first_name_en.label_tag }}
+                {{ form.author_first_name_en }}
+                {{ form.author_last_name_en.errors }}
+                {{ form.author_last_name_en.label_tag }}
+                {{ form.author_last_name_en }}
+                <h5>And in ukrainian:</h5>
+                {{ form.author_first_name_ua.errors }}
+                {{ form.author_first_name_ua.label_tag }}
+                {{ form.author_first_name_ua }}
+                {{ form.author_last_name_ua.errors }}
+                {{ form.author_last_name_ua.label_tag }}
+                {{ form.author_last_name_ua }}
+            </div>
+            {% endfor %}
+            {% endif %}
+            <br>
         <button type="submit" class="save btn btn-default">Save</button>
     </form>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="{% static 'jquery.formset.js' %}"></script>
+    <script>
+        $('.formset').formset({
+            addText: 'add link',
+            deleteText: 'remove'
+        });
+    </script>
 </div>
 
 {% if meetings %}
@@ -48,7 +86,7 @@
     {% endfor %}
 </table>
 </div>
-{% elif reports %}
+{% else%}
 <div class="col-md-6">
 <h1><br></h1>
 <hr>
@@ -57,17 +95,18 @@
         {% for report in reports %}
         <tr>
             <td width="30">
-            <a class="btn btn-default btn-xs" href="{% url 'members:delete_report' pk=report.pk %}?next={% url 'members:edit_meeting' pk=pk %}">
+            <a class="btn btn-default btn-xs" href="{% url 'members:delete_report' meeting_pk=pk pk=report.pk %}?next={% url 'members:edit_meeting' pk=pk %}">
                 <span class="glyphicon glyphicon-trash"></span></a>
             </td>
 
             <td width="30">
-            <a class="btn btn-default btn-xs" href="{% url 'members:edit_report' pk=report.pk %}?next={% url 'members:edit_meeting' pk=pk %}">
+            <a class="btn btn-default btn-xs" href="{% url 'members:edit_report' meeting_pk=pk pk=report.pk %}?next={% url 'members:edit_meeting' pk=pk %}">
                 <span class="glyphicon glyphicon-pencil"></span></a>
             </td>
-            <td width="350"><h4><a href="{% url 'meetings:detail' report.meeting.id %}">{{ report.name }}</a>
+            <td width="250"><h4><a href="{% url 'meetings:detail' report.meeting.id %}">{{ report.name }}</a>
             </h4></td>
-
+            <td width="150"><h4><a href="{% url 'members:student_detail' report.author.student.pk %}">{{ report.author_name_en }}</a>
+            </h4></td>
             {% if report.file.name %}
             <td>
                 <a class="btn btn-default btn-xs" href="{{report.file.url}}">
@@ -77,5 +116,8 @@
         </tr>
         {% endfor %}
     </table>
+    <a class="btn btn-default btn-xs" href="{% url 'members:add_report' meeting_pk=pk%}?next={% url 'members:edit_meeting' pk=pk %}">
+        <span class="glyphicon glyphicon-plus"></span>Add report
+    </a>
 {% endif %}
 {% endblock %}

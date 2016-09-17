@@ -16,13 +16,14 @@
     <div class="col-sm-15">
           <div class="list-group">
               {% for professor in professors %}
-            <a style="padding:5px" href="{% url 'members:professor_detail' professor.id %}" class="list-group-item clearfix">
-                <img class="thumbnail pull-left" src="{{ professor.photo_small.url }}">
-                <font style="padding-left:10px" size="5">{% if LANGUAGE_CODE == 'uk' %}
-                    {{ professor.name_ua }}
-                    {% else %}
-                    {{ professor.name_en }}
-                    {% endif %}</font>
+              <a style="padding:5px" href="{% url 'members:professor_detail' professor.id %}" class="list-group-item clearfix">
+                  <img class="thumbnail pull-left" src="{{ professor.photo_small.url }}">
+                  <font style="padding-left:10px" size="5">{% if LANGUAGE_CODE == 'uk' %}
+                      {{ professor.name_ua }}
+                      {% else %}
+                      {{ professor.name_en }}
+                      {% endif %}
+                  </font>
             </a>
               {% endfor %}
           </div>

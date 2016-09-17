@@ -33,12 +33,16 @@
         <tbody>
         {% for report in meeting.report_set.all %}
         <tr><td><h4>{{ report.name }}</h4></td>
-            <td><a href="{% url 'members:student_detail' pk=report.author.pk %}">
+            <td><a {% if report.author.student.pk %}
+                href="{% url 'members:student_detail' pk=report.author.student.pk %}"
+                {% elif report.author.professor.pk %}
+                href="{% url 'members:professor_detail' pk=report.author.professor.pk %}"
+                {% endif %}>
                 <button type="button" class="btn btn-default">
                     {% if LANGUAGE_CODE == 'uk' %}
-                    {{ report.author.name_ua }}
+                    {{ report.author_name_ua }}
                     {% else %}
-                    {{ report.author.name_en }}
+                    {{ report.author_name_en }}
                     {% endif %}
                 </button></a>
             </td>

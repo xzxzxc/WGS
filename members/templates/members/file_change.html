@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}Add file{% endblock %}
+
+{% load staticfiles %}
+
+{% block nav %}{% include "menu.html" with active='profile' %}{% endblock %}
+
+{% block content %}
+<div class="col-lg-6">
+    <h1>Hello {{ request.user.student.name_en }}!</h1>
+    <hr>
+    <h2>List of new reports:</h2>
+    <table cellspacing="2" cellpadding="2">
+    {% for report in new_reports %}
+        <form enctype="multipart/form-data" action="{% url 'members:attach_file' pk=report.instance.pk %}" method="POST">{% csrf_token %}
+        <tr>
+            <td width="250"><h4>{{report.instance.name}}</h4></td>
+            <td width="50">
+                {{ report.file }}
+        </td>
+            <td><button type="submit" class="save btn btn-default">Save</button></td>
+        </tr>
+        </form>
+    {% endfor %}
+    </table>
+</div>
+
+{% if old_reports %}
+<div class="col-md-6">
+<h1><br></h1>
+<hr>
+<h2>Or change existing?</h2>
+<table cellspacing="2" cellpadding="2">
+    {% for report in old_reports %}
+    <form enctype="multipart/form-data" action="{% url 'members:attach_file' pk=report.instance.pk %}" method="POST">{% csrf_token %}
+    <tr>
+        <td width="250"><h4>{{report.instance.name}}</h4></td>
+        <td width="50">
+                {{ report.file }}
+        </td>
+        <td><button type="submit" class="save btn btn-default">Save</button></td>
+    </tr>
+    </form>
+    {% endfor %}
+</table>
+</div>
+{% endif %}
+{% endblock %}

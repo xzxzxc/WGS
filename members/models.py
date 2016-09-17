@@ -39,6 +39,7 @@ class Professor(models.Model):
         return '%s  %s' % (self.first_name_ua, self.last_name_ua)
 
     def save(self, *args, **kwargs):
+        # Change image size and create 50x50 thumbnail
         if self.photo:
             if Professor.objects.filter(pk=self.pk).exists():
                 if self.photo != Professor.objects.get(pk=self.pk).photo:

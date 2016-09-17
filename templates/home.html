@@ -2,7 +2,6 @@
 
 {% load i18n %}
 
-
 {% block title %}{% trans 'HEP analysis group' %}{% endblock %}
 
 {% load staticfiles %}
@@ -12,9 +11,20 @@
 
 {% block content %}
 <div class="page-header">
-    <h1>{% trans 'HEP analysis group' %}</h1>
+    <h4><img src="{% static '/static/labels/EHEP.jpg' %}" height="42" width="42" alt="EHEP"/> Taras Shevchenko National
+        University <img src="{% static '/static/labels/TSNUK.jpg' %}" height="42" width="42" alt="TSNUK"/>, Nuclear
+        Physics Department <img src="{% static '/static/labels/NPD.png' %}" height="42" width="42" alt="NPD"/></h4>
+    <hr>
+    <h1>{% trans 'Experimental High Energy Physics Group' %}</h1>
+    {Students photo}
 </div>
 
 <div class="col-lg-8">
+    <br><br><br><br><br>
+    <p>
+        Contacts: <a href="mailto:exphep@univ.kiev.ua">exphep@univ.kiev.ua</a>
+        <br>
+        Post: 01601 Kyiv St.Volodymyrs`ka 64/13
+    </p>
 </div>
 {% endblock %}

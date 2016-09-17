@@ -15,7 +15,7 @@
 
     {% if not form.instance.pk %}
     <h2>Create new report?</h2>
-    <form enctype="multipart/form-data" action="{% url 'members:send_report' %}" method="POST">{% csrf_token %}
+    <form enctype="multipart/form-data" action="{% url 'members:add_report' meeting_pk=meeting_pk %}?next={{request.GET.next}}" method="POST">{% csrf_token %}
         {% else %}
         <form enctype="multipart/form-data" method="POST">{% csrf_token %}
         {% endif %}
@@ -24,36 +24,6 @@
     </form>
 </div>
 
-{% if reports %}
-<div class="col-md-5">
-    <h1><br></h1>
-    <hr>
-    <h2>Or change existing?</h2>
-    <table cellspacing="2" cellpadding="2">
-        {% for report in reports %}
-        <tr>
-            <td width="30">
-            <a class="btn btn-default btn-xs" href="{% url 'members:delete_report' pk=report.pk %}">
-                <span class="glyphicon glyphicon-trash"></span></a>
-            </td>
 
-            <td width="30">
-            <a class="btn btn-default btn-xs" href="{% url 'members:edit_report' pk=report.pk %}?next={% url 'members:report_change' %}">
-                <span class="glyphicon glyphicon-pencil"></span></a>
-            </td>
-            <td width="350"><h4><a href="{% url 'meetings:detail' report.meeting.id %}">{{ report.name }}</a>
-            </h4></td>
-
-            {% if report.file.name %}
-            <td>
-                <a class="btn btn-default btn-xs" href="{{report.file.url}}">
-                <span class="glyphicon glyphicon-file"></span></a>
-            </td>
-            {% endif %}
-        </tr>
-        {% endfor %}
-    </table>
-</div>
-{% endif %}
 
 {% endblock %}

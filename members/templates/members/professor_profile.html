@@ -22,9 +22,9 @@
     <a class="btn btn-default" style="position:absolute;top:100px;" href="{% url 'members:edit_professor_profile' %}">
                 <span class="glyphicon glyphicon-pencil"></span></a>
     <br>
-    <p class="lead">Academic title: {{ professor.academic_title }}</p>
-    <p class="lead">Position: {{ professor.position }}</p>
-    <p class="lead">Institution: {{ professor.institution }}</p>
+    <p class="lead">Academic title: {{ professor.get_academic_title_display }}</p>
+    <p class="lead">Position: {{ professor.get_position_display }}</p>
+    <p class="lead">Institution: {{ professor.get_institution_display }}</p>
     <p class="lead">Interests: {{ professor.interests_en|linebreaks }}</p>
     {% endif %}
 

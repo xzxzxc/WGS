@@ -22,8 +22,8 @@
     <img class="img-thumbnail" src="{{ professor.photo.url }}">
 </div>
 <div class="col-lg-5 well">
-    <p class="lead">{% blocktrans trimmed with title=professor.get_academic_title_display ins=professor.get_institution_display pos=professor.get_position_display|lower %}
-        {{ title }}, {{ pos }} {{ ins }}{% endblocktrans %}</p>
+    <p class="lead">{% if LANGUAGE_CODE == 'uk' %}{% blocktrans trimmed with title=professor.get_academic_title_display ins=professor.get_institution_display pos=professor.get_position_display|lower %}
+        {{ title }}{{ pos }} {{ ins }}{% endblocktrans %}{% else %}Assotiated professor {{professor.get_institution_display}}{% endif %}</p>
     <p class="lead">{% trans 'Contacts' %}: <a href="mailto:{{professor.user.email}}">{{ professor.user.email }}</a></p>
 </div>
 {% if dirs %}

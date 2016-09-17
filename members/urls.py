@@ -9,16 +9,19 @@ urlpatterns = [
     url(r'^profile/$', views.profile_view, name='profile_view'),
     url(r'^profile/professor/$', views.ProfileProfessorView.as_view(), name='professor_profile'),
     url(r'^profile/student/$', views.ProfileStudentView.as_view(), name='student_profile'),
-    # Reports change
-    url(r'^profile/change_report/$', views.ReportChangeView.as_view(), name='report_change'),
-    url(r'^profile/send_report/$', views.send_report, name='send_report'),
-    url(r'^profile/edit_report/(?P<pk>[0-9]+)/$', views.edit_report, name='edit_report'),
-    url(r'^profile/delete_report/(?P<pk>[0-9]+)/$', views.delete_report, name='delete_report'),
     # Meetings change
     url(r'^profile/change_meeting/$', views.MeetingChangeView.as_view(), name='meeting_change'),
     url(r'^profile/send_meeting/$', views.send_meeting, name='send_meeting'),
     url(r'^profile/edit_meeting/(?P<pk>[0-9]+)/$', views.edit_meeting, name='edit_meeting'),
     url(r'^profile/delete_meeting/(?P<pk>[0-9]+)/$', views.delete_meeting, name='delete_meeting'),
+    # Reports change
+    # url(r'^profile/meeting/(?P<meeting_pk>[0-9]+)/change_report/$', views.ReportChangeView.as_view(), name='report_change'),
+    url(r'^profile/meeting/(?P<meeting_pk>[0-9]+)/add_report/$', views.add_report, name='add_report'),
+    url(r'^profile/meeting/(?P<meeting_pk>[0-9]+)/edit_report/(?P<pk>[0-9]+)/$', views.edit_report, name='edit_report'),
+    url(r'^profile/meeting/(?P<meeting_pk>[0-9]+)/delete_report/(?P<pk>[0-9]+)/$', views.delete_report, name='delete_report'),
+    # Files change
+    url(r'^profile/change_file$', views.FileChangeView.as_view(), name='file_change'),
+    url(r'^profile/attach_file/(?P<pk>[0-9]+)/$', views.attach_file, name='attach_file'),
     # Students change
     url(r'^profile/change_student/$', views.StudentChangeView.as_view(), name='student_change'),
     url(r'^profile/send_student/$', views.send_student, name='send_student'),

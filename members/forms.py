@@ -1,4 +1,4 @@
-from django.forms import ModelForm, Textarea, CharField, EmailField, PasswordInput
+from django.forms import Form, ModelForm, Textarea, CharField, EmailField, PasswordInput, BooleanField, FileField
 from django.forms.extras.widgets import SelectDateWidget
 from django.forms.widgets import ClearableFileInput
 from meetings.models import Report, Meeting
@@ -9,13 +9,13 @@ from django.forms import ValidationError
 from django.core.validators import RegexValidator
 from links.models import Dir
 from multiupload.fields import MultiFileField
+from django.forms.formsets import BaseFormSet
 
 
-class ReportChangeForm(ModelForm):
-
+class ChangeFileReportForm(ModelForm):
     class Meta:
         model = Report
-        fields = ('meeting', 'name', 'file', )
+        fields = ('file', )
 
 
 class DirChangeForm(ModelForm):
@@ -24,6 +24,20 @@ class DirChangeForm(ModelForm):
     class Meta:
         model = Dir
         fields = ('name', 'description', 'files')
+
+
+class ReportChangeForm(ModelForm):
+
+    class Meta:
+        model = Report
+        fields = ('name', 'author', 'author_first_name_en', 'author_last_name_en', 'author_first_name_ua',
+                  'author_last_name_ua', )
+        labels = {
+            'author_first_name_en': _('Author first name'),
+            'author_last_name_en': _('Author last name'),
+            'author_first_name_ua': _('Author last name'),
+            'author_last_name_ua': _('Author last name'),
+        }
 
 
 class MeetingChangeForm(ModelForm):
@@ -37,9 +51,10 @@ class MeetingChangeForm(ModelForm):
             'meeting_date': _('Date of meeting')
         }
         widgets = {
-            'detail_text': Textarea(attrs={'cols': 70, 'rows': 10}),
+            'detail_text': Textarea(attrs={'cols': 70, 'rows': 3}),
             'meeting_date': SelectDateWidget(),
         }
+
 
 alphanumeric = RegexValidator(r'^[0-9a-zA-Z]*$', 'Only alphanumeric characters are allowed.')
 alphabetic = RegexValidator(r'^[a-zA-Z]*$', 'Only alphabetic characters are allowed.')
@@ -106,7 +121,7 @@ class ProfessorEditForm(ModelForm):
     class Meta:
         model = Professor
         fields = ('user_name', 'password', 'email', 'first_name_en', 'last_name_en', 'first_name_ua', 'last_name_ua',
-                  'academic_title', 'institution', 'interests_en', 'interests_ua', 'photo',)
+                  'academic_title', 'institution', 'position', 'interests_en', 'interests_ua', 'photo',)
         widgets = {
             'password': PasswordInput,
             'photo': ClearableFileInput,

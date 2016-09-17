@@ -11,8 +11,9 @@ from django.utils.datastructures import MultiValueDictKeyError
 from meetings.models import Report, Meeting
 from links.models import Dir, File
 from .forms import ReportChangeForm, MeetingChangeForm, StudentEditForm, StudentCreateForm, ProfessorEditForm,\
-    DirChangeForm
+    DirChangeForm, ChangeFileReportForm
 from django.contrib.auth.models import User, Group
+from django.forms.formsets import formset_factory
 
 
 class IndexView(generic.TemplateView):
@@ -41,7 +42,7 @@ class DetailStudentView(generic.DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(DetailStudentView, self).get_context_data(**kwargs)
-        context['reports'] = Report.objects.filter(author=context['student'])
+        context['reports'] = Report.objects.filter(author=context['student'].user)
         return context
 
 
@@ -102,11 +103,37 @@ class ProfileStudentView(LoggedInMixinStudent, generic.TemplateView):
         return context
 
 
+class FileChangeView (LoggedInMixinStudent, generic.TemplateView):
+    template_name = 'members/file_change.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(FileChangeView, self).get_context_data(**kwargs)
+        context['old_reports'] = [ChangeFileReportForm(instance=r) for r in Report.objects.filter(author=self.request.user).exclude(file='')]
+        context['new_reports'] = [ChangeFileReportForm(instance=r) for r in Report.objects.filter(author=self.request.user, file='')]
+        return context
+
+
+@login_required
+@user_passes_test(in_student_group)
+def attach_file(request, pk):
+    report = Report.objects.get(pk=pk)
+    if request.method == "POST":
+        form = ChangeFileReportForm(request.POST, instance=report)
+        if form.is_valid():
+            try:
+                report.file=request.FILES['file']
+            except MultiValueDictKeyError:
+                pass
+            report.save()
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+
 class MeetingChangeView(LoggedInMixinProfessorOrSuper, generic.TemplateView):
     template_name = 'members/meeting_change.html'
 
     def get_context_data(self, **kwargs):
         context = super(MeetingChangeView, self).get_context_data(**kwargs)
+        context['formset'] = formset_factory(ReportChangeForm)
         context['form'] = MeetingChangeForm
         context['meetings'] = Meeting.objects.all().order_by('-meeting_date')
         return context
@@ -117,12 +144,18 @@ class MeetingChangeView(LoggedInMixinProfessorOrSuper, generic.TemplateView):
 def send_meeting(request):
     if request.method == "POST":
         form = MeetingChangeForm(request.POST)
-        if form.is_valid():
-            form.save()
+        formset = formset_factory(ReportChangeForm)(request.POST)
+        if form.is_valid() and formset.is_valid():
+            meeting = form.save()
+            for report_form in formset:
+                report = report_form.save(commit=False)
+                report.meeting = meeting
+                report.save()
             return HttpResponseRedirect(reverse('members:meeting_change'))
     else:
         form = MeetingChangeForm()
-    return render(request, 'members/meeting_change.html', {'form': form})
+        formset = formset_factory(ReportChangeForm)
+    return render(request, 'members/meeting_change.html', {'form': form, 'formset': formset, })
 
 
 @login_required
@@ -147,18 +180,13 @@ def delete_meeting(request, pk):
     return HttpResponseRedirect(reverse('members:meeting_change'))
 
 
-class ReportChangeView(LoggedInMixinStudent, generic.TemplateView):
-    template_name = 'members/report_change.html'
-
-    def get_context_data(self, **kwargs):
-        context = super(ReportChangeView, self).get_context_data(**kwargs)
-        context['form'] = ReportChangeForm()
-        context['reports'] = Report.objects.filter(author=self.request.user.student).order_by('-meeting')
-        return context
+# class ReportChangeView(LoggedInMixinStudent, generic.FormView):
+#     template_name = 'members/report_change.html'
+#     form_class = ReportChangeForm
 
 
 @login_required
-def send_report(request):
+def add_report(request, meeting_pk):
     if request.method == "POST":
         form = ReportChangeForm(request.POST, request.FILES)
         if form.is_valid():
@@ -167,16 +195,20 @@ def send_report(request):
                 report.file = request.FILES['file']
             except MultiValueDictKeyError:
                 pass
-            report.author = request.user.student
+            report.meeting = Meeting.objects.get(pk=meeting_pk)
             report.save()
-            return HttpResponseRedirect(reverse('members:report_change'))
+            next = request.GET.get('next', None)
+            if next:
+                return redirect(next)
+            else:
+                return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
     else:
         form = ReportChangeForm()
-    return render(request, 'members/report_change.html', {'form': form})
+    return render(request, 'members/report_change.html', {'form': form, 'meeting_pk': meeting_pk})
 
 
 @login_required
-def edit_report(request, pk):
+def edit_report(request, meeting_pk, pk):
     report = get_object_or_404(Report, pk=pk)
     if request.method == "POST":
         form = ReportChangeForm(request.POST, request.FILES, instance=report)
@@ -198,9 +230,13 @@ def edit_report(request, pk):
 
 
 @login_required
-def delete_report(request, pk):
+def delete_report(request,meeting_pk, pk):
     get_object_or_404(Report, pk=pk).delete()
-    return HttpResponseRedirect(reverse('members:report_change'))
+    next = request.GET.get('next', None)
+    if next:
+        return redirect(next)
+    else:
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
 class StudentChangeView(LoggedInMixinProfessorOrSuper, generic.TemplateView):
@@ -379,6 +415,7 @@ def edit_professor_profile(request):
             'first_name_ua': professor.first_name_ua,
             'last_name_ua': professor.last_name_ua,
             'academic_title': professor.academic_title,
+            'position': professor.position,
             'institution': professor.institution,
             'interests_en': professor.interests_en,
             'interests_ua': professor.interests_ua,
