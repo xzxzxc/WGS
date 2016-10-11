@@ -6,20 +6,24 @@
 
 {% load staticfiles %}
 
-
 {% block nav %}{% include "menu.html" %}{% endblock %}
 
 {% block content %}
 <div class="page-header">
-    <h4><img src="{% static '/static/labels/EHEP.jpg' %}" height="42" width="42" alt="EHEP"/> Taras Shevchenko National
-        University <img src="{% static '/static/labels/TSNUK.jpg' %}" height="42" width="42" alt="TSNUK"/>, Nuclear
-        Physics Department <img src="{% static '/static/labels/NPD.png' %}" height="42" width="42" alt="NPD"/></h4>
-    <hr>
-    <h1>{% trans 'Experimental High Energy Physics Group' %}</h1>
-    {Students photo}
+    <h4>
+        <img src="{% static '/static/labels/ehepg.png' %}" height="42" width="42" alt="EHEP"/>
+        <a href="http://www.univ.kiev.ua/">Taras Shevchenko National University
+            <img src="{% static '/static/labels/TSNUK.jpg' %}" height="42" width="42" alt="TSNUK"/></a>
+        <a href="http://atom.univ.kiev.ua/">Nuclear Physics Department
+            <img src="{% static '/static/labels/NPD.png' %}" height="42" width="42" alt="NPD"/></a>
+    </h4>
 </div>
 
 <div class="col-lg-8">
+    <h1>{% trans 'Experimental High Energy Physics Group' %}</h1>
+    {Students photo}
+    <h4>{% trans 'Welcome to the Kyiv High Energy Physics Group! The group is a part of the department of nuclear physics and engineering in the Taras Shevcehnko National university of Kyiv. The group has more than 20 members, and is active in many areas of experimental physics research and detector development. We are members of international collaborations in Europe, the United States, and Japan. We are closely collaborating with the Kyiv Institute for nuclear research (KINR) and Bogolyubov Instiute for theoretical physics (BITP) of the National Academy of Sciences of Ukraine.' %}</h4>
+
     <br><br><br><br><br>
     <p>
         Contacts: <a href="mailto:exphep@univ.kiev.ua">exphep@univ.kiev.ua</a>

@@ -3,13 +3,16 @@
 {% block title %}About{% endblock %}
 
 {% load staticfiles %}
+{% load i18n %}
 
 {% block nav %}{% include "menu.html" with active='about' %}{% endblock %}
 
 {% block content %}
 
 <div class="col-lg-8">
-    SOME TEXT
+    { other photo }
+    <h4>{% trans 'The goal of high energy physics is to understand what are the most fundamental constituents of matter and how these elementary particles interact. It has also important implications for cosmology.' %}</h4>
+    <h4>{% trans 'The experimentalists from our group participate in a number of collaborative research studies and they are working on the following projects: analysis of data taken by the recently completed D0 experiment at Fermilab, the Belle experiment at KEK and the ZEUS experiment at DESY, and actively participate in the development of next generation of experiments including DUNE at Fermilab, ProtoDUNE (WA105) at CERN, FCAL at DESY (Zeuthen) and BelleII an KEK. Professors, post-docs, graduate students and undergraduate students help build detector components, write analysis software, and look for various process signatures in the data (multiparton interactions, top quark physics, heavy flavour physics, particle spectroscopy etc.). The Kyiv high energy group is also involved in major education outreach activities, aimed at spreading an interest in physics and science to kids, and high school students.' %}</h4>
 </div>
 
 {% endblock %}

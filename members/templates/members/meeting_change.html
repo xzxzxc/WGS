@@ -86,7 +86,7 @@
     {% endfor %}
 </table>
 </div>
-{% else%}
+{% else %}
 <div class="col-md-6">
 <h1><br></h1>
 <hr>
@@ -119,5 +119,6 @@
     <a class="btn btn-default btn-xs" href="{% url 'members:add_report' meeting_pk=pk%}?next={% url 'members:edit_meeting' pk=pk %}">
         <span class="glyphicon glyphicon-plus"></span>Add report
     </a>
+    </div>
 {% endif %}
 {% endblock %}
