@@ -2,7 +2,7 @@
 
 {% load i18n %}
 
-{% block title %}{% trans 'HEP analysis group' %}{% endblock %}
+{% block title %}{% trans 'Experimental High Energy Physics Group' %}{% endblock %}
 
 {% load staticfiles %}
 
@@ -12,9 +12,9 @@
 <div class="page-header">
     <h4>
         <img src="{% static '/static/labels/ehepg.png' %}" height="42" width="42" alt="EHEP"/>
-        <a href="http://www.univ.kiev.ua/">Taras Shevchenko National University
+        <a href="http://www.univ.kiev.ua/">{% trans 'Taras Shevchenko National University' %}
             <img src="{% static '/static/labels/TSNUK.jpg' %}" height="42" width="42" alt="TSNUK"/></a>
-        <a href="http://atom.univ.kiev.ua/">Nuclear Physics Department
+        <a href="http://atom.univ.kiev.ua/">{% trans 'Nuclear Physics Department' %}
             <img src="{% static '/static/labels/NPD.png' %}" height="42" width="42" alt="NPD"/></a>
     </h4>
 </div>
@@ -22,13 +22,13 @@
 <div class="col-lg-8">
     <h1>{% trans 'Experimental High Energy Physics Group' %}</h1>
     {Students photo}
-    <h4>{% trans 'Welcome to the Kyiv High Energy Physics Group! The group is a part of the department of nuclear physics and engineering in the Taras Shevcehnko National university of Kyiv. The group has more than 20 members, and is active in many areas of experimental physics research and detector development. We are members of international collaborations in Europe, the United States, and Japan. We are closely collaborating with the Kyiv Institute for nuclear research (KINR) and Bogolyubov Instiute for theoretical physics (BITP) of the National Academy of Sciences of Ukraine.' %}</h4>
+    <h4>{% trans 'Welcome to the Kyiv High Energy Physics Group! The group is a part of the department of nuclear physics and engineering in the Taras Shevcehnko National university of Kyiv. The group has more than 20 members, and is active in many areas of experimental physics research and detector development. We are members of international collaborations in Europe, the United States, and Japan. We are closely collaborating with the Kyiv Institute for nuclear research (<a href = "http://www.kinr.kiev.ua/">KINR</a>) and Bogolyubov Instiute for theoretical physics (<a href = "http://bitp.kiev.ua/">BITP</a>) of the National Academy of Sciences of Ukraine.' %}</h4>
 
     <br><br><br><br><br>
     <p>
-        Contacts: <a href="mailto:exphep@univ.kiev.ua">exphep@univ.kiev.ua</a>
+        {% trans 'Contacts' %}: <a href="mailto:exphep@univ.kiev.ua">exphep@univ.kiev.ua</a>
         <br>
-        Post: 01601 Kyiv St.Volodymyrs`ka 64/13
+        {% trans 'Post' %}: 01601 Kyiv St.Volodymyrs`ka 64/13
     </p>
 </div>
 {% endblock %}

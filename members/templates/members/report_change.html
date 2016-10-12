@@ -1,6 +1,7 @@
 {% extends "base.html" %}
+{% load i18n %}
 
-{% block title %}Report change{% endblock %}
+{% block title %}{% trans 'Report change' %}{% endblock %}
 
 {% load staticfiles %}
 
@@ -10,20 +11,14 @@
 
 <div class="col-lg-6">
 
-    <h1>Hello {{ request.user.student.name_en }}!</h1>
+    <h1>{% trans 'Hello' %} {% if request.user.student.pk%}{{ request.user.student.name_en }}{% else %}
+        {{ request.user.professor.name_en }}{% endif %}!</h1>
     <hr>
-
-    {% if not form.instance.pk %}
-    <h2>Create new report?</h2>
-    <form enctype="multipart/form-data" action="{% url 'members:add_report' meeting_pk=meeting_pk %}?next={{request.GET.next}}" method="POST">{% csrf_token %}
-        {% else %}
         <form enctype="multipart/form-data" method="POST">{% csrf_token %}
-        {% endif %}
         {{ form.as_p }}
-        <button type="submit" class="save btn btn-default">Save</button>
-    </form>
+        <button type="submit" class="save btn btn-default">{% trans 'Save' %}</button>
+        </form>
 </div>
-
 
 
 {% endblock %}

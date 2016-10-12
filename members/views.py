@@ -114,7 +114,6 @@ class FileChangeView (LoggedInMixinStudent, generic.TemplateView):
 
 
 @login_required
-@user_passes_test(in_student_group)
 def attach_file(request, pk):
     report = Report.objects.get(pk=pk)
     if request.method == "POST":

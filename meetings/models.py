@@ -18,12 +18,12 @@ class Meeting(models.Model):
 
 
 class Report(models.Model):
-    meeting = models.ForeignKey(Meeting)
-    author = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
-    author_first_name_en = models.CharField(max_length=50, blank=True)
-    author_last_name_en = models.CharField(max_length=50, blank=True)
-    author_first_name_ua = models.CharField(max_length=50, blank=True)
-    author_last_name_ua = models.CharField(max_length=50, blank=True)
+    meeting = models.ForeignKey(Meeting, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    author_first_name_en = models.CharField(max_length=50, blank=True, null=True)
+    author_last_name_en = models.CharField(max_length=50, blank=True, null=True)
+    author_first_name_ua = models.CharField(max_length=50, blank=True, null=True)
+    author_last_name_ua = models.CharField(max_length=50, blank=True, null=True)
     name = models.CharField(max_length=50)
     file = models.FileField(upload_to='report_files', blank=True)
 
@@ -53,20 +53,21 @@ class Report(models.Model):
             if Report.objects.filter(pk=self.pk).exists():
                 origin = Report.objects.get(pk=self.pk)
                 origin.file.delete(False)
+        if self.author_first_name_en:
+            self.author=None
         super(Report, self).save(*args, **kwargs)
 
     def clean(self):
         # Report must have author or author name
-        if self.author is None and self.author_first_name_en=='' and self.author_last_name_en=='':
-            raise ValidationError(_('Report must have author or author name'))
-        if self.author is not None and self.author_first_name_en!='' or self.author_last_name_en!='':
-            raise ValidationError(_('Report must have only registered author or not registered'))
-        if self.author is None and self.author_first_name_en is None or self.author_last_name_en is None:
-            raise ValidationError(_('Not registered report author must have first and last names'))
-        if self.author_first_name_en is not None and self.author_first_name_ua is None:
-            raise ValidationError(_('Not registered report author must have first name in Ukrainian'))
-        if self.author_last_name_en is not None and self.author_last_name_ua is None:
-            raise ValidationError(_('Not registered report author must have last name in Ukrainian'))
+        numNone=0
+        numNotNone=0
+        for i in (self.author_first_name_en, self.author_last_name_en, self.author_first_name_ua, self.author_last_name_ua):
+            if not i:
+                numNone+=1
+            else:
+                numNotNone+=1
+        if numNotNone>0 and numNone>0:
+            raise ValidationError(_('Not registered report author must have first and last names in Ua and En'))
 
 
 @receiver(post_delete, sender=Report)
@@ -75,4 +76,8 @@ def file_report_delete_handler(sender, instance, **kwargs):
     instance.file.delete(False)
 
 
-
+# @receiver(post_delete, sender=Meeting)
+# def meeting_report_delete_handler(sender, instance, **kwargs):
+#     # Pass false so ImageField doesn't save the model.
+#     for report in Report.objects.filter(meeting=instance):
+#         del report

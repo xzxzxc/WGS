@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-29 13:02+0300\n"
+"POT-Creation-Date: 2016-10-12 21:38+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -27,26 +27,24 @@ msgstr "Українська"
 msgid "English"
 msgstr "Англійська"
 
-#: links/templates/links/index.html:5 links/templates/links/index.html.py:14
+#: links/templates/links/index.html:5
 #: members/templates/members/detail_prof.html:31
 msgid "Links"
 msgstr "Посилання"
+
+#: links/templates/links/index.html:14
+msgid "Dirs"
+msgstr "Папки"
 
 #: links/templates/links/index.html:39
 msgid "Files"
 msgstr "Файли"
 
-#: meetings/models.py:58
-msgid "Report must have author or author name"
+#: meetings/models.py:70
+msgid ""
+"Not registered report author must have first and last names in Ua and En"
 msgstr ""
-
-#: meetings/models.py:60
-msgid "Report must have only registered author or not registered"
-msgstr ""
-
-#: meetings/models.py:62
-msgid "Not registered report author must have first and last names"
-msgstr ""
+"Не зареєстрований автор має мати ім'я та прізвище українською та англійською"
 
 #: meetings/templates/meetings/detail.html:7
 msgid "Meeting"
@@ -54,6 +52,8 @@ msgstr "Зібрання"
 
 #: meetings/templates/meetings/detail.html:26
 #: members/templates/members/detail_stud.html:31
+#: members/templates/members/meeting_change.html:25
+#: members/templates/members/meeting_change.html:97
 msgid "Reports"
 msgstr "Звіти"
 
@@ -69,39 +69,75 @@ msgstr "Автор"
 msgid "File"
 msgstr "Файл"
 
-#: meetings/templates/meetings/detail.html:59
+#: meetings/templates/meetings/detail.html:63
 #: members/templates/members/detail_stud.html:6
 msgid "Details"
 msgstr "Деталі"
 
 #: meetings/templates/meetings/index.html:5
-#: meetings/templates/meetings/index.html:14 templates/menu.html:26
+#: meetings/templates/meetings/index.html:14 templates/menu.html:27
 msgid "Meetings"
 msgstr "Семінари"
 
+#: members/forms.py:37
+msgid "Report name"
+msgstr "Назва звіту"
+
+#: members/forms.py:38
+msgid "Author name"
+msgstr "Автор"
+
+#: members/forms.py:39
+msgid "Author first name in En"
+msgstr "Ім'я автора англійською"
+
+#: members/forms.py:40
+msgid "Author last name in En"
+msgstr "Прізвище автора англійською"
+
 #: members/forms.py:41
-msgid "Topic of meeting"
-msgstr ""
+msgid "Author first name in UA"
+msgstr "Ім'я автора українською"
 
 #: members/forms.py:42
-msgid "Description of meeting"
-msgstr ""
+msgid "Author last name in Ua"
+msgstr "Прізвище автора українською"
 
-#: members/forms.py:43
+#: members/forms.py:50
+msgid "This author isn`t user"
+msgstr "Цей автор не є користувачем"
+
+#: members/forms.py:60
+msgid "Topic of meeting"
+msgstr "Тема семінару"
+
+#: members/forms.py:61
+msgid "Description of meeting (not required)"
+msgstr "Опис семінару (не обов'язково)"
+
+#: members/forms.py:62
 msgid "Date of meeting"
-msgstr ""
+msgstr "Дата семінару"
 
 #: members/forms.py:70
+msgid "Only alphanumeric characters are allowed."
+msgstr "Дозволені лише букви та цифри"
+
+#: members/forms.py:71
+msgid "Only alphabetic characters are allowed."
+msgstr "Дозволені лише букви"
+
+#: members/forms.py:90
 msgid "This user name is already in use."
-msgstr ""
+msgstr "Користувач з таким ім'ям уже зареєстрований"
 
-#: members/forms.py:76 members/forms.py:97 members/forms.py:124
+#: members/forms.py:96 members/forms.py:117 members/forms.py:144
 msgid "Password too short"
-msgstr ""
+msgstr "Пароль надто короткий"
 
-#: members/forms.py:103 members/forms.py:130
+#: members/forms.py:123 members/forms.py:150
 msgid "Gif files don`t allowed"
-msgstr ""
+msgstr "Файли розширення gif не дозволені"
 
 #: members/models.py:20
 msgid "Doktor of Physics and Mathematics"
@@ -177,7 +213,7 @@ msgid "%(title)s%(pos)s %(ins)s"
 msgstr "%(title)s, %(pos)s %(ins)s"
 
 #: members/templates/members/detail_prof.html:27
-#: members/templates/members/detail_stud.html:27
+#: members/templates/members/detail_stud.html:27 templates/home.html:29
 msgid "Contacts"
 msgstr "Контакти"
 
@@ -191,7 +227,53 @@ msgstr "Наукові інтереси"
 msgid "Student %(pos)s, %(course)s course, %(gr)s group"
 msgstr "Студент %(course)s курсу, групи %(gr)s, %(pos)s"
 
-#: members/templates/members/index.html:6 templates/menu.html:29
+#: members/templates/members/dir_change.html:4
+#, python-format
+msgid "Dir %(dir.name)s change"
+msgstr "Зміна папки %(dir.name)s"
+
+#: members/templates/members/dir_change.html:13
+#: members/templates/members/file_change.html:12
+#: members/templates/members/meeting_change.html:12
+#: members/templates/members/professor_profile.html:13
+#: members/templates/members/report_change.html:14
+#: members/templates/members/student_change.html:13
+#: members/templates/members/student_profile.html:13
+msgid "Hello"
+msgstr "Привіт"
+
+#: members/templates/members/dir_change.html:17
+msgid "Create new dir"
+msgstr "Створити нову папку"
+
+#: members/templates/members/dir_change.html:23
+#: members/templates/members/file_change.html:24
+#: members/templates/members/file_change.html:44
+#: members/templates/members/report_change.html:19
+#: members/templates/members/student_change.html:24
+msgid "Save"
+msgstr "Зберегти"
+
+#: members/templates/members/dir_change.html:30
+msgid "Delete files"
+msgstr "Видалити файли"
+
+#: members/templates/members/dir_change.html:49
+#: members/templates/members/file_change.html:35
+#: members/templates/members/meeting_change.html:72
+#: members/templates/members/student_change.html:32
+msgid "Or change existing"
+msgstr "Або змінити існуючі"
+
+#: members/templates/members/file_change.html:4
+msgid "Add file"
+msgstr "Додати файл"
+
+#: members/templates/members/file_change.html:15
+msgid "List of new reports"
+msgstr "Список нових звітів"
+
+#: members/templates/members/index.html:6 templates/menu.html:30
 msgid "Members"
 msgstr "Члени"
 
@@ -203,15 +285,197 @@ msgstr "Викладачі"
 msgid "Students"
 msgstr "Студенти"
 
-#: templates/home.html:5
-msgid "HEP analysis group"
-msgstr "Група аналізу даних ФВЕ"
+#: members/templates/members/meeting_change.html:4
+msgid "Meeting change"
+msgstr "Зміна семінару"
 
-#: templates/home.html:18
-msgid "Experimental High Energy Physics Group"
+#: members/templates/members/meeting_change.html:17
+msgid "Create new Meeting"
+msgstr "Створити новий семінар"
+
+#: members/templates/members/meeting_change.html:36
+msgid "If author is unregistered"
+msgstr "Якщо автор не зареєстрований"
+
+#: members/templates/members/meeting_change.html:44
+msgid "And in ukrainian"
+msgstr "Та українською"
+
+#: members/templates/members/meeting_change.html:62
+#: members/templates/members/meeting_change.html:138
+msgid "Add report"
+msgstr "Додати звіт"
+
+#: members/templates/members/meeting_change.html:63
+msgid "Remove report"
+msgstr "Видалити звіт"
+
+#: members/templates/members/professor_profile.html:4
+#: members/templates/members/student_profile.html:4 templates/menu.html:34
+msgid "Profile"
+msgstr "Профіль"
+
+#: members/templates/members/professor_profile.html:26
+msgid "Academic title"
+msgstr "Вчене звання"
+
+#: members/templates/members/professor_profile.html:27
+msgid "Position"
+msgstr "Посада"
+
+#: members/templates/members/professor_profile.html:28
+#: members/templates/members/student_profile.html:27
+msgid "Institution"
+msgstr "Місце роботи"
+
+#: members/templates/members/professor_profile.html:29
+#: members/templates/members/student_profile.html:29
+msgid "Interests"
+msgstr "Інтереси"
+
+#: members/templates/members/professor_profile.html:35
+#: members/templates/members/student_profile.html:35
+msgid "You can"
+msgstr "Ви можете"
+
+#: members/templates/members/professor_profile.html:37
+#: members/templates/members/student_profile.html:39
+msgid "Change or create meeting"
+msgstr "Змінити або створити семінар"
+
+#: members/templates/members/professor_profile.html:38
+#: members/templates/members/student_profile.html:40
+msgid "Change or create student"
+msgstr "Змінити або створити студента"
+
+#: members/templates/members/professor_profile.html:39
+msgid "Change or create dir in links"
+msgstr "Змінити або створити папку в корисних посиланнях"
+
+#: members/templates/members/professor_profile.html:40
+#: members/templates/members/student_profile.html:37
+msgid "Change or add file to report"
+msgstr "Змінити або додати файл до звіту"
+
+#: members/templates/members/report_change.html:4
+msgid "Report change"
+msgstr "Зміна звіту"
+
+#: members/templates/members/student_change.html:4
+#, python-format
+msgid "Student %(form.instance.name)s change"
+msgstr "Зміна студента %(form.instance.name)s"
+
+#: members/templates/members/student_change.html:18
+msgid "Create new student"
+msgstr "Створити нового студента"
+
+#: members/templates/members/student_profile.html:26
+msgid "Course"
+msgstr "Курс"
+
+#: members/templates/members/student_profile.html:28
+msgid "Group"
+msgstr "Група"
+
+#: templates/about.html:4 templates/menu.html:21
+msgid "About"
+msgstr "Про нас"
+
+#: templates/about.html:14
+msgid ""
+"The goal of high energy physics is to understand what are the most "
+"fundamental constituents of matter and how these elementary particles "
+"interact. It has also important implications for cosmology."
 msgstr ""
+"Основна користь фізики високих енергій - знаходження найбільш "
+"фундаментальних складових матерії і опис взаємної взаємодії цих частинок між "
+"собою. Також ФВЕ має важливе значення для космології."
 
-#: templates/login.html:5 templates/login.html.py:43 templates/menu.html:40
+#: templates/about.html:16
+msgid ""
+"The experimentalists from our group participate in a number of collaborative "
+"research studies and they are working on the following projects: analysis of "
+"data taken by the recently completed <a href=\"http://www-d0.fnal.gov/\">D0</"
+"a> experiment at <a href=\"http://www.fnal.gov/\">Fermilab</a>, the <a href="
+"\"http://belle.kek.jp/\">Belle</a> experiment at <a href=\"http://www.kek.jp/"
+"en/index.html\">KEK</a> and the <a href=\"https://www-zeus.desy.de/\">ZEUS</"
+"a> experiment at <a href=\"http://www.desy.de/\">DESY</a>, and actively "
+"participate in the development of next generation of experiments including "
+"<a href=\"http://www.dunescience.org/\">DUNE</a> at <a href=\"http://www."
+"fnal.gov/\">Fermilab</a>, <a href=\"https://dune.bnl.gov/wiki/"
+"CERN_Prototype#protoDUNE\">ProtoDUNE(WA105)</a> at <a href=\"https://home."
+"cern/\">CERN</a>, <a href=\"http://fcal.desy.de/\">FCAL</a> at <a href="
+"\"http://www.desy.de/\">DESY (Zeuthen)</a> and <a href=\"https://www.belle2."
+"org/\">BelleII</a> at <a href=\"http://www.kek.jp/en/index.html\">KEK</a>. "
+"Professors, post-docs, graduate students and undergraduate students help "
+"build detector components, write analysis software, and look for various "
+"process signatures in the data (multiparton interactions, top quark physics, "
+"heavy flavour physics, particle spectroscopy etc.). The Kyiv high energy "
+"group is also involved in major education outreach activities, aimed at "
+"spreading an interest in physics and science to kids, and high school "
+"students."
+msgstr ""
+"Експериментатори з нашої групи беруть участь в ряді спільних наукових "
+"досліджень і працюють над наступними проектами: аналіз даних отриманих з "
+"нещодавно завершеного <a href=\"http://www-d0.fnal.gov/\">D0</a> в <a href="
+"\"http://www.fnal.gov/\">Fermilab</a>, <a href=\"http://belle.kek.jp/"
+"\">Belle</a> експерименту в <a href=\"http://www.kek.jp/en/index.html\">KEK</"
+"a> і <a href=\"https://www-zeus.desy.de/\">ZEUS</a> в <a href=\"http://www."
+"desy.de/\">DESY</a>, а також беруть активну участь у розробці наступного "
+"покоління експериментів, в тому числі в <a href=\"http://www.dunescience.org/"
+"\">DUNE</a> <a href=\"http://www.fnal.gov/\">Fermilab</a>, <a href=\"https://"
+"dune.bnl.gov/wiki/CERN_Prototype#protoDUNE\">ProtoDUNE(WA105)</a> в <a href="
+"\"https://home.cern/\">CERN</a>, <a href=\"http://fcal.desy.de/\">FCAL</a> в "
+"<a href=\"http://www.desy.de/\">DESY (Zeuthen)</a> і <a href=\"https://www."
+"belle2.org/\">BelleII</a> в <a href=\"http://www.kek.jp/en/index.html\">KEK</"
+"a>. Професори, докторанти, аспіранти і студенти допомагають підбирати "
+"компоненти детектора, писати програмне забезпечення для аналізу, і шукати "
+"різні сигнатури процесів у даних (мультипартонних взаємодій, фізики топ-"
+"кварку, фізики важкий ароматів, спектроскопії частинок і т.д.). Київська "
+"експериментальна група високих енергій також бере участь у провідних "
+"освітніх програмах, спрямованих на збільшення зацікавленості фізикою та "
+"наукою у дітей та школярів."
+
+#: templates/home.html:5 templates/home.html.py:23
+msgid "Experimental High Energy Physics Group"
+msgstr "Експериментальна група ФВЕ"
+
+#: templates/home.html:15
+msgid "Taras Shevchenko National University"
+msgstr "Національний університет імені Тараса Шевченка"
+
+#: templates/home.html:17
+msgid "Nuclear Physics Department"
+msgstr "Кафедра ядерної фізики"
+
+#: templates/home.html:25
+msgid ""
+"Welcome to the Kyiv High Energy Physics Group! The group is a part of the "
+"department of nuclear physics and engineering in the Taras Shevcehnko "
+"National university of Kyiv. The group has more than 20 members, and is "
+"active in many areas of experimental physics research and detector "
+"development. We are members of international collaborations in Europe, the "
+"United States, and Japan. We are closely collaborating with the Kyiv "
+"Institute for nuclear research (<a href = \"http://www.kinr.kiev.ua/\">KINR</"
+"a>) and Bogolyubov Instiute for theoretical physics (<a href = \"http://bitp."
+"kiev.ua/\">BITP</a>) of the National Academy of Sciences of Ukraine."
+msgstr ""
+"Ласкаво просимо до київської експериментальної групи фізики високих енергій! "
+"Група є частиною кафедри Ядерної фізики Київського Національного "
+"Університету імені Тараса Шевченко. Група налічує понад 20 членів, і активно "
+"працює в багатьох областях експериментальних досліджень фізики і "
+"розробкидетекторів. Ми входимо до міжнародних колаборацій в Європі, "
+"Сполучених Штатах та Японії. Тісно співпрацюємо з Київським Інститутом "
+"Ядерних Досліджень (<a href = \"http://www.kinr.kiev.ua/\">ІЯД</a>) і "
+"Інститутом теоретичної фізики ім Боголюбова (<a href = \"http://bitp.kiev.ua/"
+"\" >BITP</a>) Національної академії наук України."
+
+#: templates/home.html:31
+msgid "Post"
+msgstr "Пошта"
+
+#: templates/login.html:5 templates/login.html.py:43 templates/menu.html:41
 msgid "Login"
 msgstr "Увійти"
 
@@ -236,25 +500,89 @@ msgstr "Логін"
 msgid "Password"
 msgstr "Пароль"
 
-#: templates/menu.html:14
+#: templates/menu.html:15
 msgid "Home"
 msgstr "Головна"
 
-#: templates/menu.html:20
-msgid "About"
-msgstr "Про нас"
-
-#: templates/menu.html:23
+#: templates/menu.html:24
 msgid "Useful links"
-msgstr ""
+msgstr "Корисні посилання"
 
-#: templates/menu.html:33
-msgid "Profile"
-msgstr "Профіль"
-
-#: templates/menu.html:36
+#: templates/menu.html:37
 msgid "Logout"
 msgstr "Вийти"
+
+#~ msgid ""
+#~ "The experimentalists from our group participate in a number of "
+#~ "collaborative research studies and they are working on the following "
+#~ "projects: analysis of data taken by the recently completed "
+#~ msgstr ""
+#~ "Експериментатори з нашої групи беруть участь в ряді спільних наукових "
+#~ "досліджень і вони працюють над наступними проектами: аналіз даних "
+#~ "отриманих з нещодавно завершеного "
+
+#, fuzzy
+#~| msgid "experiment at"
+#~ msgid " experiment at "
+#~ msgstr "експерименту в "
+
+#~ msgid " and the"
+#~ msgstr " і "
+
+#, fuzzy
+#~| msgid ""
+#~| "The experimentalists from our group participate in a number of "
+#~| "collaborative research studies and they are working on the following "
+#~| "projects: analysis of data taken by the recently completed D0 experiment "
+#~| "at Fermilab, the Belle experiment at KEK and the ZEUS experiment at "
+#~| "DESY, and actively participate in the development of next generation of "
+#~| "experiments including DUNE at Fermilab, ProtoDUNE (WA105) at CERN, FCAL "
+#~| "at DESY (Zeuthen) and BelleII an KEK. Professors, post-docs, graduate "
+#~| "students and undergraduate students help build detector components, "
+#~| "write analysis software, and look for various process signatures in the "
+#~| "data (multiparton interactions, top quark physics, heavy flavour "
+#~| "physics, particle spectroscopy etc.). The Kyiv high energy group is also "
+#~| "involved in major education outreach activities, aimed at spreading an "
+#~| "interest in physics and science to kids, and high school students."
+#~ msgid ""
+#~ "Professors, post-docs, graduate students and undergraduate students help "
+#~ "build detector components, write analysis software, and look for various "
+#~ "process signatures in the data (multiparton interactions, top quark "
+#~ "physics, heavy flavour physics, particle spectroscopy etc.). The Kyiv "
+#~ "high energy group is also involved in major education outreach "
+#~ "activities, aimed at spreading an interest in physics and science to "
+#~ "kids, and high school students."
+#~ msgstr ""
+#~ "D0 в Fermilab, Belle експеримент в KEK і ZEUS в DESY, а також беруть "
+#~ "активну участь у розробці наступного покоління експериментів, в тому "
+#~ "числі в DUNE Fermilab, ProtoDUNE (WA105) в ЦЕРН, FCAL в DESY (Цойтене) і "
+#~ "BelleII в KEK. Професори, докторанти, аспіранти і студенти допомагають "
+#~ "підбирати компоненти детектора, писати програмне забезпечення для "
+#~ "аналізу, і шукати різні сигнатури процесів у даних (мультипартонних "
+#~ "взаємодій, фізики топ-кварку, фізики важкий ароматів, спектроскопії "
+#~ "частинок і т.д.). Київська експериментальна група високих енергій також "
+#~ "бере участь у провідних освітніх програмах, спрямованих на збільшення "
+#~ "зацікавленості фізикою та наукою у дітей, школярів студентів."
+
+#~ msgid "Author last name in UA"
+#~ msgstr "Прізвище автора"
+
+#~ msgid "Report must have author or author name"
+#~ msgstr "Звіт має бути прикріпленим до автора"
+
+#~ msgid "Report must have only registered author or not registered"
+#~ msgstr ""
+#~ "Звіт має бути прикріплиним тільки до одного автора (зареєстрованого або "
+#~ "ні)"
+
+#~ msgid "Not registered report author must have first name in Ukrainian"
+#~ msgstr "Не зареєстрований автор має мати ім'я Українською"
+
+#~ msgid "Not registered report author must have last name in Ukrainian"
+#~ msgstr "Не зареєстрований автор має мати прізвище Українською"
+
+#~ msgid "HEP analysis group"
+#~ msgstr "Група аналізу даних ФВЕ"
 
 #~ msgid "Associated professor"
 #~ msgstr "Професор"
@@ -264,6 +592,3 @@ msgstr "Вийти"
 
 #~ msgid "Student"
 #~ msgstr "Студент"
-
-#~ msgid "course"
-#~ msgstr "курс"

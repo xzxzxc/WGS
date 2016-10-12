@@ -1,6 +1,7 @@
 {% extends "base.html" %}
+{% load i18n %}
 
-{% block title %}Dir {{dir.name}} change{% endblock %}
+{% block title %}{% blocktrans %}Dir {{dir.name}} change{% endblocktrans %}{% endblock %}
 
 {% load staticfiles %}
 
@@ -9,24 +10,24 @@
 {% block content %}
 
 <div class="col-lg-6">
-    <h1>Hello {{ request.user.professor.name_en }}!</h1>
+    <h1>{% trans 'Hello' %} {{ request.user.professor.name_en }}!</h1>
     <hr>
 
     {% if not form.instance.pk %}
-    <h2>Create new dir?</h2>
+    <h2>{% trans 'Create new dir' %}?</h2>
     <form enctype="multipart/form-data" action="{% url 'members:send_dir' %}" method="POST">{% csrf_token %}
         {% else %}
         <form enctype="multipart/form-data" method="POST">{% csrf_token %}
         {% endif %}
         {{ form.as_p }}
-        <button type="submit" class="save btn btn-default">Save</button>
+        <button type="submit" class="save btn btn-default">{% trans 'Save' %}</button>
     </form>
 </div>
 {% if files %}
 <div class="col-md-5">
     <h1><br></h1>
     <hr>
-    <h3>Delete files?</h3>
+    <h3>{% trans 'Delete files' %}?</h3>
     <table cellspacing="2" cellpadding="2">
         {% for file in files %}
         <tr>
@@ -45,7 +46,7 @@
 <div class="col-md-5">
     <h1><br></h1>
     <hr>
-    <h2>Or change existing?</h2>
+    <h2>{% trans 'Or change existing' %}?</h2>
     <table cellspacing="2" cellpadding="2">
         {% for dir in dirs %}
         <tr>

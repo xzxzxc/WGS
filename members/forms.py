@@ -1,6 +1,6 @@
-from django.forms import Form, ModelForm, Textarea, CharField, EmailField, PasswordInput, BooleanField, FileField
+from django.forms import Form, ModelForm, Textarea, CharField, EmailField, PasswordInput, BooleanField, FileField, ChoiceField
 from django.forms.extras.widgets import SelectDateWidget
-from django.forms.widgets import ClearableFileInput
+from django.forms.widgets import ClearableFileInput, Select
 from meetings.models import Report, Meeting
 from .models import Student, Professor
 from django.utils.translation import ugettext_lazy as _
@@ -27,17 +27,28 @@ class DirChangeForm(ModelForm):
 
 
 class ReportChangeForm(ModelForm):
+    author = ChoiceField(widget=Select, choices=((x.user, x.name_en()) for x in list(Professor.objects.all()) + list(Student.objects.all())))
 
     class Meta:
         model = Report
         fields = ('name', 'author', 'author_first_name_en', 'author_last_name_en', 'author_first_name_ua',
                   'author_last_name_ua', )
         labels = {
-            'author_first_name_en': _('Author first name'),
-            'author_last_name_en': _('Author last name'),
-            'author_first_name_ua': _('Author last name'),
-            'author_last_name_ua': _('Author last name'),
+            'name': _('Report name'),
+            'author': _('Author name'),
+            'author_first_name_en': _('Author first name in En'),
+            'author_last_name_en': _('Author last name in En'),
+            'author_first_name_ua': _('Author first name in UA'),
+            'author_last_name_ua': _('Author last name in Ua'),
         }
+
+    def clean_author(self):
+        author = self.cleaned_data.get('author')
+        if User.objects.filter(username=author).exists():
+            author=User.objects.get(username=author)
+        else:
+            raise ValidationError(_('This author isn`t user'))
+        return author
 
 
 class MeetingChangeForm(ModelForm):
@@ -47,7 +58,7 @@ class MeetingChangeForm(ModelForm):
         fields = ('topic_text', 'detail_text', 'meeting_date', )
         labels = {
             'topic_text': _('Topic of meeting'),
-            'detail_text': _('Description of meeting'),
+            'detail_text': _('Description of meeting (not required)'),
             'meeting_date': _('Date of meeting')
         }
         widgets = {
@@ -56,8 +67,8 @@ class MeetingChangeForm(ModelForm):
         }
 
 
-alphanumeric = RegexValidator(r'^[0-9a-zA-Z]*$', 'Only alphanumeric characters are allowed.')
-alphabetic = RegexValidator(r'^[a-zA-Z]*$', 'Only alphabetic characters are allowed.')
+alphanumeric = RegexValidator(r'^[0-9a-zA-Z]*$', _('Only alphanumeric characters are allowed.'))
+alphabetic = RegexValidator(r'^[a-zA-Z]*$', _('Only alphabetic characters are allowed.'))
 
 
 class StudentCreateForm(ModelForm):

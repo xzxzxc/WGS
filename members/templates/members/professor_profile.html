@@ -1,6 +1,7 @@
 {% extends "base.html" %}
+{% load i18n %}
 
-{% block title %}Profile {{ professor.name_en }}{% endblock %}
+{% block title %}{% trans 'Profile' %} {{ professor.name_en }}{% endblock %}
 
 {% load staticfiles %}
 
@@ -9,7 +10,7 @@
 {% block content %}
 
 <div class="col-lg-6">
-    <h1>Hello {{ request.user.professor.name_en }}!</h1>
+    <h1>{% trans 'Hello' %} {{ request.user.professor.name_en }}!</h1>
     <hr>
 
     {% if form %}
@@ -22,20 +23,21 @@
     <a class="btn btn-default" style="position:absolute;top:100px;" href="{% url 'members:edit_professor_profile' %}">
                 <span class="glyphicon glyphicon-pencil"></span></a>
     <br>
-    <p class="lead">Academic title: {{ professor.get_academic_title_display }}</p>
-    <p class="lead">Position: {{ professor.get_position_display }}</p>
-    <p class="lead">Institution: {{ professor.get_institution_display }}</p>
-    <p class="lead">Interests: {{ professor.interests_en|linebreaks }}</p>
+    <p class="lead">{% trans 'Academic title' %}: {{ professor.get_academic_title_display }}</p>
+    <p class="lead">{% trans 'Position' %}: {{ professor.get_position_display }}</p>
+    <p class="lead">{% trans 'Institution' %}: {{ professor.get_institution_display }}</p>
+    <p class="lead">{% trans 'Interests' %}: {{ professor.interests_en|linebreaks }}</p>
     {% endif %}
 
 </div>
 
-<div class="col-md-4">
-    <h1>You can:</h1>
+<div class="col-md-5">
+    <h1>{% trans 'You can' %}:</h1>
     <hr>
-    <h3><a href="{% url 'members:meeting_change' %}">Change or create meeting</a> </h3>
-    <h3><a href="{% url 'members:student_change' %}">Change or create student</a> </h3>
-    <h3><a href="{% url 'members:dir_change' %}">Change or create dir in links</a> </h3>
+    <h3><a href="{% url 'members:meeting_change' %}">{% trans 'Change or create meeting' %}</a> </h3>
+    <h3><a href="{% url 'members:student_change' %}">{% trans 'Change or create student' %}</a> </h3>
+    <h3><a href="{% url 'members:dir_change' %}">{% trans 'Change or create dir in links' %}</a> </h3>
+    <h3><a href="{% url 'members:file_change' %}">{% trans 'Change or add file to report' %}</a> </h3>
 </div>
 
 {% endblock %}

@@ -1,6 +1,7 @@
 {% extends "base.html" %}
+{% load i18n %}
 
-{% block title %}Meeting change{% endblock %}
+{% block title %}{% trans 'Meeting change' %}{% endblock %}
 
 {% load staticfiles %}
 
@@ -8,11 +9,12 @@
 
 {% block content %}
 <div class="col-lg-6">
-    <h1>Hello {{ request.user.professor.name_en }}!</h1>
+    <h1>{% trans 'Hello' %} {% if request.user.student.pk%}{{ request.user.student.name_en }}{% else %}
+        {{ request.user.professor.name_en }}{% endif %}!</h1>
     <hr>
 
     {% if not form.instance.pk %}
-    <h2>Create new Meeting?</h2>
+    <h2>{% trans 'Create new Meeting' %}?</h2>
 
     <form enctype="multipart/form-data" action="{% url 'members:send_meeting' %}" method="POST">{% csrf_token %}
         {% else %}
@@ -20,7 +22,7 @@
         {% endif %}
             {{ form.as_p }}
             {% if not form.instance.pk %}
-            <h3>Reports:</h3>
+            <h3>{% trans 'Reports' %}:</h3>
             {{ formset.management_form }}
             {% for form in formset %}
             <div class="formset">
@@ -31,17 +33,19 @@
                 {{ form.author.errors }}
                 {{ form.author.label_tag }}
                 {{ form.author }}
-                <h5>If author is unregistered:</h5>
+                <h5>{% trans 'If author is unregistered' %}:</h5>
                 {{ form.author_first_name_en.errors }}
                 {{ form.author_first_name_en.label_tag }}
                 {{ form.author_first_name_en }}
+                <br>
                 {{ form.author_last_name_en.errors }}
                 {{ form.author_last_name_en.label_tag }}
                 {{ form.author_last_name_en }}
-                <h5>And in ukrainian:</h5>
+                <h5>{% trans 'And in ukrainian' %}:</h5>
                 {{ form.author_first_name_ua.errors }}
                 {{ form.author_first_name_ua.label_tag }}
                 {{ form.author_first_name_ua }}
+                <br>
                 {{ form.author_last_name_ua.errors }}
                 {{ form.author_last_name_ua.label_tag }}
                 {{ form.author_last_name_ua }}
@@ -55,17 +59,17 @@
     <script src="{% static 'jquery.formset.js' %}"></script>
     <script>
         $('.formset').formset({
-            addText: 'add link',
-            deleteText: 'remove'
+            addText: '{% trans 'Add report' %}',
+            deleteText: '{% trans 'Remove report' %}'
         });
     </script>
 </div>
 
 {% if meetings %}
-<div class="col-md-6">
+<div class="col-md-5">
 <h1><br></h1>
 <hr>
-<h2>Or change existing?</h2>
+<h2>{% trans 'Or change existing' %}?</h2>
 <table cellspacing="2" cellpadding="2">
     {% for meeting in meetings %}
     <tr>
@@ -77,7 +81,7 @@
         <a class="btn btn-default btn-xs" href="{% url 'members:edit_meeting' pk=meeting.pk %}">
             <span class="glyphicon glyphicon-pencil"></span></a>
         </td>
-        <td width="350"><h4><a href="{% url 'meetings:detail' meeting.id %}">
+        <td width="300"><h4><a href="{% url 'meetings:detail' meeting.id %}">
                  {{meeting.topic_text}}</a></h4></td>
         <td><h5><div class="date"><span class="glyphicon glyphicon-time"></span>
             {{meeting.meeting_date}}</div></h5>
@@ -87,10 +91,10 @@
 </table>
 </div>
 {% else %}
-<div class="col-md-6">
+<div class="col-md-5">
 <h1><br></h1>
 <hr>
-<h2>Reports:</h2>
+<h2>{% trans 'Reports' %}:</h2>
     <table cellspacing="2" cellpadding="2">
         {% for report in reports %}
         <tr>
@@ -105,8 +109,21 @@
             </td>
             <td width="250"><h4><a href="{% url 'meetings:detail' report.meeting.id %}">{{ report.name }}</a>
             </h4></td>
-            <td width="150"><h4><a href="{% url 'members:student_detail' report.author.student.pk %}">{{ report.author_name_en }}</a>
+            {% if report.author.student.pk %}
+            <td width="150"><h4><a href="{% url 'members:student_detail' pk=report.author.student.pk %}">{{ report.author_name_en }}</a>
             </h4></td>
+            {% elif report.author.professor.pk %}
+            <td width="150"><h4><a href="{% url 'members:professor_detail' pk=report.author.professor.pk %}">{{ report.author_name_en }}</a>
+            </h4></td>
+            {% else %}
+             <td width="150"><h4>
+                 {% if LANGUAGE_CODE == 'uk' %}
+                 {{ report.author_name_ua }}
+                 {% else %}
+                 {{ report.author_name_en }}
+                 {% endif %}
+            </h4></td>
+            {% endif %}
             {% if report.file.name %}
             <td>
                 <a class="btn btn-default btn-xs" href="{{report.file.url}}">
@@ -116,9 +133,11 @@
         </tr>
         {% endfor %}
     </table>
+    {% if pk %}
     <a class="btn btn-default btn-xs" href="{% url 'members:add_report' meeting_pk=pk%}?next={% url 'members:edit_meeting' pk=pk %}">
-        <span class="glyphicon glyphicon-plus"></span>Add report
+        <span class="glyphicon glyphicon-plus"></span>{% trans 'Add report' %}
     </a>
+    {% endif %}
     </div>
 {% endif %}
 {% endblock %}
