@@ -19,4 +19,5 @@ urlpatterns = [
     url(r'^ua/', views.translate_ua, name='ua'),
     url(r'^en/', views.translate_en, name='en'),
     url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT, }),
+	#url(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT, }),
     ]

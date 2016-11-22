@@ -8,10 +8,11 @@ from django.http import Http404
 class IndexView(generic.ListView):
     template_name = 'meetings/index.html'
     context_object_name = 'latest_meeting_list'
+    paginate_by = 20
 
     def get_queryset(self):
         return Meeting.objects.filter(meeting_date__lte=timezone.now() + datetime.timedelta(weeks=1)).order_by(
-            '-meeting_date')[:10]
+            '-meeting_date')
 
 
 class DetailView(generic.DetailView):

@@ -34,7 +34,7 @@
     <h2>{% trans 'Students' %}</h2>
     <div class="col-sm-15">
           <div class="list-group">
-              {% for student in students %}
+              {% for student in student_list %}
               <a style="padding:5px" href="{% url 'members:student_detail' student.id %}"
                  class="list-group-item clearfix">
                 <img class="thumbnail pull-left" src="{{student.photo_small.url}}">
@@ -47,6 +47,21 @@
               {% endfor %}
           </div>
     </div>
+    {% if is_paginated %}
+        <div class="pagination">
+            <span class="page-links">
+                {% if page_obj.has_previous %}
+                    <a href="/members/?page={{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
+                <span class="page-current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+                {% if page_obj.has_next %}
+                    <a href="/members/?page={{ page_obj.next_page_number }}">next</a>
+                {% endif %}
+            </span>
+        </div>
+    {% endif %}
 </div>
 
 {% endblock %}

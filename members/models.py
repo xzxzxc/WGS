@@ -22,7 +22,7 @@ class Professor(models.Model):
     institution = models.CharField(max_length=100, choices=(('TSNUK', _('Taras Shevchenko National University of Kyiv')),))
     position = models.CharField(max_length=100, choices=(('assistant', _('Teaching assistant')),
                                                          ('academic', _('Academic')), ('docent', _('Docent')),
-                                                         ('professor', _('Professor')), ))
+                                                         ('professor', _('Professor')), ('headOfDepartment', _('Head of Department')), ))
     interests_en = models.TextField()
     interests_ua = models.TextField()
     join_date = models.DateField('date joined', auto_now=True)

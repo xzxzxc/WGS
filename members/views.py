@@ -14,15 +14,21 @@ from .forms import ReportChangeForm, MeetingChangeForm, StudentEditForm, Student
     DirChangeForm, ChangeFileReportForm
 from django.contrib.auth.models import User, Group
 from django.forms.formsets import formset_factory
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
-class IndexView(generic.TemplateView):
+
+class IndexView(generic.ListView):
     template_name = 'members/index.html'
+    paginate_by = 20
+    queryset = Student.objects.filter(join_date__lte=timezone.now()).order_by('-join_date')
+
 
     def get_context_data(self, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)
         context['professors'] = Professor.objects.all()
-        context['students'] = Student.objects.filter(join_date__lte=timezone.now()).order_by('-join_date')[:15]
+        #context['students'] = Student.objects.filter(join_date__lte=timezone.now()).order_by('-join_date')
+        #paginator = Paginator(context['students'], self.paginate_by)
         return context
 
 
@@ -150,6 +156,16 @@ def send_meeting(request):
                 report = report_form.save(commit=False)
                 report.meeting = meeting
                 report.save()
+            for user in User.objects.all():
+                user.email_user(
+                    'New HEP group meeting at %s'%meeting.meeting_date,
+                    """This message was auto generated because of new HEP group meeting, please don't reply on it.
+
+If you wish to report, send the email with your topic to Volodymyr Klavdiienko(klavdiienko.volodymyr@gmail.com).
+Then, after Volodymyr will add your report to meeting you will be able to attach file in your profile page(http://exp-hep.univ.kiev.ua/members/profile).
+                    """,
+                    'root@nuke.univ.kiev.ua	'
+                )
             return HttpResponseRedirect(reverse('members:meeting_change'))
     else:
         form = MeetingChangeForm()

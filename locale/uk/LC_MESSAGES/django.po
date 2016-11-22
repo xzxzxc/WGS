@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-10-12 21:38+0300\n"
+"POT-Creation-Date: 2016-11-09 20:26+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,13 +19,168 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: WGS/settings.py:57
+#: WGS/settings.py:61
 msgid "Ukrainian"
 msgstr "Українська"
 
-#: WGS/settings.py:58
+#: WGS/settings.py:62
 msgid "English"
 msgstr "Англійська"
+
+#: WGS/templates/about.html:4 WGS/templates/menu.html:21
+msgid "About"
+msgstr "Про нас"
+
+#: WGS/templates/about.html:14
+msgid ""
+"The goal of high energy physics is to understand what are the most "
+"fundamental constituents of matter and how these elementary particles "
+"interact. It has also important implications for cosmology."
+msgstr ""
+"Основна користь фізики високих енергій - знаходження найбільш "
+"фундаментальних складових матерії і опис взаємної взаємодії цих частинок між "
+"собою. Також ФВЕ має важливе значення для космології."
+
+#: WGS/templates/about.html:16
+msgid ""
+"The experimentalists from our group participate in a number of collaborative "
+"research studies and they are working on the following projects: analysis of "
+"data taken by the recently completed <a href=\"http://www-d0.fnal.gov/\">D0</"
+"a> experiment at <a href=\"http://www.fnal.gov/\">Fermilab</a>, the <a href="
+"\"http://belle.kek.jp/\">Belle</a> experiment at <a href=\"http://www.kek.jp/"
+"en/index.html\">KEK</a> and the <a href=\"https://www-zeus.desy.de/\">ZEUS</"
+"a> experiment at <a href=\"http://www.desy.de/\">DESY</a>, and actively "
+"participate in the development of next generation of experiments including "
+"<a href=\"http://www.dunescience.org/\">DUNE</a> at <a href=\"http://www."
+"fnal.gov/\">Fermilab</a>, <a href=\"https://dune.bnl.gov/wiki/"
+"CERN_Prototype#protoDUNE\">ProtoDUNE(WA105)</a> at <a href=\"https://home."
+"cern/\">CERN</a>, <a href=\"http://fcal.desy.de/\">FCAL</a> at <a href="
+"\"http://www.desy.de/\">DESY (Zeuthen)</a> and <a href=\"https://www.belle2."
+"org/\">BelleII</a> at <a href=\"http://www.kek.jp/en/index.html\">KEK</a>. "
+"Professors, post-docs, graduate students and undergraduate students help "
+"build detector components, write analysis software, and look for various "
+"process signatures in the data (multiparton interactions, top quark physics, "
+"heavy flavour physics, particle spectroscopy etc.). The Kyiv high energy "
+"group is also involved in major education outreach activities, aimed at "
+"spreading an interest in physics and science to kids, and high school "
+"students."
+msgstr ""
+"Експериментатори з нашої групи беруть участь в ряді спільних наукових "
+"досліджень і працюють над наступними проектами: аналіз даних отриманих з "
+"нещодавно завершеного <a href=\"http://www-d0.fnal.gov/\">D0</a> в <a href="
+"\"http://www.fnal.gov/\">Fermilab</a>, <a href=\"http://belle.kek.jp/"
+"\">Belle</a> експерименту в <a href=\"http://www.kek.jp/en/index.html\">KEK</"
+"a> і <a href=\"https://www-zeus.desy.de/\">ZEUS</a> в <a href=\"http://www."
+"desy.de/\">DESY</a>, а також беруть активну участь у розробці наступного "
+"покоління експериментів, в тому числі в <a href=\"http://www.dunescience.org/"
+"\">DUNE</a> <a href=\"http://www.fnal.gov/\">Fermilab</a>, <a href=\"https://"
+"dune.bnl.gov/wiki/CERN_Prototype#protoDUNE\">ProtoDUNE(WA105)</a> в <a href="
+"\"https://home.cern/\">CERN</a>, <a href=\"http://fcal.desy.de/\">FCAL</a> в "
+"<a href=\"http://www.desy.de/\">DESY (Zeuthen)</a> і <a href=\"https://www."
+"belle2.org/\">BelleII</a> в <a href=\"http://www.kek.jp/en/index.html\">KEK</"
+"a>. Професори, докторанти, аспіранти і студенти допомагають підбирати "
+"компоненти детектора, писати програмне забезпечення для аналізу, і шукати "
+"різні сигнатури процесів у даних (мультипартонних взаємодій, фізики топ-"
+"кварку, фізики важкий ароматів, спектроскопії частинок і т.д.). Київська "
+"експериментальна група високих енергій також бере участь у провідних "
+"освітніх програмах, спрямованих на збільшення зацікавленості фізикою та "
+"наукою у дітей та школярів."
+
+#: WGS/templates/home.html:5 WGS/templates/home.html.py:23
+msgid "Experimental High Energy Physics Group"
+msgstr "Експериментальна група ФВЕ"
+
+#: WGS/templates/home.html:15
+msgid "Taras Shevchenko National University"
+msgstr "Національний університет імені Тараса Шевченка"
+
+#: WGS/templates/home.html:17
+msgid "Nuclear Physics Department"
+msgstr "Кафедра ядерної фізики"
+
+#: WGS/templates/home.html:25
+msgid ""
+"Welcome to the Kyiv High Energy Physics Group! The group is a part of the "
+"department of nuclear physics and engineering in the Taras Shevcehnko "
+"National university of Kyiv. The group has more than 20 members, and is "
+"active in many areas of experimental physics research and detector "
+"development. We are members of international collaborations in Europe, the "
+"United States, and Japan. We are closely collaborating with the Kyiv "
+"Institute for nuclear research (<a href = \"http://www.kinr.kiev.ua/\">KINR</"
+"a>) and Bogolyubov Instiute for theoretical physics (<a href = \"http://bitp."
+"kiev.ua/\">BITP</a>) of the National Academy of Sciences of Ukraine."
+msgstr ""
+"Ласкаво просимо до київської експериментальної групи фізики високих енергій! "
+"Група є частиною кафедри Ядерної фізики Київського Національного "
+"Університету імені Тараса Шевченко. Група налічує понад 20 членів, і активно "
+"працює в багатьох областях експериментальних досліджень фізики і "
+"розробкидетекторів. Ми входимо до міжнародних колаборацій в Європі, "
+"Сполучених Штатах та Японії. Тісно співпрацюємо з Київським Інститутом "
+"Ядерних Досліджень (<a href = \"http://www.kinr.kiev.ua/\">ІЯД</a>) і "
+"Інститутом теоретичної фізики ім Боголюбова (<a href = \"http://bitp.kiev.ua/"
+"\" >BITP</a>) Національної академії наук України."
+
+#: WGS/templates/home.html:29 members/templates/members/detail_prof.html:27
+#: members/templates/members/detail_stud.html:27
+msgid "Contacts"
+msgstr "Контакти"
+
+#: WGS/templates/home.html:31
+msgid "Post"
+msgstr "Пошта"
+
+#: WGS/templates/login.html:5 WGS/templates/login.html.py:43
+#: WGS/templates/menu.html:41
+msgid "Login"
+msgstr "Увійти"
+
+#: WGS/templates/login.html:15
+msgid "Please, enter username and password"
+msgstr "Будь ласка, введіть логін та пароль"
+
+#: WGS/templates/login.html:18
+msgid "Your username and password didn't match. Please try again"
+msgstr ""
+"Акаунту з таким логіном та паролем не знайдено. Будь ласка, спробуйте ще раз"
+
+#: WGS/templates/login.html:26
+msgid "Please login to see this page"
+msgstr "Будь ласка, ввійдіть щоб побачити цю сторінку"
+
+#: WGS/templates/login.html:34
+msgid "Username"
+msgstr "Логін"
+
+#: WGS/templates/login.html:38
+msgid "Password"
+msgstr "Пароль"
+
+#: WGS/templates/menu.html:15
+msgid "Home"
+msgstr "Головна"
+
+#: WGS/templates/menu.html:24
+msgid "Useful links"
+msgstr "Корисні посилання"
+
+#: WGS/templates/menu.html:27 meetings/templates/meetings/index.html:5
+#: meetings/templates/meetings/index.html:14
+msgid "Meetings"
+msgstr "Семінари"
+
+#: WGS/templates/menu.html:30 members/templates/members/index.html:6
+msgid "Members"
+msgstr "Члени"
+
+#: WGS/templates/menu.html:34
+#: members/templates/members/professor_profile.html:4
+#: members/templates/members/student_profile.html:4
+msgid "Profile"
+msgstr "Профіль"
+
+#: WGS/templates/menu.html:37
+msgid "Logout"
+msgstr "Вийти"
 
 #: links/templates/links/index.html:5
 #: members/templates/members/detail_prof.html:31
@@ -73,11 +228,6 @@ msgstr "Файл"
 #: members/templates/members/detail_stud.html:6
 msgid "Details"
 msgstr "Деталі"
-
-#: meetings/templates/meetings/index.html:5
-#: meetings/templates/meetings/index.html:14 templates/menu.html:27
-msgid "Meetings"
-msgstr "Семінари"
 
 #: members/forms.py:37
 msgid "Report name"
@@ -167,6 +317,10 @@ msgstr "Доцент"
 msgid "Professor"
 msgstr "Професор"
 
+#: members/models.py:25
+msgid "Head of Department"
+msgstr "Завідувач кафедри"
+
 #: members/models.py:85
 msgid "first"
 msgstr "першого"
@@ -211,11 +365,6 @@ msgstr "Деталі"
 #, python-format
 msgid "%(title)s%(pos)s %(ins)s"
 msgstr "%(title)s, %(pos)s %(ins)s"
-
-#: members/templates/members/detail_prof.html:27
-#: members/templates/members/detail_stud.html:27 templates/home.html:29
-msgid "Contacts"
-msgstr "Контакти"
 
 #: members/templates/members/detail_prof.html:45
 #: members/templates/members/detail_stud.html:48
@@ -273,10 +422,6 @@ msgstr "Додати файл"
 msgid "List of new reports"
 msgstr "Список нових звітів"
 
-#: members/templates/members/index.html:6 templates/menu.html:30
-msgid "Members"
-msgstr "Члени"
-
 #: members/templates/members/index.html:15
 msgid "Professors"
 msgstr "Викладачі"
@@ -309,11 +454,6 @@ msgstr "Додати звіт"
 #: members/templates/members/meeting_change.html:63
 msgid "Remove report"
 msgstr "Видалити звіт"
-
-#: members/templates/members/professor_profile.html:4
-#: members/templates/members/student_profile.html:4 templates/menu.html:34
-msgid "Profile"
-msgstr "Профіль"
 
 #: members/templates/members/professor_profile.html:26
 msgid "Academic title"
@@ -377,140 +517,6 @@ msgstr "Курс"
 #: members/templates/members/student_profile.html:28
 msgid "Group"
 msgstr "Група"
-
-#: templates/about.html:4 templates/menu.html:21
-msgid "About"
-msgstr "Про нас"
-
-#: templates/about.html:14
-msgid ""
-"The goal of high energy physics is to understand what are the most "
-"fundamental constituents of matter and how these elementary particles "
-"interact. It has also important implications for cosmology."
-msgstr ""
-"Основна користь фізики високих енергій - знаходження найбільш "
-"фундаментальних складових матерії і опис взаємної взаємодії цих частинок між "
-"собою. Також ФВЕ має важливе значення для космології."
-
-#: templates/about.html:16
-msgid ""
-"The experimentalists from our group participate in a number of collaborative "
-"research studies and they are working on the following projects: analysis of "
-"data taken by the recently completed <a href=\"http://www-d0.fnal.gov/\">D0</"
-"a> experiment at <a href=\"http://www.fnal.gov/\">Fermilab</a>, the <a href="
-"\"http://belle.kek.jp/\">Belle</a> experiment at <a href=\"http://www.kek.jp/"
-"en/index.html\">KEK</a> and the <a href=\"https://www-zeus.desy.de/\">ZEUS</"
-"a> experiment at <a href=\"http://www.desy.de/\">DESY</a>, and actively "
-"participate in the development of next generation of experiments including "
-"<a href=\"http://www.dunescience.org/\">DUNE</a> at <a href=\"http://www."
-"fnal.gov/\">Fermilab</a>, <a href=\"https://dune.bnl.gov/wiki/"
-"CERN_Prototype#protoDUNE\">ProtoDUNE(WA105)</a> at <a href=\"https://home."
-"cern/\">CERN</a>, <a href=\"http://fcal.desy.de/\">FCAL</a> at <a href="
-"\"http://www.desy.de/\">DESY (Zeuthen)</a> and <a href=\"https://www.belle2."
-"org/\">BelleII</a> at <a href=\"http://www.kek.jp/en/index.html\">KEK</a>. "
-"Professors, post-docs, graduate students and undergraduate students help "
-"build detector components, write analysis software, and look for various "
-"process signatures in the data (multiparton interactions, top quark physics, "
-"heavy flavour physics, particle spectroscopy etc.). The Kyiv high energy "
-"group is also involved in major education outreach activities, aimed at "
-"spreading an interest in physics and science to kids, and high school "
-"students."
-msgstr ""
-"Експериментатори з нашої групи беруть участь в ряді спільних наукових "
-"досліджень і працюють над наступними проектами: аналіз даних отриманих з "
-"нещодавно завершеного <a href=\"http://www-d0.fnal.gov/\">D0</a> в <a href="
-"\"http://www.fnal.gov/\">Fermilab</a>, <a href=\"http://belle.kek.jp/"
-"\">Belle</a> експерименту в <a href=\"http://www.kek.jp/en/index.html\">KEK</"
-"a> і <a href=\"https://www-zeus.desy.de/\">ZEUS</a> в <a href=\"http://www."
-"desy.de/\">DESY</a>, а також беруть активну участь у розробці наступного "
-"покоління експериментів, в тому числі в <a href=\"http://www.dunescience.org/"
-"\">DUNE</a> <a href=\"http://www.fnal.gov/\">Fermilab</a>, <a href=\"https://"
-"dune.bnl.gov/wiki/CERN_Prototype#protoDUNE\">ProtoDUNE(WA105)</a> в <a href="
-"\"https://home.cern/\">CERN</a>, <a href=\"http://fcal.desy.de/\">FCAL</a> в "
-"<a href=\"http://www.desy.de/\">DESY (Zeuthen)</a> і <a href=\"https://www."
-"belle2.org/\">BelleII</a> в <a href=\"http://www.kek.jp/en/index.html\">KEK</"
-"a>. Професори, докторанти, аспіранти і студенти допомагають підбирати "
-"компоненти детектора, писати програмне забезпечення для аналізу, і шукати "
-"різні сигнатури процесів у даних (мультипартонних взаємодій, фізики топ-"
-"кварку, фізики важкий ароматів, спектроскопії частинок і т.д.). Київська "
-"експериментальна група високих енергій також бере участь у провідних "
-"освітніх програмах, спрямованих на збільшення зацікавленості фізикою та "
-"наукою у дітей та школярів."
-
-#: templates/home.html:5 templates/home.html.py:23
-msgid "Experimental High Energy Physics Group"
-msgstr "Експериментальна група ФВЕ"
-
-#: templates/home.html:15
-msgid "Taras Shevchenko National University"
-msgstr "Національний університет імені Тараса Шевченка"
-
-#: templates/home.html:17
-msgid "Nuclear Physics Department"
-msgstr "Кафедра ядерної фізики"
-
-#: templates/home.html:25
-msgid ""
-"Welcome to the Kyiv High Energy Physics Group! The group is a part of the "
-"department of nuclear physics and engineering in the Taras Shevcehnko "
-"National university of Kyiv. The group has more than 20 members, and is "
-"active in many areas of experimental physics research and detector "
-"development. We are members of international collaborations in Europe, the "
-"United States, and Japan. We are closely collaborating with the Kyiv "
-"Institute for nuclear research (<a href = \"http://www.kinr.kiev.ua/\">KINR</"
-"a>) and Bogolyubov Instiute for theoretical physics (<a href = \"http://bitp."
-"kiev.ua/\">BITP</a>) of the National Academy of Sciences of Ukraine."
-msgstr ""
-"Ласкаво просимо до київської експериментальної групи фізики високих енергій! "
-"Група є частиною кафедри Ядерної фізики Київського Національного "
-"Університету імені Тараса Шевченко. Група налічує понад 20 членів, і активно "
-"працює в багатьох областях експериментальних досліджень фізики і "
-"розробкидетекторів. Ми входимо до міжнародних колаборацій в Європі, "
-"Сполучених Штатах та Японії. Тісно співпрацюємо з Київським Інститутом "
-"Ядерних Досліджень (<a href = \"http://www.kinr.kiev.ua/\">ІЯД</a>) і "
-"Інститутом теоретичної фізики ім Боголюбова (<a href = \"http://bitp.kiev.ua/"
-"\" >BITP</a>) Національної академії наук України."
-
-#: templates/home.html:31
-msgid "Post"
-msgstr "Пошта"
-
-#: templates/login.html:5 templates/login.html.py:43 templates/menu.html:41
-msgid "Login"
-msgstr "Увійти"
-
-#: templates/login.html:15
-msgid "Please, enter username and password"
-msgstr "Будь ласка, введіть логін та пароль"
-
-#: templates/login.html:18
-msgid "Your username and password didn't match. Please try again"
-msgstr ""
-"Акаунту з таким логіном та паролем не знайдено. Будь ласка, спробуйте ще раз"
-
-#: templates/login.html:26
-msgid "Please login to see this page"
-msgstr "Будь ласка, ввійдіть щоб побачити цю сторінку"
-
-#: templates/login.html:34
-msgid "Username"
-msgstr "Логін"
-
-#: templates/login.html:38
-msgid "Password"
-msgstr "Пароль"
-
-#: templates/menu.html:15
-msgid "Home"
-msgstr "Головна"
-
-#: templates/menu.html:24
-msgid "Useful links"
-msgstr "Корисні посилання"
-
-#: templates/menu.html:37
-msgid "Logout"
-msgstr "Вийти"
 
 #~ msgid ""
 #~ "The experimentalists from our group participate in a number of "
