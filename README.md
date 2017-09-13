@@ -7,22 +7,22 @@ Whant to know who is in the group - <a href="http://www.exp-hep.univ.kiev.ua/mem
 <hr>
 
 Each professor can:
-<li>
-  <ul>Publish their educational materials in <a href="http://www.exp-hep.univ.kiev.ua/links/">Links</a> section</ul>
-  <ul>Crate meetings that later can be seen in <a href="http://www.exp-hep.univ.kiev.ua/meetings/">Meetings</a> section</ul>
-  <ul>Add <a href="http://www.exp-hep.univ.kiev.ua/members/">Students</a></ul>
- </li>
+<ul>
+  <li>Publish their educational materials in <a href="http://www.exp-hep.univ.kiev.ua/links/">Links</a> section</li>
+  <li>Crate meetings that later can be seen in <a href="http://www.exp-hep.univ.kiev.ua/meetings/">Meetings</a> section</li>
+  <li>Add <a href="http://www.exp-hep.univ.kiev.ua/members/">Students</a></li>
+</ul>
 Each user can:
-<li>
-  <ul>Edit their profiles</ul>
-  <ul>Add their reports to future meetings</ul>
-  <ul>Attach files to their reports on meeting</ul>
-</li>
+<ul>
+  <li>Edit their profiles</li>
+  <li>Add their reports to future meetings</li>
+  <li>Attach files to their reports on meeting</li>
+</ul>
 
 Also there is next features:
-<li>
-  <ul>Each user have their own customisable profile page</ul>
-  <ul>Two languages: Ukrainian and English</ul>
-  <ul>Email notifications about next meetings</ul>
-  <ul>Files can be hiden from unregisterd users for security reeasons</ul>
-</li>
+<ul>
+  <li>Each user have their own customisable profile page</li>
+  <li>Two languages: Ukrainian and English</li>
+  <li>Email notifications about next meetings</li>
+  <li>Files can be hiden from unregisterd users for security reeasons</li>
+</ul>
