@@ -1,4 +1,5 @@
 <h1>Site of <a href="http://www.exp-hep.univ.kiev.ua">EHEP TSNUK group</a></h1>
+Site is currently unavailable due to lack of adequate support.
 
 The main page represents short information about group, larger description can be found in <a href="http://www.exp-hep.univ.kiev.ua/about/">About</a> page. <br>
 For those who have courses with our professors here is <a href="http://www.exp-hep.univ.kiev.ua/links/">Useful Links</a>. <br>
