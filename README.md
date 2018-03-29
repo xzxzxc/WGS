@@ -27,3 +27,5 @@ Also there is next features:
   <li>Email notifications about next meetings</li>
   <li>Files can be hiden from unregisterd users for security reeasons</li>
 </ul>
+
+<img src="media/wgs.jpg">
